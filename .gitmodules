@@ -1,0 +1,3 @@
+[submodule "BatteryEngine/imgui"]
+	path = BatteryEngine/imgui
+	url = git@github.com:ocornut/imgui.git

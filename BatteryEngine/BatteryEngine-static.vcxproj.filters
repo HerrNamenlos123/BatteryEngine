@@ -16,6 +16,9 @@
     <Filter Include="Header Files\Battery">
       <UniqueIdentifier>{3016effa-118a-4ff8-b10a-edb64fdee46c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\imgui">
+      <UniqueIdentifier>{f80db9f0-78d7-46e3-995d-7d0a0a39036a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Battery.h">
@@ -36,9 +39,6 @@
     <ClInclude Include="..\include\Battery\Exception.h">
       <Filter>Header Files\Battery</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\Battery\Platform.h">
-      <Filter>Header Files\Battery</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\Battery\Updater.h">
       <Filter>Header Files\Battery</Filter>
     </ClInclude>
@@ -49,6 +49,12 @@
       <Filter>Header Files\Battery</Filter>
     </ClInclude>
     <ClInclude Include="..\include\Battery\Config.h">
+      <Filter>Header Files\Battery</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Engine.h">
+      <Filter>Header Files\Battery</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Graphics.h">
       <Filter>Header Files\Battery</Filter>
     </ClInclude>
   </ItemGroup>
@@ -65,9 +71,6 @@
     <ClCompile Include="..\src\Exception.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Platform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Updater.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -77,8 +80,30 @@
     <ClCompile Include="..\src\TimeUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_demo.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_draw.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_widgets.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\backends\imgui_impl_allegro5.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?><DEFECTS><DEFECT>
+    <SFA>
+      <FILEPATH>F:\Users\Florian\Documents\VS-Projects\BatteryEngine\include\curlpp\</FILEPATH>
+      <FILENAME>Option.hpp</FILENAME>
+      <LINE>152</LINE>
+      <COLUMN>35</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'CURLoption' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION></FUNCTION>
+    <DECORATED></DECORATED>
+    <FUNCLINE>0</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>F:\Users\Florian\Documents\VS-Projects\BatteryEngine\include\curlpp\internal\</FILEPATH>
+      <FILENAME>CurlHandle.inl</FILENAME>
+      <LINE>45</LINE>
+      <COLUMN>10</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'CURLcode' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>curlpp::internal::CurlHandle::option</FUNCTION>
+    <DECORATED>??$option@PEAX@CurlHandle@internal@curlpp@@QEAAXW4CURLoption@@PEAX@Z</DECORATED>
+    <FUNCLINE>41</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT></DEFECTS>

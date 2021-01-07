@@ -22,10 +22,11 @@
     <ClInclude Include="..\include\Battery.h" />
     <ClInclude Include="..\include\Battery\Config.h" />
     <ClInclude Include="..\include\Battery\Core.h" />
+    <ClInclude Include="..\include\Battery\Engine.h" />
     <ClInclude Include="..\include\Battery\Exception.h" />
     <ClInclude Include="..\include\Battery\FileUtils.h" />
+    <ClInclude Include="..\include\Battery\Graphics.h" />
     <ClInclude Include="..\include\Battery\NetUtils.h" />
-    <ClInclude Include="..\include\Battery\Platform.h" />
     <ClInclude Include="..\include\Battery\StringUtils.h" />
     <ClInclude Include="..\include\Battery\TimeUtils.h" />
     <ClInclude Include="..\include\Battery\Updater.h" />
@@ -33,15 +34,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Core.cpp" />
+    <ClCompile Include="..\src\Engine.cpp" />
     <ClCompile Include="..\src\Exception.cpp" />
     <ClCompile Include="..\src\FileUtils.cpp" />
+    <ClCompile Include="..\src\Graphics.cpp" />
     <ClCompile Include="..\src\NetUtils.cpp" />
-    <ClCompile Include="..\src\Platform.cpp" />
     <ClCompile Include="..\src\StringUtils.cpp" />
     <ClCompile Include="..\src\TimeUtils.cpp" />
     <ClCompile Include="..\src\Updater.cpp" />
+    <ClCompile Include="imgui\backends\imgui_impl_allegro5.cpp" />
+    <ClCompile Include="imgui\imgui.cpp" />
+    <ClCompile Include="imgui\imgui_demo.cpp" />
+    <ClCompile Include="imgui\imgui_draw.cpp" />
+    <ClCompile Include="imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -167,9 +175,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;ALLEGRO_STATICLINK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;ALLEGRO_STATICLINK;%(PreprocessorDefinitions);ALLEGRO_STATICLINK</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../include;../allegro-5.0.10-msvc-11.0/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;imgui/backends;imgui;../include;../allegro-5.0.10-msvc-11.0/include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -180,8 +188,8 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <Lib>
-      <AdditionalLibraryDirectories>../packages\Allegro.5.2.6\build\native\v142\x64\lib;%(AdditionalLibraryDirectories);C:\Program Files\OpenSSL-Win64\lib\VC\static;../lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>allegro_monolith-static.lib;libcurlpp-MTd-d-static.lib;libcrypto64MTd.lib;libssl64MTd.lib;libcurl-MTd-d-static.lib;opengl32.lib;winmm.lib;ws2_32.lib;wldap32.lib;crypt32.lib;ntdll.lib;shlwapi.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../packages\AllegroDeps.1.11.0\build\native\v142\x64\deps\lib;../packages\Allegro.5.2.6\build\native\v142\x64\lib;%(AdditionalLibraryDirectories);C:\Program Files\OpenSSL-Win64\lib\VC\static;../lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>allegro_monolith-static.lib;freetype.lib;jpeg.lib;libpng16.lib;webp.lib;zlib.lib;libcurlpp-MTd-d-static.lib;libcrypto64MTd.lib;libssl64MTd.lib;libcurl-MTd-d-static.lib;opengl32.lib;winmm.lib;ws2_32.lib;wldap32.lib;crypt32.lib;ntdll.lib;shlwapi.lib</AdditionalDependencies>
       <AdditionalOptions>/ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -204,9 +212,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;ALLEGRO_STATICLINK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;ALLEGRO_STATICLINK;%(PreprocessorDefinitions);ALLEGRO_STATICLINK</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../include;../allegro-5.0.10-msvc-11.0/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;imgui/backends;imgui;../include;../allegro-5.0.10-msvc-11.0/include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -219,8 +227,8 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <Lib>
-      <AdditionalLibraryDirectories>../packages\Allegro.5.2.6\build\native\v142\x64\lib;C:\Program Files\OpenSSL-Win64\lib\VC\static;../lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>allegro_monolith-static.lib;libcurlpp-MT-static.lib;libcrypto64MT.lib;libssl64MT.lib;libcurl-MT-static.lib;opengl32.lib;winmm.lib;ws2_32.lib;wldap32.lib;crypt32.lib;ntdll.lib;shlwapi.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../packages\AllegroDeps.1.11.0\build\native\v142\x64\deps\lib;../packages\Allegro.5.2.6\build\native\v142\x64\lib;C:\Program Files\OpenSSL-Win64\lib\VC\static;../lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>allegro_monolith-static.lib;freetype.lib;jpeg.lib;libpng16.lib;webp.lib;zlib.lib;libcurlpp-MT-static.lib;libcrypto64MT.lib;libssl64MT.lib;libcurl-MT-static.lib;opengl32.lib;winmm.lib;ws2_32.lib;wldap32.lib;crypt32.lib;ntdll.lib;shlwapi.lib</AdditionalDependencies>
       <AdditionalOptions>/ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>

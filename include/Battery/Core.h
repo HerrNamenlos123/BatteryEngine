@@ -1,28 +1,33 @@
 #pragma once
 
 #include <string>
+#include "Battery/_AllegroDependencies.h"
 
 namespace Battery {
 	namespace Core {
 
 		/// <summary>
-		/// Initialize the Allegro context
+		/// Initialize the Allegro framework and all components
 		/// </summary>
-		/// <exception cref="Battery::Exception - Thrown when neither the application name nor the organization name
-		/// were set before initialization"></exception>
-		/// <returns>bool - if initialization was successful</returns>
-		bool Initialize();
+		/// <exception cref="Battery::Exception - Thrown when any component of the Allegro framework 
+		/// failed to initialize"></exception>
+		void Initialize();
 
 		/// <summary>
-		/// Check if the Allegro context is already initialized
+		/// Check if the Allegro framework is already initialized
 		/// </summary>
-		/// <returns>bool - if context is initialized</returns>
+		/// <returns>bool - if framework is initialized</returns>
 		bool IsInitialized();
 
 		/// <summary>
-		/// Shut the engine down with all dependencies, should be the last cleanup step after the program terminates
+		/// Shut the Allegro framework and all components down
 		/// </summary>
 		void Shutdown();
+
+
+
+
+
 
 		/// <summary>
 		/// Get the global application name, will be seen in the user path (%appdata% folder)
@@ -51,6 +56,90 @@ namespace Battery {
 		/// </summary>
 		/// <returns>std::string - The version string</returns>
 		std::string GetAllegroVersion();
+
+
+
+
+
+
+
+
+
+
+		/// <summary>
+		/// Show a windows error message, the display can be nullptr if the messagebox is not owned by a window
+		/// </summary>
+		/// <param name="msg">- The message in the box</param>
+		/// <param name="display">- An ALLEGRO_DISPLAY pointer</param>
+		void ShowErrorMessageBox(const std::string& msg, ALLEGRO_DISPLAY* display = nullptr);
+
+		/// <summary>
+		/// Show a windows error message, the display can be nullptr if the messagebox is not owned by a window.
+		/// Yes and No buttons are displayed and when yes is pressed, true is returned, otherwise false
+		/// </summary>
+		/// <param name="msg">- The message in the box</param>
+		/// <param name="display">- An ALLEGRO_DISPLAY pointer</param>
+		/// <returns>bool - if yes was pressed</returns>
+		bool ShowErrorMessageBoxYesNo(const std::string& msg, ALLEGRO_DISPLAY* display = nullptr);
+
+		/// <summary>
+		/// Show a windows error message, the display can be nullptr if the messagebox is not owned by a window.
+		/// Ok and Cancel buttons are displayed and when ok is pressed, true is returned, otherwise false
+		/// </summary>
+		/// <param name="msg">- The message in the box</param>
+		/// <param name="display">- An ALLEGRO_DISPLAY pointer</param>
+		/// <returns>bool - if ok was pressed</returns>
+		bool ShowErrorMessageBoxOkCancel(const std::string& msg, ALLEGRO_DISPLAY* display = nullptr);
+
+		/// <summary>
+		/// Show a windows warning message, the display can be nullptr if the messagebox is not owned by a window
+		/// </summary>
+		/// <param name="msg">- The message in the box</param>
+		/// <param name="display">- An ALLEGRO_DISPLAY pointer</param>
+		void ShowWarningMessageBox(const std::string& msg, ALLEGRO_DISPLAY* display = nullptr);
+
+		/// <summary>
+		/// Show a windows warning message, the display can be nullptr if the messagebox is not owned by a window.
+		/// Yes and No buttons are displayed and when yes is pressed, true is returned, otherwise false
+		/// </summary>
+		/// <param name="msg">- The message in the box</param>
+		/// <param name="display">- An ALLEGRO_DISPLAY pointer</param>
+		/// <returns>bool - if yes was pressed</returns>
+		bool ShowWarningMessageBoxYesNo(const std::string& msg, ALLEGRO_DISPLAY* display = nullptr);
+
+		/// <summary>
+		/// Show a windows warning message, the display can be nullptr if the messagebox is not owned by a window.
+		/// Ok and Cancel buttons are displayed and when ok is pressed, true is returned, otherwise false
+		/// </summary>
+		/// <param name="msg">- The message in the box</param>
+		/// <param name="display">- An ALLEGRO_DISPLAY pointer</param>
+		/// <returns>bool - if ok was pressed</returns>
+		bool ShowWarningMessageBoxOkCancel(const std::string& msg, ALLEGRO_DISPLAY* display = nullptr);
+
+		/// <summary>
+		/// Show a windows info message, the display can be nullptr if the messagebox is not owned by a window
+		/// </summary>
+		/// <param name="msg">- The message in the box</param>
+		/// <param name="display">- An ALLEGRO_DISPLAY pointer</param>
+		void ShowInfoMessageBox(const std::string& msg, ALLEGRO_DISPLAY* display = nullptr);
+
+		/// <summary>
+		/// Show a windows info message, the display can be nullptr if the messagebox is not owned by a window.
+		/// Yes and No buttons are displayed and when yes is pressed, true is returned, otherwise false
+		/// </summary>
+		/// <param name="msg">- The message in the box</param>
+		/// <param name="display">- An ALLEGRO_DISPLAY pointer</param>
+		/// <returns>bool - if yes was pressed</returns>
+		bool ShowInfoMessageBoxYesNo(const std::string& msg, ALLEGRO_DISPLAY* display = nullptr);
+
+		/// <summary>
+		/// Show a windows info message, the display can be nullptr if the messagebox is not owned by a window.
+		/// Ok and Cancel buttons are displayed and when ok is pressed, true is returned, otherwise false
+		/// </summary>
+		/// <param name="msg">- The message in the box</param>
+		/// <param name="display">- An ALLEGRO_DISPLAY pointer</param>
+		/// <returns>bool - if ok was pressed</returns>
+		bool ShowInfoMessageBoxOkCancel(const std::string& msg, ALLEGRO_DISPLAY* display = nullptr);
 
 	}
 }

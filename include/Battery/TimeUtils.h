@@ -16,5 +16,11 @@ namespace Battery {
 		/// <returns>std::time_t - The epoch time in seconds or 0 on failure</returns>
 		std::time_t ConvertTimetamp(const std::string& timestamp);
 
+		/// <summary>
+		/// Get the current time in microseconds as Unix timestamp or epoch time
+		/// </summary>
+		/// <returns>uint32_t - epoch time in microseconds</returns>
+		uint32_t GetMicroseconds();
+
 	}
 }

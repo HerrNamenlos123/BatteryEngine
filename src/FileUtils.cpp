@@ -3,7 +3,6 @@
 
 #include "Battery/Core.h"
 #include "Battery/Exception.h"
-#include "Battery/Platform.h"
 #include "Battery/_AllegroDependencies.h"
 
 #include <iostream>
@@ -274,13 +273,13 @@ namespace Battery {
 
 					// Now check if the file already exists
 					if (FileExists(file)) {		// File already exists
-						if (!Platform::ShowWarningMessageBoxYesNo(file + " already exists. Do you really want to overwrite it?", parentWindow)) {
+						if (!Core::ShowWarningMessageBoxYesNo(file + " already exists. Do you really want to overwrite it?", parentWindow)) {
 							// Don't overwrite the file, repeat
 							continue;
 						}
 					}
 					else if (FilenameExists(file)) {
-						Platform::ShowWarningMessageBox(file + " is a directory! Please choose another file!", parentWindow);
+						Core::ShowWarningMessageBox(file + " is a directory! Please choose another file!", parentWindow);
 						continue;
 					}
 
@@ -291,7 +290,7 @@ namespace Battery {
 					}
 
 					// File could not be saved, repeat
-					Platform::ShowWarningMessageBox(file + " could not be saved. Try again!", parentWindow);
+					Core::ShowWarningMessageBox(file + " could not be saved. Try again!", parentWindow);
 					continue;
 				}
 
@@ -385,14 +384,14 @@ namespace Battery {
 
 			// Check if extension is correct
 			if (GetExtensionFromPath(path) != std::string(".") + extension) {	// Wrong Extension
-				Platform::ShowWarningMessageBox(path + " has an incorrect file format. Please choose another file!", parentWindow);
+				Core::ShowWarningMessageBox(path + " has an incorrect file format. Please choose another file!", parentWindow);
 				return LoadFileWithDialog(extension, parentWindow, defaultLocation);	// Try again by recursion
 			}
 
 			File file = LoadFile(path);
 
 			if (file.fail()) {
-				Platform::ShowErrorMessageBox(path + " could not be loaded!", parentWindow);
+				Core::ShowErrorMessageBox(path + " could not be loaded!", parentWindow);
 				return File("", "", false);
 			}
 
