@@ -20,11 +20,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Battery.h" />
+    <ClInclude Include="..\include\Battery\Config.h" />
     <ClInclude Include="..\include\Battery\Core.h" />
     <ClInclude Include="..\include\Battery\Exception.h" />
     <ClInclude Include="..\include\Battery\FileUtils.h" />
     <ClInclude Include="..\include\Battery\NetUtils.h" />
     <ClInclude Include="..\include\Battery\Platform.h" />
+    <ClInclude Include="..\include\Battery\StringUtils.h" />
+    <ClInclude Include="..\include\Battery\TimeUtils.h" />
+    <ClInclude Include="..\include\Battery\Updater.h" />
     <ClInclude Include="..\include\Battery\_AllegroDependencies.h" />
   </ItemGroup>
   <ItemGroup>
@@ -33,6 +37,9 @@
     <ClCompile Include="..\src\FileUtils.cpp" />
     <ClCompile Include="..\src\NetUtils.cpp" />
     <ClCompile Include="..\src\Platform.cpp" />
+    <ClCompile Include="..\src\StringUtils.cpp" />
+    <ClCompile Include="..\src\TimeUtils.cpp" />
+    <ClCompile Include="..\src\Updater.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -173,8 +180,8 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <Lib>
-      <AdditionalLibraryDirectories>../packages\Allegro.5.2.6\build\native\v142\x64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>allegro_monolith-static.lib;shlwapi.lib;opengl32.lib;winmm.lib;ntdll.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../packages\Allegro.5.2.6\build\native\v142\x64\lib;%(AdditionalLibraryDirectories);C:\Program Files\OpenSSL-Win64\lib\VC\static;../lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>allegro_monolith-static.lib;libcurlpp-MTd-d-static.lib;libcrypto64MTd.lib;libssl64MTd.lib;libcurl-MTd-d-static.lib;opengl32.lib;winmm.lib;ws2_32.lib;wldap32.lib;crypt32.lib;ntdll.lib;shlwapi.lib</AdditionalDependencies>
       <AdditionalOptions>/ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -212,8 +219,8 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <Lib>
-      <AdditionalLibraryDirectories>../packages\Allegro.5.2.6\build\native\v142\x64\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>allegro_monolith-static.lib;shlwapi.lib;opengl32.lib;winmm.lib;ntdll.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../packages\Allegro.5.2.6\build\native\v142\x64\lib;C:\Program Files\OpenSSL-Win64\lib\VC\static;../lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>allegro_monolith-static.lib;libcurlpp-MT-static.lib;libcrypto64MT.lib;libssl64MT.lib;libcurl-MT-static.lib;opengl32.lib;winmm.lib;ws2_32.lib;wldap32.lib;crypt32.lib;ntdll.lib;shlwapi.lib</AdditionalDependencies>
       <AdditionalOptions>/ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -238,8 +245,8 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <Lib>
-      <AdditionalLibraryDirectories>../packages\Allegro.5.2.6\build\native\v142\Win32\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>allegro_monolith-static.lib;shlwapi.lib;opengl32.lib;winmm.lib;ntdll.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../packages\Allegro.5.2.6\build\native\v142\Win32\lib;lib;../lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>allegro_monolith-static.lib;libcrypto64MT.lib;libssl64MT.lib;shlwapi.lib;opengl32.lib;winmm.lib;ws2_32.lib;wldap32.lib;crypt32.lib;ntdll.lib;libcurlpp-MT-static.lib;libcurl-MT-static.lib</AdditionalDependencies>
       <AdditionalOptions>/ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -252,8 +259,8 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
     <Lib>
-      <AdditionalLibraryDirectories>../packages\Allegro.5.2.6\build\native\v142\win32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>allegro_monolith-static.lib;shlwapi.lib;opengl32.lib;winmm.lib;ntdll.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../packages\Allegro.5.2.6\build\native\v142\win32\lib;%(AdditionalLibraryDirectories);lib;../lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>allegro_monolith-static.lib;libcrypto64MT.lib;libssl64MT.lib;shlwapi.lib;opengl32.lib;winmm.lib;ws2_32.lib;wldap32.lib;crypt32.lib;ntdll.lib;libcurlpp-MT-d-static.lib;libcurl-MT-d-static.lib</AdditionalDependencies>
       <AdditionalOptions>/ignore:4006 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>

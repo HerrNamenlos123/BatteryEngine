@@ -83,7 +83,8 @@ namespace Battery {
 		File LoadFile(const std::string& path);
 
 		/// <summary>
-		/// Write a file to memory at the given path
+		/// Write a file to memory at the given path. When the parent directory does not exist, it
+		/// is created with PrepareDirectory()
 		/// </summary>
 		/// <param name="path">- The complete filename and path</param>
 		/// <param name="content">- The content of the file</param>

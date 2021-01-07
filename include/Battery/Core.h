@@ -8,6 +8,8 @@ namespace Battery {
 		/// <summary>
 		/// Initialize the Allegro context
 		/// </summary>
+		/// <exception cref="Battery::Exception - Thrown when neither the application name nor the organization name
+		/// were set before initialization"></exception>
 		/// <returns>bool - if initialization was successful</returns>
 		bool Initialize();
 
@@ -21,6 +23,16 @@ namespace Battery {
 		/// Shut the engine down with all dependencies, should be the last cleanup step after the program terminates
 		/// </summary>
 		void Shutdown();
+
+		/// <summary>
+		/// Get the global application name, will be seen in the user path (%appdata% folder)
+		/// </summary>
+		std::string GetApplicationName();
+
+		/// <summary>
+		/// Get the global organization name, will be seen in the user path (%appdata% folder)
+		/// </summary>
+		std::string GetOrganizationName();
 
 		/// <summary>
 		/// Set the global application name, will be seen in the user path (%appdata% folder)

@@ -106,6 +106,8 @@ namespace Battery {
 
 		bool SaveFile(const std::string& path, const std::string& content) {
 
+			PrepareDirectory(GetDirectoryFromPath(path));
+
 			ALLEGRO_FILE* file = al_fopen(path.c_str(), "w");
 
 			if (file == nullptr)

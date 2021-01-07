@@ -1,6 +1,7 @@
 
 #include "Battery/Core.h"
 #include "Battery/Platform.h"
+#include "Battery/Exception.h"
 #include "Battery/_AllegroDependencies.h"
 
 #include <iostream>
@@ -9,6 +10,10 @@ namespace Battery {
 	namespace Core {
 
 		bool Initialize() {
+
+			if (Core::GetApplicationName() == "" && Core::GetOrganizationName() == "") {
+				throw Battery::Exception("Neither the Application nor the Organization name was set, should be set before initialization");
+			}
 			
 			if (!al_init())
 				return false;
@@ -26,6 +31,14 @@ namespace Battery {
 		void Shutdown() {
 			Platform::ShutdownNativeDialogAddon();
 			al_uninstall_system();
+		}
+
+		std::string GetApplicationName() {
+			return al_get_app_name();
+		}
+
+		std::string GetOrganizationName() {
+			return al_get_org_name();
 		}
 
 		void SetApplicationName(const std::string& name) {
