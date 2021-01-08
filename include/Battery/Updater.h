@@ -52,5 +52,13 @@ namespace Battery {
 		/// <returns>bool - If the file was successfully written or created</returns>
 		bool SetApplicationReleaseDate(const std::string& timestamp);
 
+		/// <summary>
+		/// Check if a new Github release is available and the version tag is different from the currently installed one.
+		/// </summary>
+		/// <param name="githubUser">- The username of the Github repository</param>
+		/// <param name="repository">- The Github repository name</param>
+		/// <returns>bool - if a new update is available</returns>
+		bool CheckForGithubUpdate(const std::string& githubUser, const std::string& repository);
+
 	}
 }

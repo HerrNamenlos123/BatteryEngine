@@ -165,8 +165,8 @@ namespace Battery {
 				PreUpdate();
 
 				// Call user overridden update function
-				if (!Update())
-					running = false;	// If false returned, close immediately
+				if (!Update())			// If false is returned, close immediately
+					running = false;	
 
 				// Do something after user update
 				PostUpdate();
