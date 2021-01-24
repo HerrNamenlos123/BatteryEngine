@@ -23,5 +23,14 @@ namespace Battery {
 		/// <returns>NetUtils::HTTPRequest struct, which contains all informations about the response</returns>
 		HTTPRequest GetHTTPRequest(const std::string& url, const std::string& certificates, const std::string& userAgent, long timeout = 10);
 
+		//size_t GetSizeOfDownloadFile(const std::string& url, const std::string& certificates, const std::string& userAgent, long timeout = 10);
+
+		/*class FileDownloader {
+		public:
+			bool download(const std::string& url, const std::string& outputFile, const std::string& caFile);
+		};
+
+		bool DownloadFile(const std::string& url, const std::string& outputFile, const std::string& caFile);*/
+
 	}
 }

@@ -30,5 +30,17 @@ namespace Battery {
 		/// <returns>std::string - The final joined string</returns>
 		std::string JoinStrings(std::vector<std::string> strings, std::string spacer = "");
 
+
+
+		std::string ToUpperCase(const std::string& str);
+		std::string ToLowerCase(const std::string& str);
+
+		char ToUpperCase(char c);
+		char ToLowerCase(char c);
+
+		bool IsUpperCase(char c);
+		bool IsLowerCase(char c);
+
+		bool IsInAlphabet(char c);
 	}
 }

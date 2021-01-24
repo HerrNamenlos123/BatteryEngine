@@ -31,8 +31,14 @@
     <ClInclude Include="..\include\Battery\TimeUtils.h" />
     <ClInclude Include="..\include\Battery\Updater.h" />
     <ClInclude Include="..\include\Battery\_AllegroDependencies.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\modules\imgui\backends\imgui_impl_allegro5.cpp" />
+    <ClCompile Include="..\modules\imgui\imgui.cpp" />
+    <ClCompile Include="..\modules\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\modules\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\modules\imgui\imgui_widgets.cpp" />
     <ClCompile Include="..\src\Core.cpp" />
     <ClCompile Include="..\src\Engine.cpp" />
     <ClCompile Include="..\src\Exception.cpp" />
@@ -42,15 +48,13 @@
     <ClCompile Include="..\src\StringUtils.cpp" />
     <ClCompile Include="..\src\TimeUtils.cpp" />
     <ClCompile Include="..\src\Updater.cpp" />
-    <ClCompile Include="imgui\backends\imgui_impl_allegro5.cpp" />
-    <ClCompile Include="imgui\imgui.cpp" />
-    <ClCompile Include="imgui\imgui_demo.cpp" />
-    <ClCompile Include="imgui\imgui_draw.cpp" />
-    <ClCompile Include="imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="BatteryEngine-static.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -177,7 +181,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;ALLEGRO_STATICLINK;%(PreprocessorDefinitions);ALLEGRO_STATICLINK</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.;imgui/backends;imgui;../include;../allegro-5.0.10-msvc-11.0/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../modules/imgui/backends;../modules;../modules/imgui;../include;../allegro-5.0.10-msvc-11.0/include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -214,7 +218,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;ALLEGRO_STATICLINK;%(PreprocessorDefinitions);ALLEGRO_STATICLINK</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.;imgui/backends;imgui;../include;../allegro-5.0.10-msvc-11.0/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../modules/imgui/backends;../modules;../modules/imgui;../include;../allegro-5.0.10-msvc-11.0/include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>

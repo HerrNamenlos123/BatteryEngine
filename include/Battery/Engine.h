@@ -1,7 +1,16 @@
 #pragma once
 
 #include <string>
+#include "Battery/Exception.h"
 #include "Battery/_AllegroDependencies.h"
+
+/// <summary>
+/// Set the window icon to the embedded icon of the executable. If 'IDI_ICON1' is undefined, make sure to include the (correct!!!)
+/// 'resource.h', which is located in the inner project folder of your Visual Studio project. Also make sure that a .ico file is added
+/// as a resource in Visual Studio.
+/// </summary>
+#define SetWindowExecutableIcon() SetWindowIconWindowsID(IDI_ICON1)
+
 
 enum WINDOW_FLAGS {
 	WINDOW_NOFLAGS = 0,
@@ -66,10 +75,16 @@ namespace Battery {
 		/// <returns>bool - Return false to intercept closing</returns>
 		virtual bool Close();
 
+		/// <summary>
+		/// Called as soon as Engine::Run is called, before anything was done
+		/// </summary>
+		virtual void PreApplicationFunction();
 
-
-
-
+		/// <summary>
+		/// The very last funciton call before Engine::Run exits, in this function the
+		/// application is already closed
+		/// </summary>
+		virtual void PostApplicationFunction();
 
 
 
@@ -83,6 +98,27 @@ namespace Battery {
 		/// <param name="width">- The width of the window at startup</param>
 		/// <param name="height">- The height of the window at startup</param>
 		void Run(const std::string& name, int width, int height, enum WINDOW_FLAGS flags = WINDOW_NOFLAGS);
+
+
+
+
+
+		/// <summary>
+		/// It is encouraged to use the macro SetWindowExecutableIcon() instead of this function.
+		/// The supplied id should be IDI_ICON1, but must be evaluated at the compile stage
+		/// in the final project. IDI_ICON1 is defined in "resource.h" in the project directory
+		/// of the final project.
+		/// </summary>
+		/// <param name="iconID">- the id of the embedded icon in the executable.</param>
+		/// <returns>bool - if loading the icon was successful</returns>
+		bool SetWindowIconWindowsID(int iconID);
+
+		/// <summary>
+		/// Set the icon of the created Allegro window. Must be a plain image like .png or .jpg
+		/// </summary>
+		/// <param name="file">- The relative or absolute path to an image file</param>
+		/// <returns>bool - if loading the icon was successful</returns>
+		bool SetWindowIcon(const std::string& file);
 
 	private:
 

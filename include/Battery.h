@@ -9,6 +9,7 @@
 #include <iomanip>
 #include <map>
 #include <cstddef>
+#include <thread>
 
 #include "Battery/FileUtils.h"
 #include "Battery/NetUtils.h"

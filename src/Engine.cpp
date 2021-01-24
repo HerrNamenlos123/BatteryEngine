@@ -2,7 +2,9 @@
 #include "Battery/Engine.h"
 #include "Battery/Core.h"
 #include "Battery/Exception.h"
+#include "Battery/FileUtils.h"
 #include "Battery/TimeUtils.h"
+#include "Battery/StringUtils.h"
 
 // ImGui library
 #include "imgui/imgui.h"
@@ -12,14 +14,13 @@
 
 #include <iostream>
 
+
+
 namespace Battery {
 
 	Engine::Engine() {
 
 	}
-
-
-
 
 
 
@@ -39,6 +40,14 @@ namespace Battery {
 		return true;
 	}
 
+	void Engine::PreApplicationFunction() {
+
+	}
+
+	void Engine::PostApplicationFunction() {
+
+	}
+
 
 
 
@@ -47,6 +56,9 @@ namespace Battery {
 	void Engine::Run(const std::string& name, int width, int height, enum WINDOW_FLAGS flags) {
 
 		try {
+			// Function is run immediately, before anything was done
+			PreApplicationFunction();
+
 			title = name;
 			this->width = width;
 			this->height = height;
@@ -54,7 +66,6 @@ namespace Battery {
 
 			// Initialize the Allegro framework
 			Core::Initialize();
-
 
 			// Set some flags
 			if (flags & WINDOW_RESIZABLE)
@@ -93,6 +104,9 @@ namespace Battery {
 
 			// Shut the Allegro framework down
 			Core::Shutdown();
+
+			// Last function call before Engine::Run returns, can be used after application has closed
+			PostApplicationFunction();
 		}
 		catch (const Exception& e) {
 			std::cout << std::string("[BatteryEngine::Run]: -> Battery::Exception: \r\n\"") + e.what() + "\"" << std::endl;
@@ -108,6 +122,60 @@ namespace Battery {
 		}
 
 		// Allegro shutdown after exception is not necessary, it automatically cleans when main returns
+	}
+
+
+
+
+
+
+
+
+
+
+	bool Engine::SetWindowIconWindowsID(int iconID) {
+	
+		// Load the embedded icon to the Allegro window so no external 
+		// icon resource is needed
+		HICON icon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(iconID));
+
+		if (!icon)
+			return false;
+
+		HWND winhandle = al_get_win_window_handle(display);
+		SetClassLongPtr(winhandle, GCLP_HICON, (LONG_PTR)icon);
+		SetClassLongPtr(winhandle, GCLP_HICONSM, (LONG_PTR)icon);
+
+		return true;
+	}
+
+	bool Engine::SetWindowIcon(const std::string& file) {
+
+		std::string e = StringUtils::ToLowerCase(FileUtils::GetExtensionFromPath(file));
+
+		if (e == ".bmp" ||
+			e == ".dds" ||
+			e == ".pcx" ||
+			e == ".tga" ||
+			e == ".jpg" ||
+			e == ".jpeg" ||
+			e == ".png")
+		{
+			if (!FileUtils::FileExists(file))
+				return false;
+
+			ALLEGRO_BITMAP* bitmap = al_load_bitmap(file.c_str());
+
+			if (bitmap == nullptr)
+				return false;
+
+			al_set_display_icon(display, bitmap);
+			al_destroy_bitmap(bitmap);
+
+			return true;
+		}
+
+		throw Battery::Exception("Engine::SetWindowIcon(): The specified icon file has an unsupported file format!");
 	}
 
 

@@ -1,6 +1,7 @@
 
 #include "Battery/Core.h"
 #include "Battery/Exception.h"
+#include "Battery/FileUtils.h"
 #include "Battery/_AllegroDependencies.h"
 
 #include <iostream>
@@ -94,10 +95,6 @@ namespace Battery {
 			return std::to_string(major) + "." + std::to_string(minor) + "." + 
 				   std::to_string(revision) + "." + std::to_string(release);
 		}
-
-
-
-
 
 
 

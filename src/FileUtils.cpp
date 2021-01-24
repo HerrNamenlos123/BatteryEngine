@@ -487,7 +487,8 @@ namespace Battery {
 					v.push_back(std::string(al_get_path_component(p, i)));
 			}
 
-			v.push_back(std::string(al_get_path_filename(p)));
+			if (std::string(al_get_path_filename(p)).length() > 0) 
+				v.push_back(std::string(al_get_path_filename(p)));
 
 			al_destroy_path(p);
 			return v;
