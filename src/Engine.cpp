@@ -13,39 +13,64 @@
 #include "imgui_impl_allegro5.h"
 
 #include <iostream>
+#include <thread>
+#include <algorithm>
 
 
 
 namespace Battery {
 
-	Engine::Engine() {
+	Engine::Engine() : primitiveRenderer(&display) {
 
 	}
 
 
 
+	// The variable 'virtualFunctionCalled' is set in each function, so it can be tested if the 
+	// original function ran or if it was overridden by the user.
+
 	bool Engine::Setup() {
+		virtualFunctionCalled = true;
+		return true;
+	}
+
+	bool Engine::Setup(std::vector<std::string> args) {
+		virtualFunctionCalled = true;
 		return true;
 	}
 
 	bool Engine::Update() {
+		virtualFunctionCalled = true;
 		return true;
 	}
 
 	void Engine::Shutdown() {
-
+		virtualFunctionCalled = true;
 	}
 
 	bool Engine::Close() {
+		virtualFunctionCalled = true;
 		return true;
 	}
 
-	void Engine::PreApplicationFunction() {
+	void Engine::KeyPressed(int keycode, int modifiers) {
+		virtualFunctionCalled = true;
+	}
 
+	void Engine::KeyPressed(int keycode, char unicode, int modifiers, bool repeat) {
+		virtualFunctionCalled = true;
+	}
+
+	void Engine::KeyReleased(int keycode, int modifiers) {
+		virtualFunctionCalled = true;
+	}
+
+	void Engine::PreApplicationFunction() {
+		virtualFunctionCalled = true;
 	}
 
 	void Engine::PostApplicationFunction() {
-
+		virtualFunctionCalled = true;
 	}
 
 
@@ -53,19 +78,25 @@ namespace Battery {
 
 
 
-	void Engine::Run(const std::string& name, int width, int height, enum WINDOW_FLAGS flags) {
+	void Engine::Run(const std::string& name, int width, int height, int argc, const char** argv, enum WINDOW_FLAGS flags) {
 
 		try {
 			// Function is run immediately, before anything was done
 			PreApplicationFunction();
 
-			title = name;
+			applicationName = name;
 			this->width = width;
 			this->height = height;
-			Core::SetApplicationName(title);
+			Core::SetApplicationName(applicationName);
 
 			// Initialize the Allegro framework
 			Core::Initialize();
+
+			// Set flags to enable anti-aliasing when drawing lines
+			//al_set_new_display_option(ALLEGRO_SAMPLE_BUFFERS, 1, ALLEGRO_SUGGEST);
+			//al_set_new_display_option(ALLEGRO_SAMPLES, 8, ALLEGRO_SUGGEST);
+			al_set_new_display_flags(ALLEGRO_PROGRAMMABLE_PIPELINE | ALLEGRO_OPENGL);
+			al_set_blender(ALLEGRO_ADD, ALLEGRO_ALPHA, ALLEGRO_INVERSE_ALPHA);
 
 			// Set some flags
 			if (flags & WINDOW_RESIZABLE)
@@ -94,8 +125,14 @@ namespace Battery {
 				throw Exception("Failed to create Allegro event queue");
 			}
 
+			// Parse command line arguments
+			std::vector<std::string> args;
+			
+			for (int i = 0; i < argc; i++)
+				args.push_back(argv[i]);
+
 			// Finally run the main loop until it finishes
-			RunMainloop(flags);
+			RunMainloop(flags, args);
 
 			// Destroy everything
 			al_destroy_display(display);
@@ -108,7 +145,7 @@ namespace Battery {
 			// Last function call before Engine::Run returns, can be used after application has closed
 			PostApplicationFunction();
 		}
-		catch (const Exception& e) {
+		catch (const Battery::Exception& e) {
 			std::cout << std::string("[BatteryEngine::Run]: -> Battery::Exception: \r\n\"") + e.what() + "\"" << std::endl;
 			Core::ShowErrorMessageBox(std::string("[BatteryEngine::Run]: -> Battery::Exception: \r\n\"") + e.what() + "\"");
 		}
@@ -178,6 +215,15 @@ namespace Battery {
 		throw Battery::Exception("Engine::SetWindowIcon(): The specified icon file has an unsupported file format!");
 	}
 
+	void Engine::SetWindowTitle(const std::string& title) {
+		al_set_window_title(display, title.c_str());
+	}
+
+	void Engine::SetFramerate(double framerate) {
+		desiredFramerate = framerate;
+	}
+
+
 
 
 
@@ -188,7 +234,7 @@ namespace Battery {
 
 // Private
 
-	void Engine::RunMainloop(enum WINDOW_FLAGS flags) {
+	void Engine::RunMainloop(enum WINDOW_FLAGS flags, std::vector<std::string> args) {
 
 		ALLEGRO_MONITOR_INFO monitor;
 		al_get_monitor_info(0, &monitor);
@@ -213,21 +259,39 @@ namespace Battery {
 		// Setup Platform/Renderer backends
 		ImGui_ImplAllegro5_Init(display);
 
+		primitiveRenderer.Load();
+
 		// Call user overridden setup function
-		if (!Setup()) {	// User application failed to load, exit
+		virtualFunctionCalled = false;
+		if (!Setup(args)) {		// User application failed to load, exit
 			return;
 		}
 
-		uint32_t nextRefresh = TimeUtils::GetMicroseconds();
+		// The setup function with arguments was not overridden, now call without arguments
+		if (!virtualFunctionCalled) {
+			if (!Setup()) {		// User application failed to load, exit
+				return;
+			}
+		}
+
+		std::time_t nextRefresh = TimeUtils::GetMicroseconds();
 		while (running) {
 
 			// Handle all events
 			HandleEvents();
 
-			// Wait for the next frame refresh
+			// Bound the time to not sleep too long and prevent freezing
+			std::time_t frametime = static_cast<std::time_t>(1000000.f / desiredFramerate);
+			std::time_t now = TimeUtils::GetMicroseconds();
+			TimeUtils::SleepMicroseconds(std::min(std::max(nextRefresh - now, std::time_t(0)), frametime));
 			while (TimeUtils::GetMicroseconds() < nextRefresh);
-			nextRefresh = TimeUtils::GetMicroseconds() + static_cast<uint32_t>(1000000.f / desiredFramerate);
 
+			// Set timeflag for next frame, will be repeated several times if the host can't keep up with the framerate
+			while (nextRefresh <= TimeUtils::GetMicroseconds()) {
+				nextRefresh += frametime;
+			}
+
+			// Here are all the frame updates
 			{
 				// Do something before rendering
 				PreUpdate();
@@ -246,6 +310,7 @@ namespace Battery {
 		}
 
 		ImGui_ImplAllegro5_Shutdown();
+		primitiveRenderer.Unload();
 
 		// Call user overridden shutdown function
 		Shutdown();
@@ -268,15 +333,15 @@ namespace Battery {
 				switch (event.type) {
 
 				case ALLEGRO_EVENT_KEY_DOWN:
-					//keyPressed(event.keyboard.keycode, event.keyboard.modifiers);
+					KeyPressed(event.keyboard.keycode, event.keyboard.modifiers);
 					break;
 
 				case ALLEGRO_EVENT_KEY_UP:
-					//keyReleased(event.keyboard.keycode, event.keyboard.modifiers);
+					KeyReleased(event.keyboard.keycode, event.keyboard.modifiers);
 					break;
 
 				case ALLEGRO_EVENT_KEY_CHAR:
-					//keyPressed(event.keyboard.keycode, event.keyboard.unichar, event.keyboard.modifiers, event.keyboard.repeat);
+					KeyPressed(event.keyboard.keycode, event.keyboard.unichar, event.keyboard.modifiers, event.keyboard.repeat);
 					break;
 
 				case ALLEGRO_EVENT_DISPLAY_CLOSE:
@@ -303,19 +368,24 @@ namespace Battery {
 		height = al_get_display_height(display);
 
 		framecount++;
+		frametime = (TimeUtils::GetMicroseconds() - previousUpdate) / 1000000.f;
+		previousUpdate = TimeUtils::GetMicroseconds();
+		framerate = 1.f / frametime;
 
-		/*ALLEGRO_MOUSE_STATE state;
+		ALLEGRO_MOUSE_STATE state;
 		al_get_mouse_state(&state);
 		pmouse = mouse;
 		mouse = { state.x, state.y };
 		glm::ivec2 scrolled = mouseScroll - glm::ivec2(state.w, state.z);
 		mouseScroll = glm::ivec2(state.w, state.z);
-		if (scrolled.x != 0 || scrolled.y != 0)
-			mouseScrolled(scrolled.x, scrolled.y);*/
+		//if (scrolled.x != 0 || scrolled.y != 0)
+		//	mouseScrolled(scrolled.x, scrolled.y);
 
 		// Start ImGui Frame
 		ImGui_ImplAllegro5_NewFrame();
 		ImGui::NewFrame();
+
+		Graphics::DrawBackground(BATTERY_DEFAULT_BACKGROUND_COLOR);
 	}
 
 	void Engine::PostUpdate() {

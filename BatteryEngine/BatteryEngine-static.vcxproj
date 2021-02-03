@@ -22,11 +22,15 @@
     <ClInclude Include="..\include\Battery.h" />
     <ClInclude Include="..\include\Battery\Config.h" />
     <ClInclude Include="..\include\Battery\Core.h" />
+    <ClInclude Include="..\include\Battery\DefaultShaders.h" />
     <ClInclude Include="..\include\Battery\Engine.h" />
     <ClInclude Include="..\include\Battery\Exception.h" />
     <ClInclude Include="..\include\Battery\FileUtils.h" />
     <ClInclude Include="..\include\Battery\Graphics.h" />
     <ClInclude Include="..\include\Battery\NetUtils.h" />
+    <ClInclude Include="..\include\Battery\PrimitiveRenderer.h" />
+    <ClInclude Include="..\include\Battery\RenderUtils.h" />
+    <ClInclude Include="..\include\Battery\ShaderProgram.h" />
     <ClInclude Include="..\include\Battery\StringUtils.h" />
     <ClInclude Include="..\include\Battery\TimeUtils.h" />
     <ClInclude Include="..\include\Battery\Updater.h" />
@@ -40,6 +44,7 @@
     <ClCompile Include="..\modules\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\modules\imgui\imgui_widgets.cpp" />
     <ClCompile Include="..\src\Core.cpp" />
+    <ClCompile Include="..\src\DefaultShaders.cpp" />
     <ClCompile Include="..\src\Engine.cpp" />
     <ClCompile Include="..\src\Exception.cpp" />
     <ClCompile Include="..\src\FileUtils.cpp" />

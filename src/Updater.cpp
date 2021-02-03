@@ -12,7 +12,7 @@
 
 namespace Battery {
 	namespace Updater {
-
+		/*
 		std::string GetApplicationVersion() {
 
 			if (Core::GetApplicationName() != "" || Core::GetOrganizationName() != "") {	// A valid name is given
@@ -43,8 +43,8 @@ namespace Battery {
 
 			throw Battery::Exception("Neither the Application nor the Organization name was set");
 		}
-
-
+		*/
+		/*
 		bool CheckForGithubUpdate(const std::string& githubUser, const std::string& repository) {
 
 			std::string url = "https://api.github.com/repos/" + githubUser + "/" + repository + "/releases/latest";
@@ -82,7 +82,7 @@ namespace Battery {
 			}
 
 			return false;
-		}
+		}*/
 
 	}
 }

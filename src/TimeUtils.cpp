@@ -1,6 +1,7 @@
 
 #include "Battery/TimeUtils.h"
 #include <chrono>
+#include <thread>
 
 namespace Battery {
 	namespace TimeUtils {
@@ -18,9 +19,13 @@ namespace Battery {
 			return mktime(&t);
 		}
 
-		uint32_t GetMicroseconds() {
+		std::time_t GetMicroseconds() {
 			using namespace std::chrono;
-			return (uint32_t)duration_cast<microseconds>(system_clock::now().time_since_epoch()).count();
+			return (std::time_t)duration_cast<microseconds>(system_clock::now().time_since_epoch()).count();
+		}
+
+		void SleepMicroseconds(std::time_t microseconds) {
+			std::this_thread::sleep_for(std::chrono::microseconds(microseconds));
 		}
 
 	}

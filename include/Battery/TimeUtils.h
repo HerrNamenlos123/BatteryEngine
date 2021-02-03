@@ -19,8 +19,14 @@ namespace Battery {
 		/// <summary>
 		/// Get the current time in microseconds as Unix timestamp or epoch time
 		/// </summary>
-		/// <returns>uint32_t - epoch time in microseconds</returns>
-		uint32_t GetMicroseconds();
+		/// <returns>std::time_t - epoch time in microseconds</returns>
+		std::time_t GetMicroseconds();
+
+		/// <summary>
+		/// Put the current thread to sleep for x microseconds.
+		/// </summary>
+		/// <param name="microseconds">- Time to sleep in microseconds</param>
+		void SleepMicroseconds(std::time_t microseconds);
 
 	}
 }

@@ -20,6 +20,8 @@
 #include "Battery/Updater.h"
 #include "Battery/Engine.h"
 #include "Battery/Graphics.h"
+#include "Battery/ShaderProgram.h"
+#include "Battery/PrimitiveRenderer.h"
 
 // ImGui library
 #include "imgui/imgui.h"
