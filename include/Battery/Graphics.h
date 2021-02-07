@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Battery/_AllegroDependencies.h"
+#include "Battery/AllegroDeps.h"
 
 // GLM vector library
 #include <glm/common.hpp>

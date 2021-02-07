@@ -1,9 +1,9 @@
 #pragma once
 
-#include <vector>
+#include "Battery/pch.h"
 
-#include "Battery/_AllegroDependencies.h"
-#include "Battery/Config.h"
+#include "Battery/AllegroDeps.h"
+#include "Battery/Core/Config.h"
 #include "Battery/ShaderProgram.h"
 #include "Battery/RenderUtils.h"
 #include "Battery/DefaultShaders.h"

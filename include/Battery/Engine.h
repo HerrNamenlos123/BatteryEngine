@@ -1,13 +1,9 @@
 #pragma once
 
-#include <string>
-#include <vector>
-#include <iostream>
-#include <ctime>
-#include <cmath>
+#include "Battery/pch.h"
 
-#include "Battery/Exception.h"
-#include "Battery/_AllegroDependencies.h"
+#include "Battery/Core/Exception.h"
+#include "Battery/AllegroDeps.h"
 #include "Battery/PrimitiveRenderer.h"
 #include "glm/glm.hpp"
 

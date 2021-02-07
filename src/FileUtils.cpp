@@ -1,11 +1,10 @@
 
+#include "Battery/pch.h"
 #include "Battery/FileUtils.h"
 
 #include "Battery/Core.h"
-#include "Battery/Exception.h"
-#include "Battery/_AllegroDependencies.h"
-
-#include <iostream>
+#include "Battery/Core/Exception.h"
+#include "Battery/AllegroDeps.h"
 
 #define FILE_BLOCK_SIZE 1024
 
@@ -255,7 +254,7 @@ namespace Battery {
 			return path;
 		}
 
-		std::string SaveFileWithDialog(const std::string& extension, const std::string& fileContent, ALLEGRO_DISPLAY* parentWindow,
+		/*std::string SaveFileWithDialog(const std::string& extension, const std::string& fileContent, ALLEGRO_DISPLAY* parentWindow,
 																					const std::string& defaultLocation, bool forceSave)
 		{
 			if (!Core::IsInitialized())
@@ -396,7 +395,7 @@ namespace Battery {
 			}
 
 			return file;
-		}
+		}*/
 
 
 

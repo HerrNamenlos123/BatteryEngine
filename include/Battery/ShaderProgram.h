@@ -1,13 +1,12 @@
 #pragma once
 
-#include <string>
-#include <iostream>
+#include "Battery/pch.h"
 
 #include "glm/glm.hpp"
 #include "Battery/Core.h"
-#include "Battery/Exception.h"
+#include "Battery/Core/Exception.h"
 #include "Battery/FileUtils.h"
-#include "Battery/_AllegroDependencies.h"
+#include "Battery/AllegroDeps.h"
 
 namespace Battery {
 

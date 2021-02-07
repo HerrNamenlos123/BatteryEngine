@@ -19,14 +19,32 @@
     <Filter Include="Source Files\imgui">
       <UniqueIdentifier>{f80db9f0-78d7-46e3-995d-7d0a0a39036a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{6ea6f12a-6839-471f-ae6b-68345fd9d883}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Battery\Core">
+      <UniqueIdentifier>{a7195d0d-6f58-4efb-b6a1-0bbbfb9d7c28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Battery\Log">
+      <UniqueIdentifier>{6cfef375-9059-4416-bada-f467d23ec408}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Log">
+      <UniqueIdentifier>{78b1c54c-c37a-41b0-a42e-36fff013c31f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Battery\Platform">
+      <UniqueIdentifier>{b5f3c944-26bc-42c6-89b2-2a339439011b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Platform">
+      <UniqueIdentifier>{e3f4440d-396b-4f3c-b317-7089a659e65b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Battery\Utils">
+      <UniqueIdentifier>{4ae16c45-7142-4937-b00f-4e1d5d0cefcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{11e615f5-2405-4707-9b98-9673df15f2b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\Battery.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\Battery\_AllegroDependencies.h">
-      <Filter>Header Files\Battery</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\Battery\FileUtils.h">
       <Filter>Header Files\Battery</Filter>
     </ClInclude>
@@ -36,19 +54,7 @@
     <ClInclude Include="..\include\Battery\Core.h">
       <Filter>Header Files\Battery</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\Battery\Exception.h">
-      <Filter>Header Files\Battery</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\Battery\Updater.h">
-      <Filter>Header Files\Battery</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\Battery\StringUtils.h">
-      <Filter>Header Files\Battery</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\Battery\TimeUtils.h">
-      <Filter>Header Files\Battery</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\Battery\Config.h">
       <Filter>Header Files\Battery</Filter>
     </ClInclude>
     <ClInclude Include="..\include\Battery\Engine.h">
@@ -72,6 +78,54 @@
     <ClInclude Include="..\include\Battery\DefaultShaders.h">
       <Filter>Header Files\Battery</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\Battery\AllegroDeps.h">
+      <Filter>Header Files\Battery</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Battery.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Core\Application.h">
+      <Filter>Header Files\Battery\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Log\Log.h">
+      <Filter>Header Files\Battery\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Core\Config.h">
+      <Filter>Header Files\Battery\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Core\Event.h">
+      <Filter>Header Files\Battery\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Core\ApplicationEvents.h">
+      <Filter>Header Files\Battery\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Core\Layer.h">
+      <Filter>Header Files\Battery\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Core\LayerStack.h">
+      <Filter>Header Files\Battery\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Core\AllegroContext.h">
+      <Filter>Header Files\Battery\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Core\Exception.h">
+      <Filter>Header Files\Battery\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Platform\Dialog.h">
+      <Filter>Header Files\Battery\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Core\ImGuiLayer.h">
+      <Filter>Header Files\Battery\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Core\AllegroWindow.h">
+      <Filter>Header Files\Battery\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Utils\TimeUtils.h">
+      <Filter>Header Files\Battery\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\FileUtils.cpp">
@@ -86,13 +140,7 @@
     <ClCompile Include="..\src\Exception.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Updater.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\StringUtils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\TimeUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Engine.cpp">
@@ -118,6 +166,36 @@
     </ClCompile>
     <ClCompile Include="..\src\DefaultShaders.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Battery\Core\Application.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Battery\Log\Log.cpp">
+      <Filter>Source Files\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Battery\Core\Event.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Battery\Core\AllegroContext.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Battery\Platform\Dialog.cpp">
+      <Filter>Source Files\Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Battery\Core\AllegroWindow.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Battery\Utils\TimeUtils.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Battery\Core\ApplicationEvents.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

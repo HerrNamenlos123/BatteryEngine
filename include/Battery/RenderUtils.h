@@ -1,7 +1,7 @@
 #pragma once
 
 #include "glm/glm.hpp"
-#include "Battery/_AllegroDependencies.h"
+#include "Battery/AllegroDeps.h"
 #include "Battery/Graphics.h"
 
 namespace Battery {

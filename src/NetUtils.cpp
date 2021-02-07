@@ -1,4 +1,7 @@
 
+#include "Battery/pch.h"
+
+/*
 #include "Battery/NetUtils.h"
 #include "Battery/FileUtils.h"
 
@@ -180,8 +183,9 @@ namespace Battery {
 			//std::cout << "Result: " << res << std::endl;
 
 			return s;
-		}*/
+		}
 
 	}
 }
 
+*/

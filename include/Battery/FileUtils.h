@@ -1,8 +1,7 @@
 #pragma once
 
-#include <Battery/_AllegroDependencies.h>
-#include <string>
-#include <vector>
+#include <Battery/AllegroDeps.h>
+#include "Battery/pch.h"
 
 #undef RemoveDirectory
 

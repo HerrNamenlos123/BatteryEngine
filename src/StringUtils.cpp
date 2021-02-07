@@ -1,4 +1,5 @@
 
+#include "Battery/pch.h"
 #include "Battery/StringUtils.h"
 
 namespace Battery {

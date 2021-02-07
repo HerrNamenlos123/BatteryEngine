@@ -1,5 +1,6 @@
 
-#include "Battery/Exception.h"
+#include "Battery/pch.h"
+#include "Battery/Core/Exception.h"
 
 namespace Battery {
 

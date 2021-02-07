@@ -19,40 +19,76 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\Battery.h" />
-    <ClInclude Include="..\include\Battery\Config.h" />
+    <ClInclude Include="..\include\Battery\Battery.h" />
     <ClInclude Include="..\include\Battery\Core.h" />
+    <ClInclude Include="..\include\Battery\Core\AllegroContext.h" />
+    <ClInclude Include="..\include\Battery\Core\AllegroWindow.h" />
+    <ClInclude Include="..\include\Battery\Core\Application.h" />
+    <ClInclude Include="..\include\Battery\Core\ApplicationEvents.h" />
+    <ClInclude Include="..\include\Battery\Core\Config.h" />
+    <ClInclude Include="..\include\Battery\Core\Event.h" />
+    <ClInclude Include="..\include\Battery\Core\Exception.h" />
+    <ClInclude Include="..\include\Battery\Core\ImGuiLayer.h" />
+    <ClInclude Include="..\include\Battery\Core\Layer.h" />
+    <ClInclude Include="..\include\Battery\Core\LayerStack.h" />
     <ClInclude Include="..\include\Battery\DefaultShaders.h" />
     <ClInclude Include="..\include\Battery\Engine.h" />
-    <ClInclude Include="..\include\Battery\Exception.h" />
     <ClInclude Include="..\include\Battery\FileUtils.h" />
     <ClInclude Include="..\include\Battery\Graphics.h" />
+    <ClInclude Include="..\include\Battery\Log\Log.h" />
     <ClInclude Include="..\include\Battery\NetUtils.h" />
+    <ClInclude Include="..\include\Battery\pch.h" />
+    <ClInclude Include="..\include\Battery\Platform\Dialog.h" />
     <ClInclude Include="..\include\Battery\PrimitiveRenderer.h" />
     <ClInclude Include="..\include\Battery\RenderUtils.h" />
     <ClInclude Include="..\include\Battery\ShaderProgram.h" />
     <ClInclude Include="..\include\Battery\StringUtils.h" />
-    <ClInclude Include="..\include\Battery\TimeUtils.h" />
-    <ClInclude Include="..\include\Battery\Updater.h" />
-    <ClInclude Include="..\include\Battery\_AllegroDependencies.h" />
+    <ClInclude Include="..\include\Battery\AllegroDeps.h" />
+    <ClInclude Include="..\include\Battery\Utils\TimeUtils.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\modules\imgui\backends\imgui_impl_allegro5.cpp" />
-    <ClCompile Include="..\modules\imgui\imgui.cpp" />
-    <ClCompile Include="..\modules\imgui\imgui_demo.cpp" />
-    <ClCompile Include="..\modules\imgui\imgui_draw.cpp" />
-    <ClCompile Include="..\modules\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\modules\imgui\backends\imgui_impl_allegro5.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\modules\imgui\imgui.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\modules\imgui\imgui_demo.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\modules\imgui\imgui_draw.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\modules\imgui\imgui_widgets.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\src\Battery\Core\AllegroContext.cpp" />
+    <ClCompile Include="..\src\Battery\Core\AllegroWindow.cpp" />
+    <ClCompile Include="..\src\Battery\Core\Application.cpp" />
+    <ClCompile Include="..\src\Battery\Core\ApplicationEvents.cpp" />
+    <ClCompile Include="..\src\Battery\Core\Event.cpp" />
+    <ClCompile Include="..\src\Battery\Log\Log.cpp" />
+    <ClCompile Include="..\src\Battery\Platform\Dialog.cpp" />
+    <ClCompile Include="..\src\Battery\Utils\TimeUtils.cpp" />
     <ClCompile Include="..\src\Core.cpp" />
     <ClCompile Include="..\src\DefaultShaders.cpp" />
     <ClCompile Include="..\src\Engine.cpp" />
     <ClCompile Include="..\src\Exception.cpp" />
     <ClCompile Include="..\src\FileUtils.cpp" />
     <ClCompile Include="..\src\Graphics.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\NetUtils.cpp" />
+    <ClCompile Include="..\src\pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\src\StringUtils.cpp" />
-    <ClCompile Include="..\src\TimeUtils.cpp" />
-    <ClCompile Include="..\src\Updater.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
@@ -184,10 +220,13 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;ALLEGRO_STATICLINK;%(PreprocessorDefinitions);ALLEGRO_STATICLINK</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;ALLEGRO_STATICLINK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../modules/imgui/backends;../modules;../modules/imgui;../include;../allegro-5.0.10-msvc-11.0/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../modules/imgui/backends;../modules;../modules/imgui;../include;../modules/spdlog/include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Battery/pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -198,8 +237,7 @@
     </ProjectReference>
     <Lib>
       <AdditionalLibraryDirectories>../packages\AllegroDeps.1.11.0\build\native\v142\x64\deps\lib;../packages\Allegro.5.2.6\build\native\v142\x64\lib;%(AdditionalLibraryDirectories);C:\Program Files\OpenSSL-Win64\lib\VC\static;../lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>allegro_monolith-static.lib;freetype.lib;jpeg.lib;libpng16.lib;webp.lib;zlib.lib;libcurlpp-MTd-d-static.lib;libcrypto64MTd.lib;libssl64MTd.lib;libcurl-MTd-d-static.lib;opengl32.lib;winmm.lib;ws2_32.lib;wldap32.lib;crypt32.lib;ntdll.lib;shlwapi.lib</AdditionalDependencies>
-      <AdditionalOptions>/ignore:4006 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>allegro_monolith-static.lib;freetype.lib;jpeg.lib;libpng16.lib;webp.lib;zlib.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -221,10 +259,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;ALLEGRO_STATICLINK;%(PreprocessorDefinitions);ALLEGRO_STATICLINK</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;ALLEGRO_STATICLINK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../modules/imgui/backends;../modules;../modules/imgui;../include;../allegro-5.0.10-msvc-11.0/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../modules/imgui/backends;../modules;../modules/imgui;../include;../modules/spdlog/include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Battery/pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -237,8 +278,7 @@
     </ProjectReference>
     <Lib>
       <AdditionalLibraryDirectories>../packages\AllegroDeps.1.11.0\build\native\v142\x64\deps\lib;../packages\Allegro.5.2.6\build\native\v142\x64\lib;C:\Program Files\OpenSSL-Win64\lib\VC\static;../lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>allegro_monolith-static.lib;freetype.lib;jpeg.lib;libpng16.lib;webp.lib;zlib.lib;libcurlpp-MT-static.lib;libcrypto64MT.lib;libssl64MT.lib;libcurl-MT-static.lib;opengl32.lib;winmm.lib;ws2_32.lib;wldap32.lib;crypt32.lib;ntdll.lib;shlwapi.lib</AdditionalDependencies>
-      <AdditionalOptions>/ignore:4006 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>allegro_monolith-static.lib;freetype.lib;jpeg.lib;libpng16.lib;webp.lib;zlib.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

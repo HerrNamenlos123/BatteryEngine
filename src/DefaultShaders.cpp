@@ -1,4 +1,5 @@
 
+#include "Battery/pch.h"
 #include "Battery/DefaultShaders.h"
 
 namespace Battery {

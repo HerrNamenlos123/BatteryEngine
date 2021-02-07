@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 
 #include <string>
 
@@ -30,7 +30,8 @@ namespace Battery {
 			bool download(const std::string& url, const std::string& outputFile, const std::string& caFile);
 		};
 
-		bool DownloadFile(const std::string& url, const std::string& outputFile, const std::string& caFile);*/
+		bool DownloadFile(const std::string& url, const std::string& outputFile, const std::string& caFile);
 
 	}
 }
+*/
