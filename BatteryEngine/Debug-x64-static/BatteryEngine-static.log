@@ -1,4 +1,4 @@
-﻿  AllegroWindow.cpp
-  main.cpp
+﻿  Application.cpp
+  Renderer2D.cpp
   Generating Code...
   BatteryEngine-static.vcxproj -> F:\Users\Florian\Documents\VS-Projects\BatteryEngine\bin\Debug\x64\BatteryEngine-static.lib

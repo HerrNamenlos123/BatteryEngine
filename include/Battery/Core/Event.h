@@ -27,7 +27,7 @@ namespace Battery {
 	enum class EventType {
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
-		KeyPressed, KeyReleased,
+		KeyPressed, KeyReleased, TextInput,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 
@@ -49,7 +49,7 @@ namespace Battery {
 	protected:
 
 		template<typename... T>
-		std::string p_Str(T... msg) {
+		std::string _str(T... msg) {
 			return std::to_string(msg...);
 		}
 

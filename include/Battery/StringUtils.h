@@ -41,5 +41,7 @@ namespace Battery {
 		bool IsLowerCase(char c);
 
 		bool IsInAlphabet(char c);
+
+		std::string ConvertCodepointUTF8(int32_t codepoint);
 	}
 }

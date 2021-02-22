@@ -22,7 +22,7 @@ namespace Battery {
 			//ImGui::StyleColorsClassic();
 
 			// Setup Platform/Renderer backends
-			ImGui_ImplAllegro5_Init(app->window.display);
+			ImGui_ImplAllegro5_Init(app->window.allegroDisplayPointer);
 
 			io = ImGui::GetIO();
 			OnImGuiAttach();
@@ -59,7 +59,7 @@ namespace Battery {
 
 			if (event->GetType() == EventType::WindowResize) {
 				ImGui_ImplAllegro5_InvalidateDeviceObjects();
-				al_acknowledge_resize(app->window.display);
+				al_acknowledge_resize(app->window.allegroDisplayPointer);
 				ImGui_ImplAllegro5_CreateDeviceObjects();
 			}
 

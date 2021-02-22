@@ -21,6 +21,15 @@ namespace Battery {
 		case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
 			return { new MouseButtonReleasedEvent(event) };
 
+		case ALLEGRO_EVENT_KEY_DOWN:
+			return { new KeyPressedEvent(event) };
+
+		case ALLEGRO_EVENT_KEY_UP:
+			return { new KeyReleasedEvent(event) };
+
+		case ALLEGRO_EVENT_KEY_CHAR:
+			return { new TextInputEvent(event) };
+
 		case ALLEGRO_EVENT_MOUSE_AXES:
 		{
 			std::vector<Event*> e;

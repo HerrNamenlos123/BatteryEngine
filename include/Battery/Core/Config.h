@@ -1,5 +1,10 @@
 #pragma once
 
+// Enable Debug stuff
+#ifdef _DEBUG
+#define BATTERY_DEBUG
+#endif
+
 #define BATTERY_VERSION_FILE "version"	// No extension
 
 //#define NETWORK_CERTIFICATE_FILE "cacert.pem"
@@ -7,12 +12,7 @@
 
 // Graphics
 #define BATTERY_ANTIALIASING_LINE_FALLOFF 3
-#define BATTERY_DEFAULT_BACKGROUND_COLOR glm::vec3(80, 80, 80)
-
-// Enable Debug stuff
-#ifdef _DEBUG
-#define BATTERY_DEBUG
-#endif
+#define BATTERY_DEFAULT_BACKGROUND_COLOR glm::vec4(60, 60, 60, 255)
 
 // Some logging
 #define BATTERY_LOG_LEVEL_CRITICAL	spdlog::level::critical

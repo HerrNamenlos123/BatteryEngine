@@ -19,7 +19,7 @@ int main(int argc, const char** argv);
 namespace Battery {
 
 	class Application;
-	extern Application* CreateApplication();
+	extern Application* CreateApplication();	// This will be defined in the client project
 
 	class Application {
 	public:
@@ -43,20 +43,20 @@ namespace Battery {
 		void Run(int argc, const char** argv);
 		friend int ::main(int argc, const char** argv);
 
-		void p_PreUpdate();
-		void p_PreRender();
-		void p_PostRender();
-		void p_MainLoop();
-		void p_UpdateApp();
-		void p_RenderApp();
-		void p_OnEvent(Battery::Event* e);
+		void _preUpdate();
+		void _preRender();
+		void _postRender();
+		void _mainLoop();
+		void _updateApp();
+		void _renderApp();
+		void _onEvent(Battery::Event* e);
 
 	// All layers should have access through the application pointer
 	public:
 		LayerStack layers;
 		bool shouldClose = false;
 
-		glm::ivec2 windowSize;
+		glm::ivec2 windowSize = { 0, 0 };
 		double frametime = 0;
 		double framerate = 0;
 		uint32_t framecount = 0;

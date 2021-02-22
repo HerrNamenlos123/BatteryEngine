@@ -1,6 +1,7 @@
 
 #include "Battery/pch.h"
 #include "Battery/Core/Application.h"
+#include "Battery/Renderer/Renderer2D.h"
 
 namespace Battery {
 
@@ -20,7 +21,10 @@ namespace Battery {
 
 		// Create Allegro window
 		window.Create();
-		window.SetEventCallback(std::bind(&Application::p_OnEvent, this, std::placeholders::_1));
+		window.SetEventCallback(std::bind(&Application::_onEvent, this, std::placeholders::_1));
+
+		// Load 2D renderer
+		Renderer2D::Setup();
 
 		// Parse command line arguments
 		LOG_CORE_TRACE("Command line arguments:");
@@ -50,7 +54,7 @@ namespace Battery {
 
 		// Client update
 		try {
-			p_MainLoop();
+			_mainLoop();
 		}
 		catch (const Battery::Exception& e) {
 			LOG_CORE_CRITICAL(std::string("Some Layer's OnUpdate() function threw Battery::Exception: ") + e.what());
@@ -68,6 +72,9 @@ namespace Battery {
 			ShowErrorMessageBox(std::string("Application::OnShutdown() threw Battery::Exception: ") + e.what());
 		}
 
+		// Unload 2D renderer
+		Renderer2D::Shutdown();
+
 		// Destroy Allegro window
 		window.Destroy();
 
@@ -79,7 +86,7 @@ namespace Battery {
 		AllegroContext::GetInstance()->Destroy();
 	}
 
-	void Application::p_PreUpdate() {
+	void Application::_preUpdate() {
 
 		double now = TimeUtils::GetRuntime();
 
@@ -96,28 +103,28 @@ namespace Battery {
 		window.HandleEvents();
 	}
 
-	void Application::p_PreRender() {
+	void Application::_preRender() {
 
 	}
 
-	void Application::p_PostRender() {
-
+	void Application::_postRender() {
+		Renderer2D::EndUnfinishedScene();
 	}
 
-	void Application::p_MainLoop() {
+	void Application::_mainLoop() {
 
 		double nextFrame = TimeUtils::GetRuntime();
 
 		while (!shouldClose) {
 
 			// Update everything
-			p_PreUpdate();
-			p_UpdateApp();
+			_preUpdate();
+			_updateApp();
 
 			// Render everything
-			p_PreRender();
-			p_RenderApp();
-			p_PostRender();
+			_preRender();
+			_renderApp();
+			_postRender();
 
 			// Wait for the right time to render
 			double desiredFrametime = 1.0 / desiredFramerate;
@@ -136,7 +143,7 @@ namespace Battery {
 		}
 	}
 
-	void Application::p_UpdateApp() {
+	void Application::_updateApp() {
 
 		// First update the base application
 		LOG_CORE_TRACE("Application::OnUpdate()");
@@ -149,7 +156,7 @@ namespace Battery {
 		}
 	}
 
-	void Application::p_RenderApp() {
+	void Application::_renderApp() {
 
 		// First render the base application
 		LOG_CORE_TRACE("Application::OnRender()");
@@ -162,7 +169,7 @@ namespace Battery {
 		}
 	}
 
-	void Application::p_OnEvent(Event* e) {
+	void Application::_onEvent(Event* e) {
 
 		// Propagate through the stack in reverse order
 		for (size_t i = 0; i < layers.GetLayers().size(); i++) {

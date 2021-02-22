@@ -17,9 +17,9 @@ namespace Battery {
 		void SetEventCallback(std::function<void(Battery::Event* event)> eventCallback);
 		void HandleEvents();
 
-		ALLEGRO_DISPLAY* display = nullptr;
-		ALLEGRO_EVENT_QUEUE* events = nullptr;
-		ALLEGRO_FONT* defaultFont = nullptr;
+		ALLEGRO_DISPLAY* allegroDisplayPointer = nullptr;
+		ALLEGRO_EVENT_QUEUE* allegroEventQueue = nullptr;
+		ALLEGRO_FONT* allegroDefaultFont = nullptr;
 
 	private:
 		std::string defaultFontFile = "C:\\Windows\\Fonts\\consola.ttf";

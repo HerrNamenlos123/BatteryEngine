@@ -43,6 +43,12 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{11e615f5-2405-4707-9b98-9673df15f2b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Battery\Renderer">
+      <UniqueIdentifier>{bc973e42-baca-47d7-98b1-d66c7080e9ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer">
+      <UniqueIdentifier>{171b0245-656b-490d-ba05-c69c8f37741e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Battery\FileUtils.h">
@@ -126,6 +132,9 @@
     <ClInclude Include="..\include\Battery\Utils\TimeUtils.h">
       <Filter>Header Files\Battery\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\Battery\Renderer\Renderer2D.h">
+      <Filter>Header Files\Battery\Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\FileUtils.cpp">
@@ -196,6 +205,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Battery\Core\ApplicationEvents.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Battery\Renderer\Renderer2D.cpp">
+      <Filter>Source Files\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

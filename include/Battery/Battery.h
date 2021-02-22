@@ -17,6 +17,7 @@
 #include "Battery/Utils/TimeUtils.h"
 #include "Battery/Platform/Dialog.h"
 #include "Battery/Log/Log.h"
+#include "Battery/Renderer/Renderer2D.h"
 
 // ImGui library
 #include "imgui/imgui.h"

@@ -40,6 +40,7 @@
     <ClInclude Include="..\include\Battery\pch.h" />
     <ClInclude Include="..\include\Battery\Platform\Dialog.h" />
     <ClInclude Include="..\include\Battery\PrimitiveRenderer.h" />
+    <ClInclude Include="..\include\Battery\Renderer\Renderer2D.h" />
     <ClInclude Include="..\include\Battery\RenderUtils.h" />
     <ClInclude Include="..\include\Battery\ShaderProgram.h" />
     <ClInclude Include="..\include\Battery\StringUtils.h" />
@@ -75,6 +76,7 @@
     <ClCompile Include="..\src\Battery\Core\Event.cpp" />
     <ClCompile Include="..\src\Battery\Log\Log.cpp" />
     <ClCompile Include="..\src\Battery\Platform\Dialog.cpp" />
+    <ClCompile Include="..\src\Battery\Renderer\Renderer2D.cpp" />
     <ClCompile Include="..\src\Battery\Utils\TimeUtils.cpp" />
     <ClCompile Include="..\src\Core.cpp" />
     <ClCompile Include="..\src\DefaultShaders.cpp" />
@@ -227,6 +229,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Battery/pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -266,6 +269,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Battery/pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -291,6 +295,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>../include;../allegro-5.0.10-msvc-11.0/include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -311,6 +316,7 @@
     <ClCompile>
       <AdditionalIncludeDirectories>../include;../allegro-5.0.10-msvc-11.0/include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>

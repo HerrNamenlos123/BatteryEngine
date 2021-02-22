@@ -4,6 +4,7 @@
 #include "Battery/Log/Log.h"
 #include "Battery/Core/Event.h"
 #include "Battery/AllegroDeps.h"
+#include "Battery/StringUtils.h"
 
 #undef CreateEvent
 
@@ -43,6 +44,72 @@ namespace Battery {
 		// These are for debugging only
 		EVENT_CLASS_TYPE(WindowClose);
 		EVENT_INFO_STRING("");
+	};
+
+	class KeyPressedEvent : public Battery::Event {
+	public:
+		KeyPressedEvent(ALLEGRO_EVENT* event) : Event(EventType::KeyPressed) {
+			SetAllegroEvent(event);
+			display = event->keyboard.display;
+			keycode = event->keyboard.keycode;
+			repeat = event->keyboard.repeat;
+			modifiers = event->keyboard.modifiers;
+		}
+
+		int keycode;
+		unsigned int modifiers;
+		ALLEGRO_DISPLAY* display;
+		bool repeat;
+
+		// These are for debugging only
+		EVENT_CLASS_TYPE(KeyPressed);
+		EVENT_INFO_STRING("KeyCode: " << keycode << " Modifiers: " << modifiers << 
+			" Allegro display: " << display << " Repeat: " << repeat);
+	};
+
+	class KeyReleasedEvent : public Battery::Event {
+	public:
+		KeyReleasedEvent(ALLEGRO_EVENT* event) : Event(EventType::KeyReleased) {
+			SetAllegroEvent(event);
+			display = event->keyboard.display;
+			keycode = event->keyboard.keycode;
+			repeat = event->keyboard.repeat;
+			modifiers = event->keyboard.modifiers;
+		}
+
+		int keycode;
+		unsigned int modifiers;
+		ALLEGRO_DISPLAY* display;
+		bool repeat;
+
+		// These are for debugging only
+		EVENT_CLASS_TYPE(KeyReleased);
+		EVENT_INFO_STRING("KeyCode: " << keycode << " Modifiers: " << modifiers <<
+			" Allegro display: " << display << " Repeat: " << repeat);
+	};
+
+	class TextInputEvent : public Battery::Event {
+	public:
+		TextInputEvent(ALLEGRO_EVENT* event) : Event(EventType::TextInput) {
+			SetAllegroEvent(event);
+			display = event->keyboard.display;
+			codepoint = event->keyboard.unichar;
+			repeat = event->keyboard.repeat;
+			modifiers = event->keyboard.modifiers;
+			character = StringUtils::ConvertCodepointUTF8(codepoint);
+		}
+
+		int32_t codepoint;
+		std::string character;
+		unsigned int modifiers;
+		ALLEGRO_DISPLAY* display;
+		bool repeat;
+
+		// These are for debugging only
+		EVENT_CLASS_TYPE(TextInput);
+		EVENT_INFO_STRING("Unicode character: '" << StringUtils::ConvertCodepointUTF8(codepoint) <<
+			"' Unicode codepoint: U+" << std::hex << (int)codepoint << std::dec <<
+			" Modifiers: " << modifiers << " Allegro display: " << display << " Repeat: " << repeat);
 	};
 	
 	class MouseButtonPressedEvent : public Battery::Event {
