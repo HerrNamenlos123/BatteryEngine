@@ -4,7 +4,7 @@
 
 #include "Battery/AllegroDeps.h"
 #include "Battery/Core/Config.h"
-#include "Battery/ShaderProgram.h"
+//#include "Battery/ShaderProgram.h"
 #include "Battery/RenderUtils.h"
 #include "Battery/DefaultShaders.h"
 #include "glm/glm.hpp"

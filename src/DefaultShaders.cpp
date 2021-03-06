@@ -4,10 +4,9 @@
 
 namespace Battery {
 
-	// Shaders for drawing antialiased lines
+	// A very basic vertex shader to be used for almost everything
 
-
-	const std::string BATTERY_SHADER_SOURCE_VERTEX_LINE_ANTIALIASED = "\n"
+	const std::string BATTERY_SHADER_SOURCE_VERTEX_SIMPLE = "\n"
 		"\n"
 		"#version 400 core\n"
 		"\n"
@@ -27,16 +26,20 @@ namespace Battery {
 		"}\n"
 		"\n";
 
-	const std::string BATTERY_SHADER_SOURCE_FRAGMENT_LINE_ANTIALIASED =
+
+
+	// For rendering antialiased lines
+
+	const std::string BATTERY_SHADER_SOURCE_FRAGMENT_LINE =
 		"\n"
 		"#version 400 core\n"
 		"\n"
 		"out vec4 FragColor;\n"
 		"\n"
-		"uniform vec2 lineP1;\n"
-		"uniform vec2 lineP2;\n"
-		"uniform float lineThickness;\n"
-		"uniform float lineOutline;\n"
+		"uniform vec2 line_p1;\n"
+		"uniform vec2 line_p2;\n"
+		"uniform float line_thickness;\n"
+		"uniform float line_falloff;\n"
 		"\n"
 		"varying vec4 color;\n"
 		"varying vec2 screenPos;\n"
@@ -71,10 +74,10 @@ namespace Battery {
 		"\n"
 		"void main()\n"
 		"{\n"
-		"    float dist = distanceAroundLine(screenPos, lineP1, lineP2);\n"
+		"    float dist = distanceAroundLine(screenPos, line_p1, line_p2);\n"
 		"\n"
-		"    float a = lineThickness * 0.5;\n"
-		"    float b = lineOutline * 0.5;\n"
+		"    float a = line_thickness * 0.5 - line_falloff;\n"
+		"    float b = line_thickness * 0.5;\n"
 		"\n"
 		"    if (a == b && dist > b)\n"
 		"        discard;\n"
@@ -83,4 +86,133 @@ namespace Battery {
 		"}\n"
 		"\n";
 
+
+
+
+
+
+	// For drawing antialiased circles
+
+	const std::string BATTERY_SHADER_SOURCE_FRAGMENT_CIRCLE = "\n"
+		"\n"
+		"#version 400 core\n"
+		"\n"
+		"out vec4 FragColor;\n"
+		"\n"
+		"uniform vec2 circle_center;\n"
+		"uniform float circle_radius;\n"
+		"uniform float circle_falloff;\n"
+		"\n"
+		"varying vec4 color;\n"
+		"varying vec2 uv;\n"
+		"varying vec2 screenPos;\n"
+		"\n"
+		"void main()\n"
+		"{\n"
+		"	float dist = distance(screenPos, circle_center);\n"
+		"\n"
+		"	float a = circle_radius - circle_falloff;\n"
+		"	float b = circle_radius;\n"
+		"\n"
+		"	if (a == b && dist > b)\n"
+		"		discard;\n"
+		"\n"
+		"	FragColor = vec4(color.xyz, 1 / (a - b) * dist + b / (b - a));\n"
+		"}\n"
+		"\n";
+
+
+
+	// For drawing antialiased arcs
+
+	const std::string BATTERY_SHADER_SOURCE_FRAGMENT_ARC = "\n"
+		"\n"
+		"	#version 400 core\n"
+		"\n"
+		"	out vec4 FragColor;\n"
+		"\n"
+		"uniform vec2 arc_center;\n"
+		"uniform float arc_radius;\n"
+		"uniform float arc_start_angle;\n"
+		"uniform float arc_end_angle;\n"
+		"uniform float arc_thickness;\n"
+		"uniform float arc_falloff;\n"
+		"\n"
+		"varying vec4 color;\n"
+		"varying vec2 uv;\n"
+		"varying vec2 screenPos;\n"
+		"\n"
+		"float PI = 3.1415926535897;\n"
+		"\n"
+		"float arcCircleDistance(vec2 P) {\n"
+		"	float distanceToCenter = distance(P, arc_center);\n"
+		"\n"
+		"	return abs(arc_radius - distanceToCenter);\n"
+		"}\n"
+		"\n"
+		"float distanceAroundArc(vec2 P) {\n"
+		"\n"
+		"	vec2 centerToPos = P - arc_center;\n"
+		"	float fragmentAngle = atan(centerToPos.y, -centerToPos.x) + PI;\n"
+		"\n"
+		"	if (arc_start_angle < arc_end_angle) {  // Normal case\n"
+		"		if (fragmentAngle >= arc_start_angle && fragmentAngle <= arc_end_angle) {\n"
+		"			return arcCircleDistance(P);\n"
+		"		}\n"
+		"	}\n"
+		"	else {\n"
+		"		if (fragmentAngle <= arc_end_angle || fragmentAngle >= arc_start_angle) {\n"
+		"			return arcCircleDistance(P);\n"
+		"		}\n"
+		"	}\n"
+		"\n"
+		"	vec2 p1 = arc_center + vec2(cos(arc_start_angle), -sin(arc_start_angle)) * arc_radius;\n"
+		"	vec2 p2 = arc_center + vec2(cos(arc_end_angle), -sin(arc_end_angle)) * arc_radius;\n"
+		"\n"
+		"	float distance1 = distance(P, p1);\n"
+		"	float distance2 = distance(P, p2);\n"
+		"\n"
+		"	return min(distance1, distance2);\n"
+		"}\n"
+		"\n"
+		"void main()\n"
+		"{\n"
+		"	float dist = distanceAroundArc(screenPos);\n"
+		"\n"
+		"	float a = arc_thickness / 2 - arc_falloff;\n"
+		"	float b = arc_thickness / 2;\n"
+		"\n"
+		"	if (dist > b) {\n"
+		"		discard;\n"
+		"		return;\n"
+		"	}\n"
+		"\n"
+		"	FragColor = vec4(color.xyz, 1 / (a - b) * dist + b / (b - a));\n"
+		"}\n";
+
+
+
+
+
+
+	// Shaders for drawing flat colored or gradient quads
+
+	const std::string BATTERY_SHADER_SOURCE_FRAGMENT_COLOR_GRADIENT = "\n"
+		"\n"
+		"#version 400 core\n"
+		"\n"
+		"out vec4 FragColor;\n"
+		"\n"
+		"varying vec4 color;\n"
+		"varying vec2 uv;\n"
+		"varying vec2 screenPos;\n"
+		"\n"
+		"void main()\n"
+		"{\n"
+		"\n"
+		"	FragColor = color;\n"
+		"}\n"
+		"\n";
 }
+
+

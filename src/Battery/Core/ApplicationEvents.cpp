@@ -15,6 +15,9 @@ namespace Battery {
 		case ALLEGRO_EVENT_DISPLAY_CLOSE:
 			return { new WindowCloseEvent(event) };
 
+		case ALLEGRO_EVENT_DISPLAY_RESIZE:
+			return { new WindowResizeEvent(event) };
+
 		case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
 			return { new MouseButtonPressedEvent(event) };
 

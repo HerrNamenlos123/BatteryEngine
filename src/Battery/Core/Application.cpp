@@ -5,22 +5,56 @@
 
 namespace Battery {
 
-	Application::Application(int width, int height, const std::string name) : window(width, height) {
+	// Global static application pointer
+	Application* Application::applicationPointer = nullptr;
+
+
+	Application::Application(int width, int height, const std::string applicationFolderName) : window(width, height) {
+		this->applicationFolderName = applicationFolderName;
 	}
 
 	Application::~Application() {
 	}
 
+
+
+
+
+
+
+
+
+
+	bool Application::GetKey(int allegroKeycode) {
+		ALLEGRO_KEYBOARD_STATE keyboard;
+		al_get_keyboard_state(&keyboard);
+		return al_key_down(&keyboard, allegroKeycode);
+	}
+
+	std::string Application::GetKeyName(int allegroKeycode) {
+		return al_keycode_to_name(allegroKeycode);
+	}
+
+
+
+
+
+
+
+
+
+
+
 	void Application::Run(int argc, const char** argv) {
 
 		// Initialize the Allegro framework
-		if (!AllegroContext::GetInstance()->Initialize("TestApp")) {
-			LOG_CORE_WARN("The Application constructor failed, closing application...");
+		if (!AllegroContext::GetInstance()->Initialize(applicationFolderName)) {
+			LOG_CORE_WARN("The Allegro context failed to initialize, closing application...");
 			return;
 		}
 
 		// Create Allegro window
-		window.Create();
+		window.Create(windowFlags);
 		window.SetEventCallback(std::bind(&Application::_onEvent, this, std::placeholders::_1));
 
 		// Load 2D renderer
@@ -73,38 +107,47 @@ namespace Battery {
 		}
 
 		// Unload 2D renderer
+		LOG_CORE_TRACE("Shutting down 2D Renderer");
 		Renderer2D::Shutdown();
 
 		// Destroy Allegro window
 		window.Destroy();
 
 		// Clear layer stack
-		LOG_CORE_INFO("Clearing any left over layers from layer stack");
+		LOG_CORE_TRACE("Clearing any left over layers from layer stack");
 		layers.ClearStack();
 
 		// Shut the allegro framework down
+		LOG_CORE_TRACE("Destroying Allegro context");
 		AllegroContext::GetInstance()->Destroy();
+
+		LOG_CORE_INFO("Application stopped");
 	}
 
 	void Application::_preUpdate() {
-
 		double now = TimeUtils::GetRuntime();
 
-		double frametime = now - oldPreUpdateTime;
+		frametime = now - oldPreUpdateTime;
 
 		if (oldPreUpdateTime == 0) {
-			frametime = 0;
+			frametime = 0.f;
 		}
 
 		oldPreUpdateTime = now;
-		framerate = 1.0 / frametime;
+		if (frametime != 0.f)
+			framerate = 1.0 / frametime;
 
 		// Handle events
 		window.HandleEvents();
 	}
 
-	void Application::_preRender() {
+	void Application::_postUpdate() {
+		framecount++;
+	}
 
+	void Application::_preRender() {
+		// Paint the background by default
+		Renderer2D::DrawBackground(BATTERY_DEFAULT_BACKGROUND_COLOR);
 	}
 
 	void Application::_postRender() {
@@ -117,9 +160,12 @@ namespace Battery {
 
 		while (!shouldClose) {
 
+			LOG_CORE_TRACE("Main loop started");
+
 			// Update everything
 			_preUpdate();
 			_updateApp();
+			_postUpdate();
 
 			// Render everything
 			_preRender();
@@ -128,17 +174,26 @@ namespace Battery {
 
 			// Wait for the right time to render
 			double desiredFrametime = 1.0 / desiredFramerate;
-			while (TimeUtils::GetRuntime() < nextFrame);
-			double timeout = TimeUtils::GetRuntime() + 1;	// Timeout of 1s
-			while (nextFrame < TimeUtils::GetRuntime() || TimeUtils::GetRuntime() > timeout)
-				nextFrame += desiredFrametime;
+			LOG_CORE_TRACE("Waiting for frametime before flipping screen");
+			TimeUtils::Sleep(nextFrame - TimeUtils::GetRuntime());
+			while (TimeUtils::GetRuntime() < nextFrame);	// Shouldn't do anything, for safety if sleeping
+															// was not successful
 
-			if (TimeUtils::GetRuntime() > timeout) {
-				nextFrame = TimeUtils::GetRuntime() + desiredFramerate;
+			// Set time for next frame
+			double now = TimeUtils::GetRuntime();
+			if (now <= nextFrame + desiredFrametime) {	// Everything is on time, just increment for
+				nextFrame += desiredFrametime;			// maximum accuracy in framerate
+			}
+			else {	// Too slow, a frame was missed, increment from timepoint now, but framerate will
+				nextFrame = now + desiredFrametime;					// not be 100% accurate
 			}
 
 			// Show rendered image
+			LOG_CORE_TRACE("Flipping displays");
+			al_set_current_opengl_context(window.allegroDisplayPointer);
 			al_flip_display();
+
+			LOG_CORE_TRACE("Main loop finished");
 
 		}
 	}
@@ -164,7 +219,7 @@ namespace Battery {
 
 		// Then propagate through the stack and render all layers sequentially
 		for (Layer* layer : layers.GetLayers()) {
-			LOG_CORE_TRACE(std::string("Layer '") + layer->GetDebugName() + "' OnUpdate()");
+			LOG_CORE_TRACE(std::string("Layer '") + layer->GetDebugName() + "' OnRender()");
 			layer->OnRender();
 		}
 	}
@@ -194,6 +249,10 @@ namespace Battery {
 		desiredFramerate = f;
 	}
 
+	void Application::SetWindowFlags(int flags) {
+		this->windowFlags = flags;
+	}
+
 	void Application::PushLayer(Layer* layer) {
 		layers.PushLayer(layer, this);
 	}
@@ -208,6 +267,30 @@ namespace Battery {
 
 	void Application::CloseApplication() {
 		shouldClose = true;
+	}
+
+	Application* Application::GetApplicationPointer() {
+		return applicationPointer;
+	}
+
+	glm::ivec2 Application::GetPrimaryMonitorSize() {
+		ALLEGRO_MONITOR_INFO monitor;
+		al_get_monitor_info(0, &monitor);
+		return glm::ivec2(monitor.x2 - monitor.x1, monitor.y2 - monitor.y1);
+	}
+
+
+
+
+
+
+
+
+
+// Private
+
+	void Application::SetApplicationPointer(Application* app) {
+		applicationPointer = app;
 	}
 
 }

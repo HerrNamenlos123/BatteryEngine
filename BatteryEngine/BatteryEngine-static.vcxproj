@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -32,8 +32,6 @@
     <ClInclude Include="..\include\Battery\Core\Layer.h" />
     <ClInclude Include="..\include\Battery\Core\LayerStack.h" />
     <ClInclude Include="..\include\Battery\DefaultShaders.h" />
-    <ClInclude Include="..\include\Battery\Engine.h" />
-    <ClInclude Include="..\include\Battery\FileUtils.h" />
     <ClInclude Include="..\include\Battery\Graphics.h" />
     <ClInclude Include="..\include\Battery\Log\Log.h" />
     <ClInclude Include="..\include\Battery\NetUtils.h" />
@@ -41,10 +39,13 @@
     <ClInclude Include="..\include\Battery\Platform\Dialog.h" />
     <ClInclude Include="..\include\Battery\PrimitiveRenderer.h" />
     <ClInclude Include="..\include\Battery\Renderer\Renderer2D.h" />
+    <ClInclude Include="..\include\Battery\Renderer\ShaderProgram.h" />
+    <ClInclude Include="..\include\Battery\Renderer\StaticImGuiWindow.h" />
+    <ClInclude Include="..\include\Battery\Renderer\Texture2D.h" />
     <ClInclude Include="..\include\Battery\RenderUtils.h" />
-    <ClInclude Include="..\include\Battery\ShaderProgram.h" />
     <ClInclude Include="..\include\Battery\StringUtils.h" />
     <ClInclude Include="..\include\Battery\AllegroDeps.h" />
+    <ClInclude Include="..\include\Battery\Utils\FileUtils.h" />
     <ClInclude Include="..\include\Battery\Utils\TimeUtils.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -77,12 +78,13 @@
     <ClCompile Include="..\src\Battery\Log\Log.cpp" />
     <ClCompile Include="..\src\Battery\Platform\Dialog.cpp" />
     <ClCompile Include="..\src\Battery\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="..\src\Battery\Renderer\ShaderProgram.cpp" />
+    <ClCompile Include="..\src\Battery\Utils\FileUtils.cpp" />
     <ClCompile Include="..\src\Battery\Utils\TimeUtils.cpp" />
     <ClCompile Include="..\src\Core.cpp" />
     <ClCompile Include="..\src\DefaultShaders.cpp" />
     <ClCompile Include="..\src\Engine.cpp" />
     <ClCompile Include="..\src\Exception.cpp" />
-    <ClCompile Include="..\src\FileUtils.cpp" />
     <ClCompile Include="..\src\Graphics.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\NetUtils.cpp" />

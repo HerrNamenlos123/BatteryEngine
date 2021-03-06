@@ -1,5 +1,7 @@
 #pragma once
 
+#define _USE_MATH_DEFINES
+#include <cmath>
 #include <iostream>
 #include <vector>
 #include <string>
@@ -15,3 +17,5 @@
 
 #include "imgui/imgui.h"
 #include "imgui/backends/imgui_impl_allegro5.h"
+
+#include "json.hpp"

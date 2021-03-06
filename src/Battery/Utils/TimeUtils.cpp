@@ -30,8 +30,18 @@ namespace Battery {
 			}
 		}
 
-		void SleepMicroseconds(std::time_t microseconds) {
-			std::this_thread::sleep_for(std::chrono::microseconds(microseconds));
+		//void SleepMicroseconds(std::time_t microseconds) {
+		//	std::this_thread::sleep_for(std::chrono::microseconds(microseconds));
+		//}
+
+		void Sleep(double seconds) {
+
+			if (AllegroContext::GetInstance()->IsInitialized()) {
+				al_rest(seconds);
+			}
+			else {
+				LOG_CORE_ERROR(__FUNCTION__ "(): Can't sleep: The Allegro context was not initialized!");
+			}
 		}
 
 	}

@@ -13,11 +13,11 @@ namespace Battery {
 	class Layer {
 	public:
 		Layer() {
-			debugName = "Unnamed layer";
+			layerName = "Unnamed layer";
 		}
 
 		Layer(std::string debugName) {
-			this->debugName = debugName;
+			this->layerName = debugName;
 		}
 
 		~Layer() {
@@ -35,11 +35,11 @@ namespace Battery {
 		virtual void OnEvent(Battery::Event* e) {}
 
 		const std::string& GetDebugName() const {
-			return debugName;
+			return layerName;
 		}
 
 		void SetAppPointer(Battery::Application* app) {
-			this->app = app;
+			applicationPointer = app;
 
 			if (app == nullptr) {
 				LOG_CORE_WARN("Layer: The supplied Application pointer is nullptr!");
@@ -48,8 +48,8 @@ namespace Battery {
 
 	protected:
 
-		std::string debugName;
-		Battery::Application* app = nullptr;
+		std::string layerName;
+		Battery::Application* applicationPointer = nullptr;
 	};
 
 }

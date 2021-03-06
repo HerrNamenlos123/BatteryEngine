@@ -21,10 +21,10 @@ namespace Battery {
 		double GetRuntime();
 
 		/// <summary>
-		/// Put the current thread to sleep for x microseconds.
+		/// Put the current thread to sleep for x seconds.
 		/// </summary>
-		/// <param name="microseconds">- Time to sleep in microseconds</param>
-		void SleepMicroseconds(std::time_t microseconds);
+		/// <param name="microseconds">- Time to sleep in seconds</param>
+		void Sleep(double seconds);
 
 	}
 }

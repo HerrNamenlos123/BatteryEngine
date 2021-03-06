@@ -9,18 +9,28 @@ int main(int argc, const char** argv) {
 	try {
 		LOG_INIT();
 
+		// Create the client application
 		LOG_CORE_TRACE("Creating Application");
 		Battery::Application* app = Battery::CreateApplication();
 
+		// Save application pointer, so it can be accessed statically and globally
+		Battery::Application::SetApplicationPointer(app);
+
+		// Start the engine up
 		LOG_CORE_TRACE("Application created, running");
 		app->Run(argc, argv);
 
+		// Destroy the application
 		LOG_CORE_TRACE("Application stopped, destroying");
 		delete app;
 	}
 	catch (const Battery::Exception& e) {
 		LOG_CORE_CRITICAL(std::string("Unhandled Battery::Exception from scope main(): ") + e.what());
 		Battery::ShowErrorMessageBox(std::string("Unhandled Battery::Exception from scope main(): ") + e.what());
+	}
+	catch (...) {
+		LOG_CORE_CRITICAL("Unhandled exception from scope main(): Unknown type, no further information");
+		Battery::ShowErrorMessageBox("Unhandled exception from scope main(): Unknown type, no further information");
 	}
 
 	LOG_CORE_TRACE("Application destroyed");

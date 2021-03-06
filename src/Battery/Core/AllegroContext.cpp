@@ -10,7 +10,7 @@ namespace Battery {
 	AllegroContext::~AllegroContext() {
 		if (IsInitialized()) {
 			LOG_CORE_WARN("The Allegro context is being destroyed in the destructor: "
-						"It should have been destroyed earlier explicitly!");
+						  "It should have been destroyed earlier explicitly!");
 			Destroy();
 		}
 	}
@@ -26,7 +26,7 @@ namespace Battery {
 
 		// Set the application name for the %appdata% paths
 		al_set_app_name(applicationName.c_str());
-		LOG_CORE_INFO("Global Application Name is '" + applicationName + "'");
+		LOG_CORE_INFO("Global Application folder name is '" + applicationName + "'");
 
 		// Initialize the Allegro Framework and all components
 		if (!al_init()) {

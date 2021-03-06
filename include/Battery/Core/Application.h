@@ -24,7 +24,7 @@ namespace Battery {
 	class Application {
 	public:
 
-		Application(int width, int height, const std::string name = BATTERY_DEFAULT_TITLE);
+		Application(int width, int height, const std::string applicationFolderName = BATTERY_DEFAULT_FOLDER_NAME);
 		virtual ~Application();
 
 		virtual bool OnStartup() { return true; }
@@ -33,17 +33,28 @@ namespace Battery {
 		virtual void OnShutdown() {}
 		virtual void OnEvent(Battery::Event* e) {}
 
+		bool GetKey(int allegroKeycode);
+		std::string GetKeyName(int allegroKeycode);
+		// TODO: Add keyboard leds cuz why not
+
 		void SetFramerate(double f);
+		void SetWindowFlags(int flags);
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* overlay);
 		void ClearLayerStack();
 		void CloseApplication();
 
+		static Application* GetApplicationPointer();
+
+		glm::ivec2 GetPrimaryMonitorSize();
+
 	private:
 		void Run(int argc, const char** argv);
+		static void SetApplicationPointer(Application* app);
 		friend int ::main(int argc, const char** argv);
 
 		void _preUpdate();
+		void _postUpdate();
 		void _preRender();
 		void _postRender();
 		void _mainLoop();
@@ -56,7 +67,6 @@ namespace Battery {
 		LayerStack layers;
 		bool shouldClose = false;
 
-		glm::ivec2 windowSize = { 0, 0 };
 		double frametime = 0;
 		double framerate = 0;
 		uint32_t framecount = 0;
@@ -65,6 +75,11 @@ namespace Battery {
 		std::vector<std::string> args;
 		double desiredFramerate = 60;
 		double oldPreUpdateTime = 0;
+
+	private:
+		static Application* applicationPointer;
+		std::string applicationFolderName;
+		int windowFlags = 0;
 	};
 
 }

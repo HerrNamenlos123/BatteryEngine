@@ -51,9 +51,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\Battery\FileUtils.h">
-      <Filter>Header Files\Battery</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\Battery\NetUtils.h">
       <Filter>Header Files\Battery</Filter>
     </ClInclude>
@@ -63,17 +60,11 @@
     <ClInclude Include="..\include\Battery\StringUtils.h">
       <Filter>Header Files\Battery</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\Battery\Engine.h">
-      <Filter>Header Files\Battery</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\Battery\Graphics.h">
       <Filter>Header Files\Battery</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\Battery\ShaderProgram.h">
-      <Filter>Header Files\Battery</Filter>
     </ClInclude>
     <ClInclude Include="..\include\Battery\PrimitiveRenderer.h">
       <Filter>Header Files\Battery</Filter>
@@ -135,11 +126,20 @@
     <ClInclude Include="..\include\Battery\Renderer\Renderer2D.h">
       <Filter>Header Files\Battery\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\Battery\Renderer\ShaderProgram.h">
+      <Filter>Header Files\Battery\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Renderer\Texture2D.h">
+      <Filter>Header Files\Battery\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Renderer\StaticImGuiWindow.h">
+      <Filter>Header Files\Battery\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Utils\FileUtils.h">
+      <Filter>Header Files\Battery\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\FileUtils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\NetUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -208,6 +208,12 @@
     </ClCompile>
     <ClCompile Include="..\src\Battery\Renderer\Renderer2D.cpp">
       <Filter>Source Files\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Battery\Renderer\ShaderProgram.cpp">
+      <Filter>Source Files\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Battery\Utils\FileUtils.cpp">
+      <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

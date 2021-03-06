@@ -8,10 +8,13 @@
 #define BATTERY_VERSION_FILE "version"	// No extension
 
 //#define NETWORK_CERTIFICATE_FILE "cacert.pem"
-#define BATTERY_DEFAULT_TITLE "BatteryEngine Application"
+#define BATTERY_DEFAULT_TITLE "BatteryEngine Window"
+#define BATTERY_DEFAULT_FOLDER_NAME "BatteryApplication"
 
 // Graphics
-#define BATTERY_ANTIALIASING_LINE_FALLOFF 3
+#define BATTERY_MIN_WINDOW_WIDTH 200
+#define BATTERY_MIN_WINDOW_HEIGHT 200
+#define BATTERY_ANTIALIASING_LINE_FALLOFF 1
 #define BATTERY_DEFAULT_BACKGROUND_COLOR glm::vec4(60, 60, 60, 255)
 
 // Some logging
@@ -22,3 +25,6 @@
 #define BATTERY_LOG_LEVEL_TRACE		spdlog::level::trace
 
 #define BATTERY_LOG_LEVEL BATTERY_LOG_LEVEL_INFO
+
+// File I/O
+#define BATTERY_FILE_BLOCK_SIZE 1024

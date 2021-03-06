@@ -8,6 +8,7 @@ namespace Battery {
 	class ImGuiLayer : public Layer {
 	public:
 		ImGuiLayer() {}
+		ImGuiLayer(const std::string& debugName) : Layer(debugName) {}
 
 		void OnAttach() final {		// Prevent from being overridden again
 
@@ -22,7 +23,7 @@ namespace Battery {
 			//ImGui::StyleColorsClassic();
 
 			// Setup Platform/Renderer backends
-			ImGui_ImplAllegro5_Init(app->window.allegroDisplayPointer);
+			ImGui_ImplAllegro5_Init(applicationPointer->window.allegroDisplayPointer);
 
 			io = ImGui::GetIO();
 			OnImGuiAttach();
@@ -59,7 +60,7 @@ namespace Battery {
 
 			if (event->GetType() == EventType::WindowResize) {
 				ImGui_ImplAllegro5_InvalidateDeviceObjects();
-				al_acknowledge_resize(app->window.allegroDisplayPointer);
+				al_acknowledge_resize(applicationPointer->window.allegroDisplayPointer);
 				ImGui_ImplAllegro5_CreateDeviceObjects();
 			}
 

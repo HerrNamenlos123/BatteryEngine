@@ -6,26 +6,6 @@
 namespace Battery {
 	namespace Core {
 
-		/// <summary>
-		/// Initialize the Allegro framework and all components
-		/// </summary>
-		/// <exception cref="Battery::Exception - Thrown when any component of the Allegro framework 
-		/// failed to initialize"></exception>
-		void Initialize();
-
-		/// <summary>
-		/// Check if the Allegro framework is already initialized
-		/// </summary>
-		/// <returns>bool - if framework is initialized</returns>
-		bool IsInitialized();
-
-		/// <summary>
-		/// Shut the Allegro framework and all components down
-		/// </summary>
-		void Shutdown();
-
-
-
 
 
 
