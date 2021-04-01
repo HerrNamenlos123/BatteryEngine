@@ -2,6 +2,8 @@
 #include "Battery/pch.h"
 #include "Battery/Core/AllegroWindow.h"
 #include "Battery/Core/AllegroContext.h"
+#include "Battery/Core/Config.h"
+#include "Battery/Utils/TimeUtils.h"
 
 #undef CreateEvent
 
@@ -99,28 +101,48 @@ namespace Battery {
 
 	void AllegroWindow::HandleEvents() {
 		CHECK_ALLEGRO_INIT();
+		PROFILE_CORE_SCOPE(__FUNCTION__"()");
 
 		if (eventCallback != nullptr && allegroEventQueue != nullptr) {
 
 			while (!al_is_event_queue_empty(allegroEventQueue)) {
-				ALLEGRO_EVENT event;
+				ALLEGRO_EVENT allegroEvent;
 
-				if (al_get_next_event(allegroEventQueue, &event)) {
-					for (Event* e : Battery::CreateEvent(&event)) {
-						if (e != nullptr) {
-							LOG_CORE_INFO(std::string("[AllegroWindow]: ") + e->GetInfoString());
+				if (al_get_next_event(allegroEventQueue, &allegroEvent)) {
 
-							if (e->GetType() == Battery::EventType::WindowResize) {
-								al_acknowledge_resize(allegroDisplayPointer);
-							}
+					eventContainer.Load(&allegroEvent);
 
-							eventCallback(e);
-						}
-						delete e;
+					if (eventContainer.primaryEventType != Battery::EventType::None) {
+						HandleEvent(eventContainer.primaryEvent);
+					}
+					
+					if (eventContainer.secondaryEventType != Battery::EventType::None) {
+						HandleEvent(eventContainer.secondaryEvent);
 					}
 				}
 			}
 
+		}
+	}
+
+	void AllegroWindow::HandleEvent(Battery::Event* event) {
+
+#ifdef BATTERY_DEBUG
+		static const size_t length = 1024;
+		char info[length];
+		event->GetInfoString(info, length);
+		LOG_CORE_INFO("[AllegroWindow]: {}", info);
+#endif
+		
+		if (event->GetType() == Battery::EventType::WindowResize) {
+			al_acknowledge_resize(allegroDisplayPointer);
+		}
+
+		if (eventCallback != nullptr) {
+			eventCallback(event);
+		}
+		else {
+			LOG_CORE_TRACE(__FUNCTION__"(): OnEvent callback can't be called: Function pointer is nullptr!");
 		}
 	}
 
@@ -144,6 +166,11 @@ namespace Battery {
 	int AllegroWindow::GetHeight() {
 		CHECK_ALLEGRO_INIT();
 		return al_get_display_height(allegroDisplayPointer);
+	}
+
+	glm::ivec2 AllegroWindow::GetSize() {
+		CHECK_ALLEGRO_INIT();
+		return glm::ivec2(GetWidth(), GetHeight());
 	}
 
 	void AllegroWindow::SetSize(const glm::vec2 size) {
@@ -172,6 +199,71 @@ namespace Battery {
 		al_set_display_flag(allegroDisplayPointer, ALLEGRO_MAXIMIZED, false);
 		al_set_display_flag(allegroDisplayPointer, ALLEGRO_MINIMIZED, false);
 	}
+
+	glm::vec2 AllegroWindow::GetMousePosition() {
+		CHECK_ALLEGRO_INIT();
+		ALLEGRO_MOUSE_STATE mouse;
+		al_get_mouse_state(&mouse);
+		return glm::vec2(mouse.x, mouse.y);
+	}
+
+	bool AllegroWindow::GetLeftMouseButton() {
+		CHECK_ALLEGRO_INIT();
+		ALLEGRO_MOUSE_STATE mouse;
+		al_get_mouse_state(&mouse);
+		return mouse.buttons & 0x01;
+	}
+
+	bool AllegroWindow::GetRightMouseButton() {
+		CHECK_ALLEGRO_INIT();
+		ALLEGRO_MOUSE_STATE mouse;
+		al_get_mouse_state(&mouse);
+		return mouse.buttons & 0x02;
+	}
+
+	bool AllegroWindow::GetMouseWheel() {
+		CHECK_ALLEGRO_INIT();
+		ALLEGRO_MOUSE_STATE mouse;
+		al_get_mouse_state(&mouse);
+		return mouse.buttons & 0x03;
+	}
+
+	HWND AllegroWindow::GetWinHandle() {
+		CHECK_ALLEGRO_INIT();
+		return al_get_win_window_handle(allegroDisplayPointer);
+	}
+
+	bool AllegroWindow::IsFocused() {
+		CHECK_ALLEGRO_INIT();
+		return GetForegroundWindow() == GetWinHandle();
+	}
+
+	bool AllegroWindow::Focus() {
+		CHECK_ALLEGRO_INIT();
+		return SetForegroundWindow(GetWinHandle());
+	}
+
+	std::string AllegroWindow::GetClipboardContent() {
+		char* content = al_get_clipboard_text(allegroDisplayPointer);
+
+		if (content) {
+			std::string str = content;
+			al_free(content);
+			return str;
+		}
+
+		return "";
+	}
+
+	bool AllegroWindow::SetClipboardContent(const std::string& content) {
+		return al_set_clipboard_text(allegroDisplayPointer, content.c_str());
+	}
+
+	bool AllegroWindow::HasClipboardContent() {
+		return al_clipboard_has_text(allegroDisplayPointer);
+	}
+
+
 
 
 

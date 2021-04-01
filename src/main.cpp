@@ -33,5 +33,5 @@ int main(int argc, const char** argv) {
 		Battery::ShowErrorMessageBox("Unhandled exception from scope main(): Unknown type, no further information");
 	}
 
-	LOG_CORE_TRACE("Application destroyed");
+	LOG_CORE_TRACE("Application destroyed, main() returned");
 }

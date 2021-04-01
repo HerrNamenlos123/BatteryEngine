@@ -76,7 +76,6 @@ namespace Battery {
 
 
 
-
 	void Renderer2D::Setup() {
 		if (data == nullptr) {
 			data = new Renderer2DData();
@@ -165,100 +164,11 @@ namespace Battery {
 		}
 	}
 
-	/*void Renderer2D::BeginQuads(ShaderProgram* shaderProgram, int textureID) {
-		CHECK_INIT();
-		LOG_CORE_TRACE(__FUNCTION__ "()");
 
-		// Some sanity checks
-		if (data->currentScene == nullptr) {
-			LOG_CORE_ERROR(__FUNCTION__ "(): No scene is currently active!"); return;
-		}
 
-		if (shaderProgram == nullptr) {
-			LOG_CORE_ERROR(__FUNCTION__ "(): Supplied shaderProgram reference is nullptr!"); return;
-		}
 
-		// Change pointer to the new scene
-		data->quadShader = shaderProgram;
-		data->quadTextureID = textureID;
-		data->quadsActive = true;
-		data->quadBuffer.clear();
-	}
 
-	void Renderer2D::EndQuads() {
-		CHECK_INIT();
-		LOG_CORE_TRACE(__FUNCTION__ "(): Rendering " + std::to_string(data->quadBuffer.size()) + " quads!");
-
-		// Some sanity checks
-		if (!data->quadShader->IsLoaded()) {
-			LOG_CORE_ERROR(__FUNCTION__ "(): Can't render quads: The supplied shader is not loaded!");
-			return;
-		}
-
-		if (!data->quadsActive) {
-			LOG_CORE_ERROR(__FUNCTION__ "(): Quads are not active! Start quads with Renderer2D::BeginQuads()!");
-			return;
-		}
-
-		// Now finally render the quads
-		int64_t numOfQuads = static_cast<int>(data->quadBuffer.size());
-		ALLEGRO_VERTEX* vertices = new ALLEGRO_VERTEX[numOfQuads * 4];
-		int* indices = new int[numOfQuads * 6];
-
-		for (int64_t i = 0; i < numOfQuads; i++) {
-			vertices[i * 4 + 0] = (ALLEGRO_VERTEX)data->quadBuffer[i].v1;
-			vertices[i * 4 + 1] = (ALLEGRO_VERTEX)data->quadBuffer[i].v2;
-			vertices[i * 4 + 2] = (ALLEGRO_VERTEX)data->quadBuffer[i].v3;
-			vertices[i * 4 + 3] = (ALLEGRO_VERTEX)data->quadBuffer[i].v4;
-		}
-
-		for (int i = 0; i < numOfQuads; i++) {
-			indices[i * 6 + 0] = i * 4 + 0;
-			indices[i * 6 + 1] = i * 4 + 1;
-			indices[i * 6 + 2] = i * 4 + 2;
-			indices[i * 6 + 3] = i * 4 + 0;
-			indices[i * 6 + 4] = i * 4 + 2;
-			indices[i * 6 + 5] = i * 4 + 3;
-		}
-
-		// Load the texture
-		data->quadShader->Use();
-		ALLEGRO_BITMAP* texture = nullptr;
-
-		// Find the selected texture
-		if (data->quadTextureID < data->currentScene->textures.size() && data->quadTextureID >= 0) {
-			texture = data->currentScene->textures[data->quadTextureID].GetAllegroBitmap();
-
-			if (texture == nullptr) {
-				LOG_WARN(__FUNCTION__ "(): The specified texture is not valid");
-			}
-		}
-		else {
-			if (data->quadTextureID != -1) {
-				LOG_WARN(__FUNCTION__ "(): Invalid texture ID specified!");
-			}
-		}
-
-		// Render all loaded quads
-		al_draw_indexed_prim(vertices, NULL, texture, indices, numOfQuads * 6, ALLEGRO_PRIM_TRIANGLE_LIST);
-		data->quadShader->Release();
-
-		// Clean everything
-		data->quadBuffer.clear();
-		data->quadsActive = false;
-		delete[] vertices;
-		delete[] indices;
-	}
-
-	void Renderer2D::DrawQuad(const VertexData& v1, const VertexData& v2, const VertexData& v3, const VertexData& v4) {
-		CHECK_INIT();
-		if (!data->quadsActive) {
-			LOG_CORE_ERROR(__FUNCTION__ "(): Quad context is not active! Start a context with Renderer2D::BeginQuads()!");
-			return;
-		}
-
-		data->quadBuffer.push_back({ v1, v2, v3, v4 });
-	}*/
+	
 
 	void Renderer2D::DrawQuad(const VertexData& v1, const VertexData& v2, const VertexData& v3, const VertexData& v4, 
 			ShaderProgram* shaderProgram, int textureID) {
@@ -297,77 +207,6 @@ namespace Battery {
 		data->quadShader->Release();
 	}
 
-	/*void Renderer2D::BeginLines() {
-		CHECK_INIT();
-		LOG_CORE_TRACE(__FUNCTION__ "()");
-
-		// Some sanity checks
-		if (data->currentScene == nullptr) {
-			LOG_CORE_ERROR(__FUNCTION__ "(): No scene is currently active!"); return;
-		}
-
-		if (!data->currentScene->lineShader->IsLoaded()) {
-			LOG_CORE_ERROR(__FUNCTION__ "(): The ShaderProgram for Lines is not loaded!"); return;
-		}
-
-		// Change pointer to the new scene
-		data->linesActive = true;
-		data->lineBuffer.clear();
-	}
-
-	void Renderer2D::EndLines() {
-		CHECK_INIT();
-		LOG_CORE_TRACE(__FUNCTION__ "(): Rendering " + std::to_string(data->lineBuffer.size()) + " buffered lines");
-
-		// Some sanity checks
-		if (!data->linesActive) {
-			LOG_CORE_ERROR(__FUNCTION__ "(): Lines are not active! Start lines with Renderer2D::BeginLines()!");
-			return;
-		}
-
-		// Now render the lines
-		for (LineData& line : data->lineBuffer) {
-
-			glm::vec2 atob = glm::normalize(line.p2 - line.p1);
-			glm::vec2 anorm = glm::vec2(atob.y, -atob.x);
-
-			float r = line.thickness / 2;
-			BeginQuads(data->currentScene->lineShader);
-
-			data->currentScene->lineShader->Use();
-			data->currentScene->lineShader->SetUniformFloat("line_p1", line.p1);
-			data->currentScene->lineShader->SetUniformFloat("line_p2", line.p2);
-			data->currentScene->lineShader->SetUniformFloat("line_thickness", line.thickness);
-			data->currentScene->lineShader->SetUniformFloat("line_falloff", line.falloff);
-
-			VertexData v1 = VertexData(glm::vec3(line.p1 - atob * r + anorm * r, 0), line.color);
-			VertexData v2 = VertexData(glm::vec3(line.p1 - atob * r - anorm * r, 0), line.color);
-			VertexData v3 = VertexData(glm::vec3(line.p2 + atob * r - anorm * r, 0), line.color);
-			VertexData v4 = VertexData(glm::vec3(line.p2 + atob * r + anorm * r, 0), line.color);
-
-			DrawQuad(v1, v2, v3, v4);
-
-			EndQuads();
-		}
-
-		LOG_CORE_TRACE(__FUNCTION__ "(): Clearing line buffer");
-		data->linesActive = false;
-		data->lineBuffer.clear();
-	}
-
-	void Renderer2D::DrawLine(const glm::vec2& p1, const glm::vec2& p2, float thickness, const glm::vec4& color, float falloff) {
-		CHECK_INIT();
-		if (!data->linesActive) {
-			LOG_CORE_ERROR(__FUNCTION__ "(): Lines context is not active! Start a context with Renderer2D::BeginLines()!");
-			return;
-		}
-
-		thickness = max(thickness, 0.f);
-		falloff = max(falloff, 0.f);
-
-		data->lineBuffer.push_back({ p1, p2, thickness, falloff, color });
-	}*/
-
 	void Renderer2D::DrawLine(const glm::vec2& p1, const glm::vec2& p2, float thickness, const glm::vec4& color, float falloff) {
 		CHECK_INIT();
 		LOG_CORE_TRACE(__FUNCTION__ "(): Drawing line");
@@ -393,7 +232,7 @@ namespace Battery {
 
 		// Line
 		if (color.w != 0.f)
-			DrawQuad(v1, v2, v3, v4, data->currentScene->lineShader);
+			DrawQuad(v1, v2, v3, v4, data->currentScene->lineShader.get());
 		else
 			LOG_CORE_TRACE("Line color alpha is 0: Skipping line");
 	}
@@ -435,81 +274,10 @@ namespace Battery {
 
 		// Arc
 		if (color.w != 0.f)
-			DrawQuad(v1, v2, v3, v4, data->currentScene->arcShader);
+			DrawQuad(v1, v2, v3, v4, data->currentScene->arcShader.get());
 		else
 			LOG_CORE_TRACE("Arc color alpha is 0: Skipping arc");
 	}
-
-	/*void Renderer2D::BeginCircles() {
-		CHECK_INIT();
-		LOG_CORE_TRACE(__FUNCTION__ "()");
-
-		// Some sanity checks
-		if (data->currentScene == nullptr) {
-			LOG_CORE_ERROR(__FUNCTION__ "(): No scene is currently active!"); return;
-		}
-
-		if (!data->currentScene->circleShader->IsLoaded()) {
-			LOG_CORE_ERROR(__FUNCTION__ "(): The ShaderProgram for Circles is not loaded!"); return;
-		}
-
-		// Change pointer to the new scene
-		data->circlesActive = true;
-		data->circleBuffer.clear();
-	}
-
-	void Renderer2D::EndCircles() {
-		CHECK_INIT();
-		LOG_CORE_TRACE(__FUNCTION__ "(): Rendering " + std::to_string(data->circleBuffer.size()) + " buffered circles");
-
-		// Some sanity checks
-		if (!data->circlesActive) {
-			LOG_CORE_ERROR(__FUNCTION__ "(): Circles are not active! Start circles with Renderer2D::BeginCircles()!");
-			return;
-		}
-
-		// Now render the circles
-		for (CircleData& circle : data->circleBuffer) {
-
-			float r = circle.diameter / 2.0;
-			glm::vec2 toTop = glm::vec2(0, 1) * r;
-			glm::vec2 toRight = glm::vec2(1, 0) * r;
-
-			BeginQuads(data->currentScene->circleShader);
-
-			data->currentScene->circleShader->Use();
-			data->currentScene->circleShader->SetUniformFloat("circle_center", circle.center);
-			data->currentScene->circleShader->SetUniformFloat("circle_diameter", circle.diameter);
-			data->currentScene->circleShader->SetUniformFloat("circle_falloff", circle.falloff);
-
-			VertexData v1 = VertexData(glm::vec3(circle.center - toRight + toTop, 0), circle.color);
-			VertexData v2 = VertexData(glm::vec3(circle.center + toRight + toTop, 0), circle.color);
-			VertexData v3 = VertexData(glm::vec3(circle.center + toRight - toTop, 0), circle.color);
-			VertexData v4 = VertexData(glm::vec3(circle.center - toRight - toTop, 0), circle.color);
-
-			DrawQuad(v1, v2, v3, v4);
-
-			EndQuads();
-		}
-
-		LOG_CORE_TRACE(__FUNCTION__ "(): Clearing circle buffer");
-		data->circlesActive = false;
-		data->circleBuffer.clear();
-	}
-
-	void Renderer2D::DrawCircle(const glm::vec2& center, float diameter, const glm::vec4& color, float falloff) {
-		CHECK_INIT();
-
-		if (!data->circlesActive) {
-			LOG_CORE_ERROR(__FUNCTION__ "(): Circles context is not active! Start a context with Renderer2D::BeginCircles()!");
-			return;
-		}
-
-		diameter = max(diameter, 0.f);
-		falloff = max(falloff, 0.f);
-
-		data->circleBuffer.push_back({ center, diameter, falloff, color });
-	}*/
 
 	void Renderer2D::DrawCircle(const glm::vec2& center, float radius, float outlineThickness,
 		const glm::vec4& outlineColor, const glm::vec4& fillColor, float falloff) {
@@ -540,7 +308,7 @@ namespace Battery {
 
 		// Fill
 		if (fillColor.w != 0.f)
-			DrawQuad(v1, v2, v3, v4, data->currentScene->circleShader);
+			DrawQuad(v1, v2, v3, v4, data->currentScene->circleShader.get());
 		else
 			LOG_CORE_TRACE("Circle fillColor alpha is 0: Skipping fill");
 
@@ -550,8 +318,6 @@ namespace Battery {
 		else
 			LOG_CORE_TRACE("Circle outlineColor alpha is 0: Skipping outline");
 	}
-
-
 
 	void Renderer2D::DrawRectangle(const glm::vec2& point1, const glm::vec2& point2, float outlineThickness,
 			const glm::vec4& outlineColor, const glm::vec4& fillColor, float falloff) {
@@ -571,7 +337,7 @@ namespace Battery {
 
 		// Fill
 		if (fillColor.w != 0.f)
-			DrawQuad(v1, v2, v3, v4, data->currentScene->rectangleShader);
+			DrawQuad(v1, v2, v3, v4, data->currentScene->rectangleShader.get());
 		else
 			LOG_CORE_TRACE("Rectangle fillColor alpha is 0: Skipping fill");
 
@@ -586,7 +352,6 @@ namespace Battery {
 			LOG_CORE_TRACE("Rectangle outlineColor alpha is 0: Skipping outline");
 		}
 	}
-
 
 
 

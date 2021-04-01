@@ -14,14 +14,16 @@ namespace Battery {
 	public:
 		Layer() {
 			layerName = "Unnamed layer";
+			LOG_CORE_TRACE("Layer 'Unnamed layer' constructed");
 		}
 
 		Layer(std::string debugName) {
 			this->layerName = debugName;
+			LOG_CORE_TRACE("Layer '{}' constructed", this->layerName);
 		}
 
-		~Layer() {
-
+		virtual ~Layer() {
+			LOG_CORE_TRACE("Destructing Layer '{}': OnDetach()", this->layerName);
 		}
 
 		virtual void OnAttach() {}

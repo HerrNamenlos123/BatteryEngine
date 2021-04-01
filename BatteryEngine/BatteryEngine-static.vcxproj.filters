@@ -49,6 +49,9 @@
     <Filter Include="Source Files\Renderer">
       <UniqueIdentifier>{171b0245-656b-490d-ba05-c69c8f37741e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\implot">
+      <UniqueIdentifier>{addf7748-a22a-434c-ba22-632572732042}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Battery\NetUtils.h">
@@ -138,6 +141,12 @@
     <ClInclude Include="..\include\Battery\Utils\FileUtils.h">
       <Filter>Header Files\Battery\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\Battery\Utils\MemoryUtils.h">
+      <Filter>Header Files\Battery\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Battery\Utils\MathUtils.h">
+      <Filter>Header Files\Battery\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\NetUtils.cpp">
@@ -213,6 +222,21 @@
       <Filter>Source Files\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Battery\Utils\FileUtils.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\implot\implot.cpp">
+      <Filter>Source Files\implot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\implot\implot_demo.cpp">
+      <Filter>Source Files\implot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\implot\implot_items.cpp">
+      <Filter>Source Files\implot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Battery\Utils\MemoryUtils.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Battery\Utils\MathUtils.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>

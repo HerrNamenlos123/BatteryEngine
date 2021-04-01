@@ -11,7 +11,7 @@ namespace Battery {
 
 	}
 
-	ShaderProgram::ShaderProgram(ALLEGRO_DISPLAY* display, const std::string vertexShader, const std::string fragmentShader) {
+	ShaderProgram::ShaderProgram(ALLEGRO_DISPLAY* display, const std::string& vertexShader, const std::string& fragmentShader) {
 		LOG_CORE_TRACE("Constructing Battery::ShaderProgram");
 		Load(display, vertexShader, fragmentShader);
 	}
@@ -30,7 +30,7 @@ namespace Battery {
 
 
 
-	bool ShaderProgram::Load(ALLEGRO_DISPLAY* display, const std::string vertexShader, const std::string fragmentShader) {
+	bool ShaderProgram::Load(ALLEGRO_DISPLAY* display, const std::string& vertexShader, const std::string& fragmentShader) {
 		LOG_CORE_TRACE(__FUNCTION__ "()");
 
 		this->display = display;
@@ -92,7 +92,7 @@ namespace Battery {
 		return true;
 	}
 
-	bool ShaderProgram::LoadSource(ALLEGRO_DISPLAY* display, const std::string vertexShader, const std::string fragmentShader) {
+	bool ShaderProgram::LoadSource(ALLEGRO_DISPLAY* display, const std::string& vertexShader, const std::string& fragmentShader) {
 		LOG_CORE_TRACE(__FUNCTION__ "()");
 
 		if (display == nullptr)
@@ -167,6 +167,9 @@ namespace Battery {
 	}
 
 	void ShaderProgram::Use() {
+		if (!loaded)
+			throw Battery::Exception(__FUNCTION__"(): ShaderProgram was not loaded!");
+
 		LOG_CORE_TRACE(__FUNCTION__ "()");
 		al_use_shader(shader);
 	}
@@ -184,17 +187,23 @@ namespace Battery {
 
 	// Uniforms
 
-	bool ShaderProgram::SetUniformSampler(const std::string name, ALLEGRO_BITMAP* texture, int ID) {
+	bool ShaderProgram::SetUniformSampler(const char* name, ALLEGRO_BITMAP* texture, int ID) {
+		if (!loaded)
+			throw Battery::Exception(__FUNCTION__"(): ShaderProgram was not loaded!");
+
 		LOG_CORE_TRACE(__FUNCTION__ "()");
-		if (!al_set_shader_sampler(name.c_str(), texture, ID)) {
-			LOG_CORE_WARN("WARNING: The Shader Sampler uniform '" + name + "' was not set correctly or is not being used!");
+		if (!al_set_shader_sampler(name, texture, ID)) {
+			LOG_CORE_WARN("WARNING: The Shader Sampler uniform '{}' was not set correctly or is not being used!", name);
 			return false;
 		}
 
 		return true;
 	}
 
-	bool ShaderProgram::SetUniformMatrix(const std::string name, glm::mat4 matrix) {
+	bool ShaderProgram::SetUniformMatrix(const char* name, glm::mat4 matrix) {
+		if (!loaded)
+			throw Battery::Exception(__FUNCTION__"(): ShaderProgram was not loaded!");
+
 		LOG_CORE_TRACE(__FUNCTION__ "()");
 
 		ALLEGRO_TRANSFORM m;
@@ -202,107 +211,134 @@ namespace Battery {
 			for (int y = 0; y < 4; y++)
 				m.m[x][y] = matrix[x][y];
 
-		if (!al_set_shader_matrix(name.c_str(), &m)) {
-			LOG_CORE_WARN("WARNING: The Shader Matrix uniform '" + name + "' was not set correctly or is not being used!");
+		if (!al_set_shader_matrix(name, &m)) {
+			LOG_CORE_WARN("WARNING: The Shader Matrix uniform '{}' was not set correctly or is not being used!", name);
 			return false;
 		}
 
 		return true;
 	}
 
-	bool ShaderProgram::SetUniformInt(const std::string name, int n) {
+	bool ShaderProgram::SetUniformInt(const char* name, int n) {
+		if (!loaded)
+			throw Battery::Exception(__FUNCTION__"(): ShaderProgram was not loaded!");
+
 		LOG_CORE_TRACE(__FUNCTION__ "()");
 
-		if (!al_set_shader_int(name.c_str(), n)) {
-			LOG_CORE_WARN("WARNING: The Shader Integer uniform '" + name + "' was not set correctly or is not being used!");
+		if (!al_set_shader_int(name, n)) {
+			LOG_CORE_WARN("WARNING: The Shader Integer uniform '{}' was not set correctly or is not being used!", name);
 			return false;
 		}
 
 		return true;
 	}
 
-	bool ShaderProgram::SetUniformInt(const std::string name, glm::ivec2 n) {
+	bool ShaderProgram::SetUniformInt(const char* name, glm::ivec2 n) {
+		if (!loaded)
+			throw Battery::Exception(__FUNCTION__"(): ShaderProgram was not loaded!");
+
 		LOG_CORE_TRACE(__FUNCTION__ "()");
 
-		if (!al_set_shader_int_vector(name.c_str(), 2, &n[0], 1)) {
-			LOG_CORE_WARN("WARNING: The Shader Integer uniform '" + name + "' was not set correctly or is not being used!");
+		if (!al_set_shader_int_vector(name, 2, &n[0], 1)) {
+			LOG_CORE_WARN("WARNING: The Shader Integer uniform '{}' was not set correctly or is not being used!", name);
 			return false;
 		}
 
 		return true;
 	}
 
-	bool ShaderProgram::SetUniformInt(const std::string name, glm::ivec3 n) {
+	bool ShaderProgram::SetUniformInt(const char* name, glm::ivec3 n) {
+		if (!loaded)
+			throw Battery::Exception(__FUNCTION__"(): ShaderProgram was not loaded!");
+
 		LOG_CORE_TRACE(__FUNCTION__ "()");
 
-		if (!al_set_shader_int_vector(name.c_str(), 3, &n[0], 1)) {
-			LOG_CORE_WARN("WARNING: The Shader Integer uniform '" + name + "' was not set correctly or is not being used!");
+		if (!al_set_shader_int_vector(name, 3, &n[0], 1)) {
+			LOG_CORE_WARN("WARNING: The Shader Integer uniform '{}' was not set correctly or is not being used!", name);
 			return false;
 		}
 
 		return true;
 	}
 
-	bool ShaderProgram::SetUniformInt(const std::string name, glm::ivec4 n) {
+	bool ShaderProgram::SetUniformInt(const char* name, glm::ivec4 n) {
+		if (!loaded)
+			throw Battery::Exception(__FUNCTION__"(): ShaderProgram was not loaded!");
+
 		LOG_CORE_TRACE(__FUNCTION__ "()");
 
-		if (!al_set_shader_int_vector(name.c_str(), 4, &n[0], 1)) {
-			LOG_CORE_WARN("WARNING: The Shader Integer uniform '" + name + "' was not set correctly or is not being used!");
+		if (!al_set_shader_int_vector(name, 4, &n[0], 1)) {
+			LOG_CORE_WARN("WARNING: The Shader Integer uniform '{}' was not set correctly or is not being used!", name);
 			return false;
 		}
 
 		return true;
 	}
 
-	bool ShaderProgram::SetUniformFloat(const std::string name, float n) {
+	bool ShaderProgram::SetUniformFloat(const char* name, float n) {
+		if (!loaded)
+			throw Battery::Exception(__FUNCTION__"(): ShaderProgram was not loaded!");
+
 		LOG_CORE_TRACE(__FUNCTION__ "()");
 
-		if (!al_set_shader_float(name.c_str(), n)) {
-			LOG_CORE_WARN("WARNING: The Shader Float uniform '" + name + "' was not set correctly or is not being used!");
+		if (!al_set_shader_float(name, n)) {
+			LOG_CORE_WARN("WARNING: The Shader Float uniform '{}' was not set correctly or is not being used!", name);
 			return false;
 		}
 
 		return true;
 	}
 
-	bool ShaderProgram::SetUniformFloat(const std::string name, glm::vec2 n) {
+	bool ShaderProgram::SetUniformFloat(const char* name, glm::vec2 n) {
+		if (!loaded)
+			throw Battery::Exception(__FUNCTION__"(): ShaderProgram was not loaded!");
+
 		LOG_CORE_TRACE(__FUNCTION__ "()");
 
-		if (!al_set_shader_float_vector(name.c_str(), 2, &n[0], 1)) {
-			LOG_CORE_WARN("WARNING: The Shader Float uniform '" + name + "' was not set correctly or is not being used!");
+		if (!al_set_shader_float_vector(name, 2, &n[0], 1)) {
+			LOG_CORE_WARN("WARNING: The Shader Float uniform '{}' was not set correctly or is not being used!", name);
 			return false;
 		}
 
 		return true;
 	}
 
-	bool ShaderProgram::SetUniformFloat(const std::string name, glm::vec3 n) {
+	bool ShaderProgram::SetUniformFloat(const char* name, glm::vec3 n) {
+		if (!loaded)
+			throw Battery::Exception(__FUNCTION__"(): ShaderProgram was not loaded!");
+
 		LOG_CORE_TRACE(__FUNCTION__ "()");
 
-		if (!al_set_shader_float_vector(name.c_str(), 3, &n[0], 1)) {
-			LOG_CORE_WARN("WARNING: The Shader Float uniform '" + name + "' was not set correctly or is not being used!");
+		if (!al_set_shader_float_vector(name, 3, &n[0], 1)) {
+			LOG_CORE_WARN("WARNING: The Shader Float uniform '{}' was not set correctly or is not being used!", name);
 			return false;
 		}
 
 		return true;
 	}
 
-	bool ShaderProgram::SetUniformFloat(const std::string name, glm::vec4 n) {
+	bool ShaderProgram::SetUniformFloat(const char* name, glm::vec4 n) {
+		if (!loaded)
+			throw Battery::Exception(__FUNCTION__"(): ShaderProgram was not loaded!");
+
 		LOG_CORE_TRACE(__FUNCTION__ "()");
 
-		if (!al_set_shader_float_vector(name.c_str(), 4, &n[0], 1)) {
-			LOG_CORE_WARN("WARNING: The Shader Float uniform '" + name + "' was not set correctly or is not being used!");
+		if (!al_set_shader_float_vector(name, 4, &n[0], 1)) {
+			LOG_CORE_WARN("WARNING: The Shader Float uniform '{}' was not set correctly or is not being used!", name);
 			return false;
 		}
 
 		return true;
 	}
 
-	bool ShaderProgram::SetUniformBool(const std::string name, bool n) {
+	bool ShaderProgram::SetUniformBool(const char* name, bool n) {
+		if (!loaded)
+			throw Battery::Exception(__FUNCTION__"(): ShaderProgram was not loaded!");
+
 		LOG_CORE_TRACE(__FUNCTION__ "()");
 
-		if (!al_set_shader_bool(name.c_str(), n)) {
-			LOG_CORE_WARN("WARNING: The Shader Bool uniform '" + name + "' was not set correctly or is not being used!");
+		if (!al_set_shader_bool(name, n)) {
+			LOG_CORE_WARN("WARNING: The Shader Bool uniform '{}' was not set correctly or is not being used!", name);
 			return false;
 		}
 

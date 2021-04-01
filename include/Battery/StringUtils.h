@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Battery/pch.h"
+#include "Battery/Core/AllegroContext.h"
+
+#include <string.h>
 
 namespace Battery {
 	namespace StringUtils {
@@ -42,6 +45,15 @@ namespace Battery {
 
 		bool IsInAlphabet(char c);
 
-		std::string ConvertCodepointUTF8(int32_t codepoint);
+		template <size_t length>
+		void ConvertCodepointToUTF8(int32_t codepoint, char (&buffer)[length]) {
+
+			ALLEGRO_USTR* ustr = al_ustr_new("");
+			al_ustr_append_chr(ustr, codepoint);
+
+			strncpy_s(buffer, al_cstr(ustr), length);
+
+			al_ustr_free(ustr);
+		}
 	}
 }

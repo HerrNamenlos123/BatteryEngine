@@ -5,12 +5,21 @@
 
 namespace Battery {
 
-	Event::Event(enum class EventType type) {
-		eventType = type;
+	Event::Event() {
 	}
 
 	Event::~Event() {
 
+	}
+
+	void Event::Load(enum class EventType type, ALLEGRO_EVENT* allegroEvent) {
+		eventType = type;
+		event = allegroEvent;
+		handled = false;
+
+		if (event == nullptr) {
+			LOG_CORE_WARN(__FUNCTION__"(): The supplied Allegro Event pointer is nullptr");
+		}
 	}
 
 	enum class EventType Event::GetType() {
@@ -23,14 +32,6 @@ namespace Battery {
 
 	void Event::SetHandled(bool h) {
 		handled = h;
-	}
-
-	void Event::SetAllegroEvent(ALLEGRO_EVENT* event) {
-		this->event = event;
-
-		if (event == nullptr) {
-			LOG_CORE_WARN("Event: The supplied Allegro Event was nullptr");
-		}
 	}
 
 	ALLEGRO_EVENT* Event::GetAllegroEvent() {

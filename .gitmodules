@@ -7,3 +7,6 @@
 [submodule "modules/spdlog"]
 	path = modules/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "modules/implot"]
+	path = modules/implot
+	url = https://github.com/epezent/implot.git

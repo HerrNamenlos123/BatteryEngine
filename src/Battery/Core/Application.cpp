@@ -2,6 +2,7 @@
 #include "Battery/pch.h"
 #include "Battery/Core/Application.h"
 #include "Battery/Renderer/Renderer2D.h"
+#include "Battery/Utils/TimeUtils.h"
 
 namespace Battery {
 
@@ -33,6 +34,12 @@ namespace Battery {
 
 	std::string Application::GetKeyName(int allegroKeycode) {
 		return al_keycode_to_name(allegroKeycode);
+	}
+
+	glm::ivec2 Application::GetPrimaryMonitorSize() {
+		ALLEGRO_MONITOR_INFO monitor;
+		al_get_monitor_info(0, &monitor);
+		return glm::ivec2(monitor.x2 - monitor.x1, monitor.y2 - monitor.y1);
 	}
 
 
@@ -126,58 +133,79 @@ namespace Battery {
 
 	void Application::_preUpdate() {
 		double now = TimeUtils::GetRuntime();
-
+		
 		frametime = now - oldPreUpdateTime;
-
+		
 		if (oldPreUpdateTime == 0) {
 			frametime = 0.f;
 		}
-
+		
 		oldPreUpdateTime = now;
 		if (frametime != 0.f)
 			framerate = 1.0 / frametime;
 
+		frameDiscarded = false;
+
 		// Handle events
 		window.HandleEvents();
+		PROFILE_TIMESTAMP(__FUNCTION__"() (and Handled events)");
 	}
 
 	void Application::_postUpdate() {
 		framecount++;
+		PROFILE_TIMESTAMP(__FUNCTION__"()");
 	}
 
 	void Application::_preRender() {
 		// Paint the background by default
 		Renderer2D::DrawBackground(BATTERY_DEFAULT_BACKGROUND_COLOR);
+		PROFILE_TIMESTAMP(__FUNCTION__"()");
 	}
 
 	void Application::_postRender() {
 		Renderer2D::EndUnfinishedScene();
+		PROFILE_TIMESTAMP(__FUNCTION__"()");
 	}
 
 	void Application::_mainLoop() {
 
 		double nextFrame = TimeUtils::GetRuntime();
+		double desiredFrametime = 0.0;
+
+		TimeUtils::ConsistentTimer frametimeTimer;
+		frametimeTimer.Update();
 
 		while (!shouldClose) {
 
+			PROFILE_TIMESTAMP_START("Mainloop start");
 			LOG_CORE_TRACE("Main loop started");
 
 			// Update everything
-			_preUpdate();
-			_updateApp();
-			_postUpdate();
+			{
+				//PROFILE_CORE_SCOPE("Mainloop update routines");
+				_preUpdate();
+				_updateApp();
+				_postUpdate();
+			}
 
 			// Render everything
-			_preRender();
-			_renderApp();
-			_postRender();
+			{
+				PROFILE_CORE_SCOPE("Mainloop render rountines");
+				_preRender();
+				_renderApp();
+				_postRender();
+			}
 
-			// Wait for the right time to render
-			double desiredFrametime = 1.0 / desiredFramerate;
-			LOG_CORE_TRACE("Waiting for frametime before flipping screen");
-			TimeUtils::Sleep(nextFrame - TimeUtils::GetRuntime());
-			while (TimeUtils::GetRuntime() < nextFrame);	// Shouldn't do anything, for safety if sleeping
-															// was not successful
+			{
+				PROFILE_CORE_SCOPE("Mainloop sleeping until next frame");
+				// Wait for the right time to render
+				desiredFrametime = 1.0 / desiredFramerate;
+				LOG_CORE_TRACE("Waiting for frametime before flipping screen");
+				TimeUtils::Sleep(nextFrame - TimeUtils::GetRuntime());
+				while (TimeUtils::GetRuntime() < nextFrame);	// Shouldn't do anything, for safety if sleeping
+																// was not successful
+				PROFILE_TIMESTAMP("Slept until next frame timepoint");
+			}
 
 			// Set time for next frame
 			double now = TimeUtils::GetRuntime();
@@ -189,12 +217,17 @@ namespace Battery {
 			}
 
 			// Show rendered image
-			LOG_CORE_TRACE("Flipping displays");
-			al_set_current_opengl_context(window.allegroDisplayPointer);
-			al_flip_display();
+			if (!frameDiscarded) {
+				PROFILE_CORE_SCOPE("Mainloop flipping frame buffers");
+				LOG_CORE_TRACE("Flipping displays");
+				al_set_current_opengl_context(window.allegroDisplayPointer);
+				al_flip_display();
+				PROFILE_TIMESTAMP("Flipped display buffers");
+			}
 
-			LOG_CORE_TRACE("Main loop finished");
-
+			LOG_CORE_TRACE("Main loop finished, applying profiling results");
+			PROFILE_TIMESTAMP("Entire frametime");
+			TimeUtils::ProfilerStorage::GetInstance().ApplyProfiles(frametimeTimer.Update());
 		}
 	}
 
@@ -204,44 +237,64 @@ namespace Battery {
 		LOG_CORE_TRACE("Application::OnUpdate()");
 		OnUpdate();
 
+		if (frameDiscarded) {
+			LOG_CORE_TRACE(__FUNCTION__"(): Skipping further update routines, frame was discarded");
+			return;
+		}
+
 		// Then propagate through the stack and update all layers sequentially
-		for (Layer* layer : layers.GetLayers()) {
-			LOG_CORE_TRACE(std::string("Layer '") + layer->GetDebugName() + "' OnUpdate()");
+		for (auto& layer : layers.GetLayers()) {
+			LOG_CORE_TRACE("Layer '{}' OnUpdate()", layer->GetDebugName().c_str());
 			layer->OnUpdate();
 		}
+		PROFILE_TIMESTAMP(__FUNCTION__"()");
 	}
 
 	void Application::_renderApp() {
+
+		if (frameDiscarded) {
+			LOG_CORE_TRACE(__FUNCTION__"(): Skipping main render routine, frame was discarded");
+			return;
+		}
 
 		// First render the base application
 		LOG_CORE_TRACE("Application::OnRender()");
 		OnRender();
 
+		if (frameDiscarded) {
+			LOG_CORE_TRACE(__FUNCTION__"(): Skipping further render routines, frame was discarded");
+			return;
+		}
+
 		// Then propagate through the stack and render all layers sequentially
-		for (Layer* layer : layers.GetLayers()) {
-			LOG_CORE_TRACE(std::string("Layer '") + layer->GetDebugName() + "' OnRender()");
+		for (auto& layer : layers.GetLayers()) {
+			LOG_CORE_TRACE("Layer '{}' OnRender()", layer->GetDebugName().c_str());
 			layer->OnRender();
 		}
+		PROFILE_TIMESTAMP(__FUNCTION__"()");
 	}
 
 	void Application::_onEvent(Event* e) {
 
-		// Propagate through the stack in reverse order
+		// Give the event to the base application
+		LOG_CORE_TRACE("Application::OnEvent()");
+		OnEvent(e);
+
+		if (e->WasHandled()) {
+			LOG_CORE_TRACE("Event was handled by the base application");
+			return;
+		}
+
+		// Propagate through the layer stack in reverse order
 		for (size_t i = 0; i < layers.GetLayers().size(); i++) {
-			Layer* layer = layers.GetLayers()[layers.GetLayers().size() - i - 1];
-			LOG_CORE_TRACE(std::string("Layer '") + layer->GetDebugName() + "' OnEvent()");
+			auto& layer = layers.GetLayers()[layers.GetLayers().size() - i - 1];
+			LOG_CORE_TRACE("Layer '{}' OnEvent()", layer->GetDebugName().c_str());
 			layer->OnEvent(e);
 
 			if (e->WasHandled()) {
-				LOG_CORE_TRACE(std::string("Event was handled by Layer '") + layer->GetDebugName() + "'");
+				LOG_CORE_TRACE("Event was handled by Layer '{}'", layer->GetDebugName().c_str());
 				break;
 			}
-		}
-
-		if (!e->WasHandled()) {
-			// Lastly give the event to the base application
-			LOG_CORE_TRACE("Application::OnEvent()");
-			OnEvent(e);
 		}
 	}
 
@@ -254,11 +307,11 @@ namespace Battery {
 	}
 
 	void Application::PushLayer(Layer* layer) {
-		layers.PushLayer(layer, this);
+		layers.PushLayer(std::unique_ptr<Layer>(layer), this);
 	}
 
 	void Application::PushOverlay(Layer* overlay) {
-		layers.PushOverlay(overlay, this);
+		layers.PushOverlay(std::unique_ptr<Layer>(overlay), this);
 	}
 
 	void Application::ClearLayerStack() {
@@ -269,14 +322,12 @@ namespace Battery {
 		shouldClose = true;
 	}
 
-	Application* Application::GetApplicationPointer() {
-		return applicationPointer;
+	void Application::DiscardFrame() {
+		frameDiscarded = true;
 	}
 
-	glm::ivec2 Application::GetPrimaryMonitorSize() {
-		ALLEGRO_MONITOR_INFO monitor;
-		al_get_monitor_info(0, &monitor);
-		return glm::ivec2(monitor.x2 - monitor.x1, monitor.y2 - monitor.y1);
+	Application* Application::GetApplicationPointer() {
+		return applicationPointer;
 	}
 
 

@@ -29,7 +29,7 @@ namespace Battery {
 			}
 		}
 
-		Texture2D(Texture2D&& texture) {
+		Texture2D(Texture2D&& texture) noexcept {
 			if (texture.allegroBitmap != nullptr) {
 				allegroBitmap = texture.allegroBitmap;
 				texture.allegroBitmap = nullptr;
@@ -42,7 +42,8 @@ namespace Battery {
 					" Make sure to unload or destroy the Texture2D object before Allegro is shut down!");
 			}
 
-			al_destroy_bitmap(allegroBitmap);
+			if (allegroBitmap != nullptr)
+				al_destroy_bitmap(allegroBitmap);
 		}
 
 		void operator=(const Texture2D& texture) {
@@ -104,8 +105,15 @@ namespace Battery {
 
 
 
-		ALLEGRO_BITMAP* GetAllegroBitmap() {
+		ALLEGRO_BITMAP* GetAllegroBitmap() const {
 			return allegroBitmap;
+		}
+
+		void CreateBitmap(int width, int height, int flags = 0) {
+			Unload();
+
+			al_set_new_bitmap_flags(flags);
+			allegroBitmap = al_create_bitmap(width, height);
 		}
 
 		void Unload() {
@@ -116,6 +124,10 @@ namespace Battery {
 
 			al_destroy_bitmap(allegroBitmap);
 			allegroBitmap = nullptr;
+		}
+
+		bool IsValid() const {
+			return allegroBitmap;
 		}
 
 	private:

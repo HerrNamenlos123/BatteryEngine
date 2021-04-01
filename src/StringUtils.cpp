@@ -83,17 +83,5 @@ namespace Battery {
 			return IsUpperCase(c) || IsLowerCase(c);
 		}
 
-
-		std::string ConvertCodepointUTF8(int32_t codepoint) {
-
-			ALLEGRO_USTR* ustr = al_ustr_new("");
-			al_ustr_append_chr(ustr, codepoint);
-
-			std::string str(al_cstr(ustr));
-
-			al_ustr_free(ustr);
-			return str;
-		}
-
 	}
 }

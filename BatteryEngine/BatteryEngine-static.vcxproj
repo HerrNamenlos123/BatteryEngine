@@ -46,6 +46,8 @@
     <ClInclude Include="..\include\Battery\StringUtils.h" />
     <ClInclude Include="..\include\Battery\AllegroDeps.h" />
     <ClInclude Include="..\include\Battery\Utils\FileUtils.h" />
+    <ClInclude Include="..\include\Battery\Utils\MathUtils.h" />
+    <ClInclude Include="..\include\Battery\Utils\MemoryUtils.h" />
     <ClInclude Include="..\include\Battery\Utils\TimeUtils.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -70,6 +72,18 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\modules\implot\implot.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\modules\implot\implot_demo.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\modules\implot\implot_items.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\src\Battery\Core\AllegroContext.cpp" />
     <ClCompile Include="..\src\Battery\Core\AllegroWindow.cpp" />
     <ClCompile Include="..\src\Battery\Core\Application.cpp" />
@@ -80,6 +94,8 @@
     <ClCompile Include="..\src\Battery\Renderer\Renderer2D.cpp" />
     <ClCompile Include="..\src\Battery\Renderer\ShaderProgram.cpp" />
     <ClCompile Include="..\src\Battery\Utils\FileUtils.cpp" />
+    <ClCompile Include="..\src\Battery\Utils\MathUtils.cpp" />
+    <ClCompile Include="..\src\Battery\Utils\MemoryUtils.cpp" />
     <ClCompile Include="..\src\Battery\Utils\TimeUtils.cpp" />
     <ClCompile Include="..\src\Core.cpp" />
     <ClCompile Include="..\src\DefaultShaders.cpp" />
@@ -226,7 +242,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;ALLEGRO_STATICLINK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../modules/imgui/backends;../modules;../modules/imgui;../include;../modules/spdlog/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../modules/imgui/backends;../modules;../modules/imgui;../include;../modules/implot;../modules/spdlog/include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -266,7 +282,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;ALLEGRO_STATICLINK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../modules/imgui/backends;../modules;../modules/imgui;../include;../modules/spdlog/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../modules/imgui/backends;../modules;../modules/imgui;../include;../modules/implot;../modules/spdlog/include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>

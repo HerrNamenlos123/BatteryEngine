@@ -24,17 +24,28 @@ namespace Battery {
 		void Destroy();
 		void SetEventCallback(std::function<void(Battery::Event* event)> eventCallback);
 		void HandleEvents();
+		void HandleEvent(Battery::Event* event);
 
 		glm::ivec2 GetScreenPosition();
 		void SetScreenPosition(const glm::ivec2& position);
 		int GetWidth();
 		int GetHeight();
+		glm::ivec2 GetSize();
 		void SetSize(const glm::vec2 size);
 		void SetTitle(const std::string title);
 		void Maximize();
 		void Minimize();
 		void Restore();
-		// TODO: Clipboard support
+		glm::vec2 GetMousePosition();
+		bool GetLeftMouseButton();
+		bool GetRightMouseButton();
+		bool GetMouseWheel();
+		HWND GetWinHandle();
+		bool IsFocused();
+		bool Focus();
+		std::string GetClipboardContent();
+		bool SetClipboardContent(const std::string& content);
+		bool HasClipboardContent();
 
 		/// <summary>
 		/// It is encouraged to use the macro SetWindowExecutableIcon() instead of this function.
@@ -58,6 +69,7 @@ namespace Battery {
 		int height = 0;
 		bool valid = false;
 
+		ParentEventContainer eventContainer;
 		std::function<void(Battery::Event* event)> eventCallback = nullptr;
 	};
 

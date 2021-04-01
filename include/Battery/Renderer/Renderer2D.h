@@ -35,30 +35,29 @@ namespace Battery {
 		Scene(AllegroWindow* window) {
 			this->window = window;
 
-			lineShader = new ShaderProgram();
-			circleShader = new ShaderProgram();
-			arcShader = new ShaderProgram();
-			rectangleShader = new ShaderProgram();
-
+			lineShader = std::make_unique<ShaderProgram>();
+			circleShader = std::make_unique<ShaderProgram>();
+			arcShader = std::make_unique<ShaderProgram>();
+			rectangleShader = std::make_unique<ShaderProgram>();
+			
 			// Load the shader for drawing antialiased lines
 			lineShader->LoadSource(this->window->allegroDisplayPointer,
 				BATTERY_SHADER_SOURCE_VERTEX_SIMPLE, BATTERY_SHADER_SOURCE_FRAGMENT_LINE);
-
+			
 			circleShader->LoadSource(this->window->allegroDisplayPointer,
 				BATTERY_SHADER_SOURCE_VERTEX_SIMPLE, BATTERY_SHADER_SOURCE_FRAGMENT_CIRCLE);
-
+			
 			arcShader->LoadSource(this->window->allegroDisplayPointer,
 				BATTERY_SHADER_SOURCE_VERTEX_SIMPLE, BATTERY_SHADER_SOURCE_FRAGMENT_ARC);
-
+			
 			rectangleShader->LoadSource(this->window->allegroDisplayPointer,
 				BATTERY_SHADER_SOURCE_VERTEX_SIMPLE, BATTERY_SHADER_SOURCE_FRAGMENT_COLOR_GRADIENT);
+
+			LOG_CORE_TRACE(__FUNCTION__"(): Constructed Battery::Scene and loaded shaders");
 		}
 
 		~Scene() {
-			delete lineShader;
-			delete circleShader;
-			delete arcShader;
-			delete rectangleShader;
+			LOG_CORE_TRACE(__FUNCTION__"(): Destroying Battery::Scene");
 		}
 
 		// The Renderer2D class is allowed to access
@@ -66,10 +65,10 @@ namespace Battery {
 
 	protected:
 		AllegroWindow* window = nullptr;		// This is an AllegroWindow reference, do not delete
-		ShaderProgram* lineShader = nullptr;
-		ShaderProgram* circleShader = nullptr;
-		ShaderProgram* arcShader = nullptr;
-		ShaderProgram* rectangleShader = nullptr;
+		std::unique_ptr<ShaderProgram> lineShader = nullptr;
+		std::unique_ptr<ShaderProgram> circleShader = nullptr;
+		std::unique_ptr<ShaderProgram> arcShader = nullptr;
+		std::unique_ptr<ShaderProgram> rectangleShader = nullptr;
 	};
 
 	class Renderer2D {
@@ -83,27 +82,14 @@ namespace Battery {
 		static void EndScene();
 		static void EndUnfinishedScene();
 
-		/*static void BeginQuads(ShaderProgram* shaderProgram, int textureID = -1);
-		static void EndQuads();
-		static void DrawQuad(const VertexData& v1, const VertexData& v2, const VertexData& v3, const VertexData& v4);*/
 		static void DrawQuad(const VertexData& v1, const VertexData& v2, const VertexData& v3, const VertexData& v4,
 			ShaderProgram* shaderProgram, int textureID = -1);
-
-		/*static void BeginLines();
-		static void EndLines();
-		static void DrawLine(const glm::vec2& p1, const glm::vec2& p2, float thickness, const glm::vec4& color, 
-			float falloff = BATTERY_ANTIALIASING_LINE_FALLOFF);*/
+		
 		static void DrawLine(const glm::vec2& p1, const glm::vec2& p2, float thickness, const glm::vec4& color,
 			float falloff = BATTERY_ANTIALIASING_LINE_FALLOFF);
-
-		//
+		
 		static void DrawArc(const glm::vec2& center, float radius, float startAngle, float endAngle, float thickness,
 			const glm::vec4& color, float falloff = BATTERY_ANTIALIASING_LINE_FALLOFF);
-
-		/*static void BeginCircles();
-		static void EndCircles();
-		static void DrawCircle(const glm::vec2& center, float diameter, const glm::vec4& color,
-			float falloff = BATTERY_ANTIALIASING_LINE_FALLOFF);*/
 
 		// Set outlineThickness or outlineColor alpha to 0 for no line and set fillColor alpha to 0 for no fill
 		static void DrawCircle(const glm::vec2& center, float radius, float outlineThickness,

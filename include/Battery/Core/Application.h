@@ -35,6 +35,7 @@ namespace Battery {
 
 		bool GetKey(int allegroKeycode);
 		std::string GetKeyName(int allegroKeycode);
+		glm::ivec2 GetPrimaryMonitorSize();
 		// TODO: Add keyboard leds cuz why not
 
 		void SetFramerate(double f);
@@ -43,10 +44,9 @@ namespace Battery {
 		void PushOverlay(Layer* overlay);
 		void ClearLayerStack();
 		void CloseApplication();
+		void DiscardFrame();
 
 		static Application* GetApplicationPointer();
-
-		glm::ivec2 GetPrimaryMonitorSize();
 
 	private:
 		void Run(int argc, const char** argv);
@@ -80,6 +80,7 @@ namespace Battery {
 		static Application* applicationPointer;
 		std::string applicationFolderName;
 		int windowFlags = 0;
+		bool frameDiscarded = false;
 	};
 
 }

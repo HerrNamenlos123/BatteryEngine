@@ -13,11 +13,11 @@ namespace Battery {
 	public:
 
 		ShaderProgram();
-		ShaderProgram(ALLEGRO_DISPLAY* display, const std::string vertexShader, const std::string fragmentShader);
+		ShaderProgram(ALLEGRO_DISPLAY* display, const std::string& vertexShader, const std::string& fragmentShader);
 		~ShaderProgram();
 
-		bool Load(ALLEGRO_DISPLAY* display, const std::string vertexShader, const std::string fragmentShader);
-		bool LoadSource(ALLEGRO_DISPLAY* display, const std::string vertexShader, const std::string fragmentShader);
+		bool Load(ALLEGRO_DISPLAY* display, const std::string& vertexShader, const std::string& fragmentShader);
+		bool LoadSource(ALLEGRO_DISPLAY* display, const std::string& vertexShader, const std::string& fragmentShader);
 
 		void Unload();
 		bool IsLoaded();
@@ -25,17 +25,17 @@ namespace Battery {
 		void Use();
 		void Release();
 
-		bool SetUniformSampler(const std::string name, ALLEGRO_BITMAP* texture, int ID);
-		bool SetUniformMatrix(const std::string name, glm::mat4 matrix);
-		bool SetUniformInt(const std::string name, int n);
-		bool SetUniformInt(const std::string name, glm::ivec2 n);
-		bool SetUniformInt(const std::string name, glm::ivec3 n);
-		bool SetUniformInt(const std::string name, glm::ivec4 n);
-		bool SetUniformFloat(const std::string name, float n);
-		bool SetUniformFloat(const std::string name, glm::vec2 n);
-		bool SetUniformFloat(const std::string name, glm::vec3 n);
-		bool SetUniformFloat(const std::string name, glm::vec4 n);
-		bool SetUniformBool(const std::string name, bool n);
+		bool SetUniformSampler(const char* name, ALLEGRO_BITMAP* texture, int ID);
+		bool SetUniformMatrix(const char* name, glm::mat4 matrix);
+		bool SetUniformInt(const char* name, int n);
+		bool SetUniformInt(const char* name, glm::ivec2 n);
+		bool SetUniformInt(const char* name, glm::ivec3 n);
+		bool SetUniformInt(const char* name, glm::ivec4 n);
+		bool SetUniformFloat(const char* name, float n);
+		bool SetUniformFloat(const char* name, glm::vec2 n);
+		bool SetUniformFloat(const char* name, glm::vec3 n);
+		bool SetUniformFloat(const char* name, glm::vec4 n);
+		bool SetUniformBool(const char* name, bool n);
 
 	private:
 

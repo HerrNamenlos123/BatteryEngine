@@ -2,6 +2,12 @@
 
 #include "Battery/pch.h"
 
+#define DEFAULT_STATIC_IMGUI_WINDOW_FLAGS \
+	ImGuiWindowFlags_NoTitleBar | \
+	ImGuiWindowFlags_NoMove | \
+	ImGuiWindowFlags_NoResize | \
+	ImGuiWindowFlags_NoCollapse
+
 namespace Battery {
 
 	template<typename... Targs>
@@ -12,13 +18,10 @@ namespace Battery {
 		glm::vec2 windowPosition;
 		glm::vec2 windowSize;
 		std::string name;
+		Battery::Application* applicationPointer = nullptr;
 
 		StaticImGuiWindow(const std::string& _name, glm::vec2 position, glm::vec2 size, ImGuiWindowFlags flags = 
-			ImGuiWindowFlags_NoTitleBar | 
-			ImGuiWindowFlags_NoMove | 
-			ImGuiWindowFlags_NoResize |
-			ImGuiWindowFlags_NoCollapse
-		) {
+			DEFAULT_STATIC_IMGUI_WINDOW_FLAGS) {
 			name = _name;
 
 			windowPosition = position;
@@ -34,6 +37,8 @@ namespace Battery {
 			if ((flags & ImGuiWindowFlags_NoNav) > 0) imgui_no_nav = true;
 			if ((flags & ImGuiWindowFlags_NoBackground) > 0) imgui_no_background = true;
 			if ((flags & ImGuiWindowFlags_NoBringToFrontOnFocus) > 0) imgui_no_bring_to_front = true;
+
+			applicationPointer = Application::GetApplicationPointer();
 		}
 
 		virtual void OnUpdate(Targs... args) {
@@ -71,14 +76,14 @@ namespace Battery {
 			bool* p_open = nullptr;	// Hide close button
 			ImGui::Begin(name.c_str(), p_open, window_flags);
 
-			// Check if mouse in on window
+			// Virtual function, overridden by a derived class
+			OnRender();
+
+			// Check if mouse in on window, for the next frame
 			isMouseOnWindow = ImGui::GetMousePos().x >= ImGui::GetWindowPos().x &&
 				ImGui::GetMousePos().x <= ImGui::GetWindowPos().x + ImGui::GetWindowSize().x &&
 				ImGui::GetMousePos().y >= ImGui::GetWindowPos().y &&
 				ImGui::GetMousePos().y <= ImGui::GetWindowPos().y + ImGui::GetWindowSize().y;
-
-			// Virtual function, overridden by a derived class
-			OnRender();
 
 			ImGui::End();
 
