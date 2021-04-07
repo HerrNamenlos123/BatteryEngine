@@ -21,6 +21,8 @@ namespace Battery {
 	class Application;
 	extern Application* CreateApplication();	// This will be defined in the client project
 
+	Application* GetApplication();
+
 	class Application {
 	public:
 

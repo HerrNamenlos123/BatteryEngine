@@ -9,6 +9,10 @@ namespace Battery {
 	// Global static application pointer
 	Application* Application::applicationPointer = nullptr;
 
+	Application* GetApplication() {
+		return Application::GetApplicationPointer();
+	}
+
 
 	Application::Application(int width, int height, const std::string applicationFolderName) : window(width, height) {
 		this->applicationFolderName = applicationFolderName;

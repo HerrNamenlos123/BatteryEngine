@@ -228,8 +228,9 @@ namespace Battery {
 
 
 
-		/*
-		std::string PromptFileSaveDialog(const std::string& acceptedFiles, ALLEGRO_DISPLAY* parentWindow, const std::string& defaultLocation) {
+		
+		std::string PromptFileSaveDialog(const std::vector<std::string>& acceptedFilesArray, 
+			std::optional<std::reference_wrapper<AllegroWindow>> parentWindow, const std::string& defaultLocation) {
 
 			if (!AllegroContext::GetInstance()->IsInitialized())
 				throw Battery::Exception("The Engine is not initialized");
@@ -240,6 +241,9 @@ namespace Battery {
 				defaultLoc = defaultLocation.c_str();
 			}
 
+			// Load accepted files
+			std::string acceptedFiles = StringUtils::JoinStrings(acceptedFilesArray, ";");
+
 			// Instantiate popup options
 			ALLEGRO_FILECHOOSER* dialog = al_create_native_file_dialog(
 				defaultLoc,
@@ -248,71 +252,28 @@ namespace Battery {
 				ALLEGRO_FILECHOOSER_SAVE
 			);
 
-			// Open queued window
-			if (!al_show_native_file_dialog(parentWindow, dialog)) {
+			// Load the display pointer
+			ALLEGRO_DISPLAY* displayPointer = nullptr;
+			if (parentWindow.has_value()) {
+				displayPointer = parentWindow.value().get().allegroDisplayPointer;
+			}
+
+			// Open loaded window
+			if (!al_show_native_file_dialog(displayPointer, dialog)) {
 				al_destroy_native_file_dialog(dialog);
 				return "";       // File was cancelled
 			}
 
-			// A File was chosen
+			// A File was chosen, return it
 			std::string path = al_get_native_file_dialog_path(dialog, 0);
-
-			// Free memory
 			al_destroy_native_file_dialog(dialog);
-
 			return path;
-		}*/
-
-		/*std::string SaveFileWithDialog(const std::string& extension, const std::string& fileContent, ALLEGRO_DISPLAY* parentWindow,
-																					const std::string& defaultLocation, bool forceSave)
-		{
-			if (!Core::IsInitialized())
-				throw Battery::Exception("The Engine is not initialized");
-
-			while (true) {
-				std::string file = PromptFileSaveDialog(std::string("*.*;*.") + extension + ";", parentWindow, defaultLocation);
-
-				if (file != "") {	// Filename is valid
-
-					// First append the extension if it's missing
-					if (GetExtensionFromPath(file) != std::string(".") + extension) {
-						file += "." + extension;
-					}
-
-					// Now check if the file already exists
-					if (FileExists(file)) {		// File already exists
-						if (!Core::ShowWarningMessageBoxYesNo(file + " already exists. Do you really want to overwrite it?", parentWindow)) {
-							// Don't overwrite the file, repeat
-							continue;
-						}
-					}
-					else if (FilenameExists(file)) {
-						Core::ShowWarningMessageBox(file + " is a directory! Please choose another file!", parentWindow);
-						continue;
-					}
-
-					bool saved = SaveFile(file, fileContent);
-
-					if (saved) {	// File was successfully saved, return the file path
-						return file;
-					}
-
-					// File could not be saved, repeat
-					Core::ShowWarningMessageBox(file + " could not be saved. Try again!", parentWindow);
-					continue;
-				}
-
-				if (!forceSave)
-					break;		// Break if file was cancelled
-
-			};
-
-			return "";
 		}
+		
+		std::string PromptFileOpenDialog(const std::vector<std::string>& acceptedFilesArray,
+			std::optional<std::reference_wrapper<AllegroWindow>> parentWindow, const std::string& defaultLocation) {
 
-		std::string PromptFileOpenDialog(const std::string& acceptedFiles, ALLEGRO_DISPLAY* parentWindow, const std::string& defaultLocation) {
-
-			if (!Core::IsInitialized())
+			if (!AllegroContext::GetInstance()->IsInitialized())
 				throw Battery::Exception("The Engine is not initialized");
 
 			// Load default location
@@ -321,32 +282,39 @@ namespace Battery {
 				defaultLoc = defaultLocation.c_str();
 			}
 
+			// Load accepted files
+			std::string acceptedFiles = StringUtils::JoinStrings(acceptedFilesArray, ";");
+
 			// Instantiate popup options
 			ALLEGRO_FILECHOOSER* dialog = al_create_native_file_dialog(
 				defaultLoc,
-				"Save as",
+				"Open",
 				acceptedFiles.c_str(),
 				0
 			);
 
-			// Open queued window
-			if (!al_show_native_file_dialog(parentWindow, dialog)) {
+			// Load the display pointer
+			ALLEGRO_DISPLAY* displayPointer = nullptr;
+			if (parentWindow.has_value()) {
+				displayPointer = parentWindow.value().get().allegroDisplayPointer;
+			}
+
+			// Open loaded window
+			if (!al_show_native_file_dialog(displayPointer, dialog)) {
 				al_destroy_native_file_dialog(dialog);
 				return "";       // File was cancelled
 			}
 
-			// A File was chosen
+			// A File was chosen, return it
 			std::string path = al_get_native_file_dialog_path(dialog, 0);
-
-			// Free memory
 			al_destroy_native_file_dialog(dialog);
-
 			return path;
 		}
 
-		std::vector<std::string> PromptFileOpenDialogMultiple(const std::string& acceptedFiles, ALLEGRO_DISPLAY* parentWindow, const std::string& defaultLocation) {
+		std::vector<std::string> PromptFileOpenDialogMultiple(const std::vector<std::string>& acceptedFilesArray,
+			std::optional<std::reference_wrapper<AllegroWindow>> parentWindow, const std::string& defaultLocation) {
 
-			if (!Core::IsInitialized())
+			if (!AllegroContext::GetInstance()->IsInitialized())
 				throw Battery::Exception("The Engine is not initialized");
 
 			// Load default location
@@ -355,56 +323,166 @@ namespace Battery {
 				defaultLoc = defaultLocation.c_str();
 			}
 
+			// Load accepted files
+			std::string acceptedFiles = StringUtils::JoinStrings(acceptedFilesArray, ";");
+
 			// Instantiate popup options
 			ALLEGRO_FILECHOOSER* dialog = al_create_native_file_dialog(
 				defaultLoc,
-				"Save as",
+				"Open",
 				acceptedFiles.c_str(),
 				ALLEGRO_FILECHOOSER_MULTIPLE
 			);
 
-			// Open queued window
-			if (!al_show_native_file_dialog(parentWindow, dialog)) {
+			// Load the display pointer
+			ALLEGRO_DISPLAY* displayPointer = nullptr;
+			if (parentWindow.has_value()) {
+				displayPointer = parentWindow.value().get().allegroDisplayPointer;
+			}
+
+			// Open loaded window
+			if (!al_show_native_file_dialog(displayPointer, dialog)) {
 				al_destroy_native_file_dialog(dialog);
 				return std::vector<std::string>();       // File was cancelled
 			}
 
 			std::vector<std::string> paths;
-
 			for (int i = 0; i < al_get_native_file_dialog_count(dialog); i++)
 				paths.push_back(al_get_native_file_dialog_path(dialog, i));
 
 			// Free memory
 			al_destroy_native_file_dialog(dialog);
-
 			return paths;
 		}
 
-		File LoadFileWithDialog(const std::string& extension, ALLEGRO_DISPLAY* parentWindow, const std::string& defaultLocation) {
+		std::string PromptFileOpenDialogFolder(std::optional<std::reference_wrapper<AllegroWindow>> parentWindow, 
+			const std::string& defaultLocation) {
 
-			if (!Core::IsInitialized())
+			if (!AllegroContext::GetInstance()->IsInitialized())
 				throw Battery::Exception("The Engine is not initialized");
 
-			std::string path = PromptFileOpenDialog(std::string("*.*;*.") + extension + ";", parentWindow, defaultLocation);
+			// Load default location
+			const char* defaultLoc = nullptr;
+			if (defaultLocation != "") {
+				defaultLoc = defaultLocation.c_str();
+			}
 
-			if (path == "")		// No file was chosen, return
-				return File("", "", false);
+			// Load accepted files
+			const char* acceptedFiles = "*.*";
+
+			// Instantiate popup options
+			ALLEGRO_FILECHOOSER* dialog = al_create_native_file_dialog(
+				defaultLoc,
+				"Open Folder",
+				acceptedFiles,
+				ALLEGRO_FILECHOOSER_FOLDER
+			);
+
+			// Load the display pointer
+			ALLEGRO_DISPLAY* displayPointer = nullptr;
+			if (parentWindow.has_value()) {
+				displayPointer = parentWindow.value().get().allegroDisplayPointer;
+			}
+
+			// Open loaded window
+			if (!al_show_native_file_dialog(displayPointer, dialog)) {
+				al_destroy_native_file_dialog(dialog);
+				return "";       // Folder was cancelled
+			}
+
+			// A Folder was chosen, return it
+			std::string path = al_get_native_file_dialog_path(dialog, 0);
+			al_destroy_native_file_dialog(dialog);
+			return path;
+		}
+		
+		std::string SaveFileWithDialog(const char* extension, const std::string& fileContent,
+			std::optional<std::reference_wrapper<AllegroWindow>> parentWindow, const std::string& defaultLocation, 
+			bool forceSave) {
+
+			if (!AllegroContext::GetInstance()->IsInitialized())
+				throw Battery::Exception("The Engine is not initialized");
+
+			while (true) {
+				std::string filename = PromptFileSaveDialog({ "*.*", ("*." + std::string(extension) + ";").c_str() }, 
+					parentWindow, defaultLocation);
+
+				if (filename != "") {	// Filename is valid
+
+					// First append the extension if it's missing
+					if (GetExtensionFromPath(filename) != std::string(".") + extension) {
+						filename += std::string(".") + extension;
+					}
+
+					// Setup the allegro display pointer
+					ALLEGRO_DISPLAY* displayPointer = nullptr;
+					if (parentWindow.has_value()) {
+						displayPointer = parentWindow.value().get().allegroDisplayPointer;
+					}
+
+					// Now check if the file already exists
+					if (FileExists(filename)) {		// File already exists
+						if (!ShowWarningMessageBoxYesNo(filename + " already exists. Do you really want to overwrite it?", displayPointer)) {
+							// Don't overwrite the file, repeat
+							continue;
+						}
+						// File gets overwritten
+					}
+					else if (FilenameExists(filename)) {
+						ShowWarningMessageBox(filename + " is a directory! Please choose a file!", displayPointer);
+						continue;	// Start over
+					}
+
+					// Now finally write the file
+					if (WriteFile(filename, fileContent)) {	// File was successfully saved, return the file path
+						return filename;
+					}
+
+					// File could not be saved, repeat
+					ShowWarningMessageBox(filename + " could not be saved. Please try again!", displayPointer);
+					continue;
+				}
+				// Else, the filename was invalid: Repeat if forcing is enabled
+
+				if (!forceSave)
+					return "";		// Return if file was cancelled
+
+			};
+		}
+		
+		File LoadFileWithDialog(const char* extension, std::optional<std::reference_wrapper<AllegroWindow>> parentWindow,
+			const std::string& defaultLocation) {
+
+			if (!AllegroContext::GetInstance()->IsInitialized())
+				throw Battery::Exception("The Engine is not initialized");
+
+			std::string filename = PromptFileOpenDialog({ "*.*", ("*." + std::string(extension) + ";").c_str() },
+				parentWindow, defaultLocation);
+
+			if (filename == "")		// No file was chosen, return
+				return Battery::FileUtils::File("", "", false);
+
+			// Setup the allegro display pointer
+			ALLEGRO_DISPLAY* displayPointer = nullptr;
+			if (parentWindow.has_value()) {
+				displayPointer = parentWindow.value().get().allegroDisplayPointer;
+			}
 
 			// Check if extension is correct
-			if (GetExtensionFromPath(path) != std::string(".") + extension) {	// Wrong Extension
-				Core::ShowWarningMessageBox(path + " has an incorrect file format. Please choose another file!", parentWindow);
+			if (GetExtensionFromPath(filename) != std::string(".") + extension) {	// Wrong Extension
+				ShowWarningMessageBox(filename + " has an unsupported file format. Please choose another file!", displayPointer);
 				return LoadFileWithDialog(extension, parentWindow, defaultLocation);	// Try again by recursion
 			}
 
-			File file = LoadFile(path);
+			Battery::FileUtils::File file = ReadFile(filename);
 
 			if (file.fail()) {
-				Core::ShowErrorMessageBox(path + " could not be loaded!", parentWindow);
-				return File("", "", false);
+				ShowErrorMessageBox(filename + " could not be loaded!", displayPointer);
+				return Battery::FileUtils::File("", "", false);
 			}
 
 			return file;
-		}*/
+		}
 
 
 

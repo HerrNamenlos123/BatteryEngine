@@ -6,6 +6,9 @@
 #define BATTERY_PROFILING
 #endif
 
+// Enable experimental features
+#define ALLEGRO_UNSTABLE
+
 //#define BATTERY_ENABLE_ALLOCATION_TRACKING
 //#define BATTERY_ENABLE_ALLOCATION_PRINTS
 

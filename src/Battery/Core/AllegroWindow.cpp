@@ -138,6 +138,12 @@ namespace Battery {
 			al_acknowledge_resize(allegroDisplayPointer);
 		}
 
+		// Clear keyboard buffer when window loses focus
+		if (event->GetType() == Battery::EventType::WindowLostFocus) {
+			LOG_CORE_TRACE(__FUNCTION__"(): Window lost focus: Clearing keyboard state");
+			al_clear_keyboard_state(allegroDisplayPointer);
+		}
+
 		if (eventCallback != nullptr) {
 			eventCallback(event);
 		}

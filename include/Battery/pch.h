@@ -8,6 +8,7 @@
 #include <sstream>
 #include <fstream>
 #include <algorithm>
+#include <optional>
 #include <iomanip>
 #include <map>
 #include <cstddef>
