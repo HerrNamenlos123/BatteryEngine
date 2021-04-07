@@ -1,4 +1,53 @@
-﻿  Application.cpp
-  main.cpp
+﻿  adler32.c
+  ftbitmap.c
+  ftcalc.c
+  psauxmod.c
+  pshalgo.c
+  jchuff.c
+  jcinit.c
+  jdmainct.c
+  jdmarker.c
+  png.c
+  pngerror.c
+  tif_flush.c
+  tif_luv.c
+  VSAes.c
+  VSAnnotA.c
+  VSJpeg.c
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(80,11): error C2039: 'add_data': is not a member of 'jpeg_compress_struct'
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\packages\AllegroDeps.1.11.0\build\native\include\jpeglib.h(297): message : see declaration of 'jpeg_compress_struct'
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(102,45): warning C4020: 'jpeg_write_scanlines': too many actual parameters
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(104,33): warning C4020: 'jpeg_finish_compress': too many actual parameters
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(125,15): error C2039: 'add_data': is not a member of 'jpeg_decompress_struct'
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\packages\AllegroDeps.1.11.0\build\native\include\jpeglib.h(472): message : see declaration of 'jpeg_decompress_struct'
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(127,40): warning C4020: 'jpeg_stdio_src': too many actual parameters
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(128,42): warning C4020: 'jpeg_read_header': too many actual parameters
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(149,62): warning C4020: 'jpeg_read_scanlines': too many actual parameters
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(301,57): error C2146: syntax error: missing ')' before identifier 'from_memory'
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(301,57): error C2081: 'j_stream_ptr': name in formal parameter list illegal
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(301,57): error C2061: syntax error: identifier 'from_memory'
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(301,57): error C2059: syntax error: ';'
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(301,68): error C2059: syntax error: ')'
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(302,1): error C2449: found '{' at file scope (missing function header?)
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(347,1): error C2059: syntax error: '}'
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(418,1): warning C4029: declared formal parameter list different from definition
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(442,51): error C2065: 'fill_input_buffer': undeclared identifier
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(442,51): warning C4047: '=': 'boolean (__cdecl *)(j_decompress_ptr)' differs in levels of indirection from 'int'
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(443,47): error C2065: 'skip_input_data': undeclared identifier
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(443,47): warning C4047: '=': 'void (__cdecl *)(j_decompress_ptr,long)' differs in levels of indirection from 'int'
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(510,57): error C2146: syntax error: missing ')' before identifier 'mem_stream'
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(510,57): error C2081: 'j_stream_ptr': name in formal parameter list illegal
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(510,57): error C2061: syntax error: identifier 'mem_stream'
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(510,57): error C2059: syntax error: ';'
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(510,67): error C2059: syntax error: ')'
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(511,1): error C2449: found '{' at file scope (missing function header?)
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(540,1): error C2059: syntax error: '}'
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(620,56): error C2065: 'empty_output_buffer': undeclared identifier
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(620,56): warning C4047: '=': 'boolean (__cdecl *)(j_compress_ptr)' differs in levels of indirection from 'int'
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(621,50): error C2065: 'term_destination': undeclared identifier
+F:\Users\Florian\Documents\VS-Projects\BatteryEngine\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c(621,50): warning C4047: '=': 'void (__cdecl *)(j_compress_ptr)' differs in levels of indirection from 'int'
+  VSkASN.c
+  VSkX509.c
+  VSOutlineA.c
+  VSXref.c
   Generating Code...
-  BatteryEngine-static.vcxproj -> F:\Users\Florian\Documents\VS-Projects\BatteryEngine\bin\Debug\x64\BatteryEngine-static.lib

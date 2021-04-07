@@ -52,6 +52,27 @@
     <Filter Include="Source Files\implot">
       <UniqueIdentifier>{addf7748-a22a-434c-ba22-632572732042}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\VersyPDF">
+      <UniqueIdentifier>{b699976d-9056-4f0a-b90a-1cda45467e18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\VersyPDF\VersyPDF">
+      <UniqueIdentifier>{b6b5a5e9-78c5-4447-96cb-d9980688773c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\VersyPDF\LibPNG">
+      <UniqueIdentifier>{525078ac-836e-4af3-a4ff-c9c896865c43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\VersyPDF\LibJPEG">
+      <UniqueIdentifier>{4b96f1c5-248f-4861-8964-bf26390f1430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\VersyPDF\LibTIFF">
+      <UniqueIdentifier>{7ad915bf-e51e-4602-83dc-1f7dfa8d8234}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\VersyPDF\FreeType">
+      <UniqueIdentifier>{3537d3a6-a8a1-4997-8a9d-d53a38c392da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\VersyPDF\LibFlate">
+      <UniqueIdentifier>{6a23dd48-4c9a-48b9-8cbe-ae34bb395a74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Battery\NetUtils.h">
@@ -147,6 +168,537 @@
     <ClInclude Include="..\include\Battery\Utils\MathUtils.h">
       <Filter>Header Files\Battery\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSAcroObjects.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSAes.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSAssert.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSCanvasAI.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSCosAI.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSCrypt.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSDocAI.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSDraw.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSEmf.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSFilter.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSFontAI.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSFTSystem.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSGStateAI.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSImageI.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSkASNI.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSkPKCS7I.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSkPKCS12I.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSkRSAI.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSkX509I.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSLibI.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSMisc.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSName.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSPageAI.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSPagesAI.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSParse.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSSignAI.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSStdFont.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSTextOut.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSTtf.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSType1.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\versypdf\sources\VSXref.h">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\png\png.h">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\png\pngconf.h">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\jpeg\jchuff.h">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\jpeg\jconfig.h">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\jpeg\jdct.h">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\jpeg\jdhuff.h">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\jpeg\jerror.h">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\jpeg\jinclude.h">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\jpeg\jmemsys.h">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\jpeg\jmorecfg.h">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\jpeg\jpegint.h">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\jpeg\jpeglib.h">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\jpeg\jversion.h">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\jpeg\versypdfjpeg.h">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\tiff\t4.h">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\tiff\tif_dir.h">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\tiff\tif_fax3.h">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\tiff\tif_predict.h">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\tiff\tiff.h">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\tiff\tiffcomp.h">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\tiff\tiffconf.h">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\tiff\tiffio.h">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\tiff\tiffiop.h">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\tiff\uvcode.h">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\autohint.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ciderrs.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\cidgload.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\cidload.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\cidobjs.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\cidparse.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\cidriver.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\cidtoken.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\freetype.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ft2build.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftbbox.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftbdf.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftbitmap.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftcache.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftcalc.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftccache.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftccmap.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftcglyph.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftcimage.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftcmanag.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftcmru.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftconfig.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftcsbits.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftdebug.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftdriver.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\fterrdef.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\fterrors.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftgloadr.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftglyph.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftgzip.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftheader.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftimage.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftincrem.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftlist.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftlzw.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftmac.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftmemory.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftmm.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftmodapi.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftmoderr.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftmodule.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftobjs.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftoption.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftotval.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftoutln.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftpfr.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftrender.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftrfork.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftserv.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftsizes.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftsnames.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftstdlib.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftstream.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftstroke.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftsynth.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftsysio.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftsysmem.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftsystem.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\fttrace.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\fttrigon.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\fttypes.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftvalid.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftwinfnt.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ftxf86.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\internal.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\pcftypes.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\psaux.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\psauxerr.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\psauxmod.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\pshalgo.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\pshglob.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\pshints.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\pshmod.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\pshnterr.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\pshrec.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\psmodule.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\psnamerr.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\psobjs.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\pstables.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\sfnt.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\svbdf.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\svgldict.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\svmm.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\svotval.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\svpfr.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\svpostnm.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\svpscmap.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\svpsinfo.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\svsfnt.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\svttcmap.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\svwinfnt.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\svxf86nm.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\t1afm.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\t1cmap.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\t1decode.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\t1driver.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\t1errors.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\t1gload.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\t1load.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\t1objs.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\t1parse.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\t1tables.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\t1tokens.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\t1types.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ttnameid.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\tttables.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\tttags.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\tttypes.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\ttunpat.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\freetype\VSFreeType.h">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\flate\deflate.h">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\flate\infblock.h">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\flate\infcodes.h">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\flate\inffast.h">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\flate\inffixed.h">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\flate\inftrees.h">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\flate\infutil.h">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\flate\trees.h">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\flate\zconf.h">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\flate\zlib.h">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\flate\zutil.h">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\VersyPDF\sources\tiff\tiffredef.h">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\NetUtils.cpp">
@@ -239,14 +791,619 @@
     <ClCompile Include="..\src\Battery\Utils\MathUtils.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSAcroDraw.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSAcroFormA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSAcroInfoA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSAcroObjects.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSActionA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSAes.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSAnnotA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSBaseA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSBmp.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSCanvasA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSCCITT.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSCode2UNI.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSCosA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSCosDocA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSCrypt.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSDocA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSDraw.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSEmf.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSExcept.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSFilter.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSFontA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSFTSystem.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSGStateA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSImageA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSJbig2.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSJpeg.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSkASN.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSkPKCS7.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSkPKCS12.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSkRSA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSkX509.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSLibA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSMisc.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSNameTree.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSOutlineA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSPageA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSPages.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSParse.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSPattern.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSPng.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSSaveL.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSSaveUL.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSSignA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSTextOut.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSThreadA.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSTiff.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSTtf.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSType1.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\versypdf\sources\VSXref.c">
+      <Filter>Source Files\VersyPDF\VersyPDF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\png\png.c">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\png\pngerror.c">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\png\pngget.c">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\png\pngmem.c">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\png\pngpread.c">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\png\pngread.c">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\png\pngrio.c">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\png\pngrtran.c">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\png\pngrutil.c">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\png\pngset.c">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\png\pngtrans.c">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\png\pngvcrd.c">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\png\pngwio.c">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\png\pngwrite.c">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\png\pngwtran.c">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\png\pngwutil.c">
+      <Filter>Source Files\VersyPDF\LibPNG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jcapimin.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jcapistd.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jccoefct.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jccolor.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jcdctmgr.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jchuff.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jcinit.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jcmainct.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jcmarker.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jcmaster.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jcomapi.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jcparam.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jcphuff.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jcprepct.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jcsample.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jctrans.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jdapimin.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jdapistd.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jdatadst.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jdatasrc.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jdcoefct.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jdcolor.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jddctmgr.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jdhuff.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jdinput.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jdmainct.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jdmarker.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jdmaster.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jdmerge.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jdphuff.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jdpostct.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jdsample.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jdtrans.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jerror.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jfdctflt.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jfdctfst.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jfdctint.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jidctflt.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jidctfst.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jidctint.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jidctred.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jmemmgr.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jmemnobs.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jquant1.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jquant2.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\jpeg\jutils.c">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\fax3sm_winnt.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_aux.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_close.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_codec.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_compress.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_dir.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_dirinfo.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_dirread.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_dirwrite.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_dumpmode.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_fax3.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_flush.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_getimage.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_jpeg.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_luv.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_lzw.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_next.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_ojpeg.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_open.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_packbits.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_pixarlog.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_predict.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_print.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_read.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_strip.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_swab.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_thunder.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_tile.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_version.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_warning.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_win32.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_write.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\tiff\tif_zip.c">
+      <Filter>Source Files\VersyPDF\LibTIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\cidgload.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\cidload.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\cidobjs.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\cidparse.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\cidriver.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftapi.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftbbox.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftbdf.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftbitmap.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftcalc.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftdbgmem.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftdebug.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftgloadr.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftglyph.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftinit.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftlzw.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftmm.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftobjs.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftotval.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftoutln.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftpfr.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftrfork.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftstream.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftstroke.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftsynth.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftsystem.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\fttrigon.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\fttype1.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\ftutil.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\psauxmod.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\pshalgo.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\pshglob.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\pshmod.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\pshrec.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\psmodule.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\psobjs.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\t1afm.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\t1cmap.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\t1decode.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\t1driver.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\t1gload.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\t1load.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\t1objs.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\freetype\t1parse.c">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\flate\adler32.c">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\flate\crc32.c">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\flate\deflate.c">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\flate\infblock.c">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\flate\infcodes.c">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\flate\inffast.c">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\flate\inflate.c">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\flate\inftrees.c">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\flate\infutil.c">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\flate\trees.c">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\modules\VersyPDF\sources\flate\zutil.c">
+      <Filter>Source Files\VersyPDF\LibFlate</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
+    <None Include="..\modules\VersyPDF\sources\jpeg\README">
+      <Filter>Source Files\VersyPDF\LibJPEG</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BatteryEngine-static.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\modules\VersyPDF\sources\freetype\FTL.TXT">
+      <Filter>Source Files\VersyPDF\FreeType</Filter>
+    </Text>
   </ItemGroup>
 </Project>

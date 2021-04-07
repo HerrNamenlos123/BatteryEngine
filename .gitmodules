@@ -10,3 +10,6 @@
 [submodule "modules/implot"]
 	path = modules/implot
 	url = https://github.com/epezent/implot.git
+[submodule "modules/VersyPDF"]
+	path = modules/VersyPDF
+	url = https://github.com/sybrexsys/VersyPDF.git
