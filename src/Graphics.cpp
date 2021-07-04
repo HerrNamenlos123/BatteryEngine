@@ -108,5 +108,11 @@ namespace Battery {
 		ALLEGRO_COLOR ConvertAllegroColor(glm::vec4 color) {
 			return al_map_rgba(color.r, color.g, color.b, color.a);
 		}
+
+		glm::vec4 ConvertAllegroColor(ALLEGRO_COLOR color) {
+			unsigned char r, g, b, a;
+			al_unmap_rgba(color, &r, &g, &b, &a);
+			return glm::vec4(r, g, b, a);
+		}
 	}
 }

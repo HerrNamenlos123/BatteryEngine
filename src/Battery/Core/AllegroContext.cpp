@@ -30,8 +30,8 @@ namespace Battery {
 
 		// Initialize the Allegro Framework and all components
 		if (!al_init()) {
-			LOG_CORE_CRITICAL("Allegro could not be initialized!"); 
-			ShowErrorMessageBox("Allegro could not be initialized!");
+			LOG_CORE_CRITICAL("Allegro could not be initialized! Please check the graphics drivers!"); 
+			ShowErrorMessageBox("Allegro could not be initialized! Please check the graphics drivers!");
 			return false;
 		}
 

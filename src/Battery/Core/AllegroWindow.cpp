@@ -1,9 +1,12 @@
 
 #include "Battery/pch.h"
 #include "Battery/Core/AllegroWindow.h"
+#include "Battery/Core/Application.h"
 #include "Battery/Core/AllegroContext.h"
 #include "Battery/Core/Config.h"
 #include "Battery/Utils/TimeUtils.h"
+#include "Battery/Renderer/Texture2D.h"
+#include "clip.h"
 
 #undef CreateEvent
 
@@ -36,13 +39,43 @@ namespace Battery {
 		if (!al_is_system_installed())
 			throw Battery::Exception("Failed to create Allegro window: Allegro is not initialized!");
 
-		// Windows flags
-		al_set_new_display_flags(ALLEGRO_PROGRAMMABLE_PIPELINE | ALLEGRO_OPENGL | windowFlags);
+		// Window flags are Battery flags, need to be converted now
+		int allegroFlags = ALLEGRO_PROGRAMMABLE_PIPELINE | ALLEGRO_OPENGL | ALLEGRO_RESIZABLE;
+		bool frameless = false;
+		bool noTaskbar = false;
+		bool hideWindow = false;
+
+		if (windowFlags & (int)WindowFlags::NON_RESIZABLE) {
+			allegroFlags &= ~ALLEGRO_RESIZABLE;
+		}
+		if (windowFlags & (int)WindowFlags::FULLSCREEN) {
+			allegroFlags |= ALLEGRO_FULLSCREEN;
+		}
+		if (windowFlags & (int)WindowFlags::WINDOWED_FULLSCREEN) {
+			allegroFlags |= ALLEGRO_FULLSCREEN_WINDOW;
+		}
+		if (windowFlags & (int)WindowFlags::FRAMELESS) {
+			allegroFlags |= ALLEGRO_FRAMELESS;
+			frameless = true;
+		}
+		if (windowFlags & (int)WindowFlags::NO_TASKBAR) {
+			noTaskbar = true;
+		}
+		
+		al_set_new_display_flags(allegroFlags);
 		al_set_blender(ALLEGRO_ADD, ALLEGRO_ALPHA, ALLEGRO_INVERSE_ALPHA);
 
 		allegroDisplayPointer = al_create_display(width, height);
 		if (allegroDisplayPointer == nullptr)
-			throw Battery::Exception("Failed to create Allegro window");
+			throw Battery::Exception("Failed to create Allegro window! Please check the graphics drivers!");
+
+		// Now show or hide the window in the taskbar
+		if (noTaskbar) {
+			HideFromTaskbar();
+		}
+		else {
+			ShowInTaskbar();
+		}
 
 		allegroDefaultFont = al_load_ttf_font(defaultFontFile.c_str(), 64, 0);
 		if (allegroDefaultFont == nullptr) {
@@ -70,11 +103,12 @@ namespace Battery {
 			LOG_CORE_WARN(__FUNCTION__ "(): Window constraints could not be set!");
 		}
 		al_apply_window_constraints(allegroDisplayPointer, true);
-
-		LOG_CORE_TRACE("Created Allegro window");
-
+		
+		// Set the window title
 		SetTitle(BATTERY_DEFAULT_TITLE);
-
+		
+		// Window is created and valid
+		LOG_CORE_TRACE("Created Allegro window");
 		valid = true;
 	}
 
@@ -231,7 +265,7 @@ namespace Battery {
 		CHECK_ALLEGRO_INIT();
 		ALLEGRO_MOUSE_STATE mouse;
 		al_get_mouse_state(&mouse);
-		return mouse.buttons & 0x03;
+		return mouse.buttons & 0x04;
 	}
 
 	HWND AllegroWindow::GetWinHandle() {
@@ -249,24 +283,140 @@ namespace Battery {
 		return SetForegroundWindow(GetWinHandle());
 	}
 
-	std::string AllegroWindow::GetClipboardContent() {
-		char* content = al_get_clipboard_text(allegroDisplayPointer);
+	bool AllegroWindow::Hide() {
+		CHECK_ALLEGRO_INIT();
+		return ShowWindow(GetWinHandle(), SW_HIDE);
+	}
 
-		if (content) {
-			std::string str = content;
-			al_free(content);
-			return str;
+	bool AllegroWindow::Show() {
+		CHECK_ALLEGRO_INIT();
+		return ShowWindow(GetWinHandle(), SW_SHOW);
+	}
+
+	void AllegroWindow::HideFromTaskbar() {
+		long style = GetWindowLong(GetWinHandle(), GWL_STYLE);
+		style |= WS_VISIBLE;
+		ShowWindow(GetWinHandle(), SW_HIDE);
+		SetWindowLong(GetWinHandle(), GWL_STYLE, style);
+		ShowWindow(GetWinHandle(), SW_SHOW);
+		Focus();
+	}
+
+	void AllegroWindow::ShowInTaskbar() {
+		long style = GetWindowLong(GetWinHandle(), GWL_STYLE);
+		style &= ~(WS_VISIBLE);
+		SetWindowLong(GetWinHandle(), GWL_STYLE, style);
+		ShowWindow(GetWinHandle(), SW_SHOW);
+	}
+
+	void AllegroWindow::SetFrameless(bool frameless) {
+		al_set_display_flag(allegroDisplayPointer, ALLEGRO_FRAMELESS, frameless);
+	}
+
+	void AllegroWindow::FlipDisplay() {
+		al_set_target_backbuffer(allegroDisplayPointer);
+		al_flip_display();
+	}
+
+	ClipboardFormatID AllegroWindow::RegisterClipboardFormat(const std::string& format) {
+		clip::format id = clip::register_format(format);
+		return id;
+	}
+
+	bool AllegroWindow::HasClipboardText() {
+		return clip::has(clip::text_format());
+	}
+
+	bool AllegroWindow::HasClipboardImage() {
+		return clip::has(clip::image_format());
+	}
+
+	bool AllegroWindow::HasClipboardFormat(ClipboardFormatID format) {
+		return clip::has(format);
+	}
+
+	std::pair<std::string, bool> AllegroWindow::GetClipboardText() {
+		
+		if (clip::has(clip::text_format())) {
+			std::string str;
+			if (clip::get_text(str)) {
+				return std::make_pair(str, true);
+			}
 		}
 
-		return "";
+		return std::make_pair("", false);
 	}
 
-	bool AllegroWindow::SetClipboardContent(const std::string& content) {
-		return al_set_clipboard_text(allegroDisplayPointer, content.c_str());
+	std::optional<Battery::Texture2D> AllegroWindow::GetClipboardImage() {
+
+		if (clip::has(clip::image_format())) {
+			clip::image image;
+
+			if (!clip::get_image(image))
+				return std::nullopt;
+
+			if (!image.is_valid())
+				return std::nullopt;
+
+			return std::make_optional<Battery::Texture2D>(Battery::Texture2D(image));
+		}
+
+		return std::nullopt;
 	}
 
-	bool AllegroWindow::HasClipboardContent() {
-		return al_clipboard_has_text(allegroDisplayPointer);
+	std::optional<std::vector<uint8_t>> AllegroWindow::GetClipboardCustomFormat(ClipboardFormatID customFormat) {
+		clip::lock lock;
+
+		if (!lock.is_convertible(customFormat))
+			return std::nullopt;
+
+		size_t length = lock.get_data_length(customFormat);
+		std::vector<uint8_t> data(length, 0);
+
+		if (!lock.get_data(customFormat, (char*)&data[0], length))
+			return std::nullopt;
+
+		return std::make_optional<std::vector<uint8_t>>(std::move(data));
+	}
+
+	std::optional<std::string> AllegroWindow::GetClipboardCustomFormatString(ClipboardFormatID customFormat) {
+		auto opt = GetClipboardCustomFormat(customFormat);
+
+		if (!opt.has_value())
+			return std::nullopt;
+
+		std::string str((char*)&opt.value()[0], opt.value().size());
+		return std::make_optional<std::string>(std::move(str));
+	}
+
+	bool AllegroWindow::SetClipboardText(const std::string& text) {
+		return clip::set_text(text);
+	}
+
+	bool AllegroWindow::SetClipboardImage(const Battery::Texture2D& image) {
+		auto img = image.GetClipImage();
+
+		if (!img.has_value())
+			return false;
+
+		return clip::set_image(clip::image(&img.value().first[0], img.value().second));
+	}
+
+	bool AllegroWindow::SetClipboardCustomFormat(ClipboardFormatID customFormat, void* data, size_t size) {
+		clip::lock lock; 
+		lock.clear();
+		return lock.set_data(customFormat, (char*)data, size);
+	}
+
+	bool AllegroWindow::SetClipboardCustomFormatString(ClipboardFormatID customFormat, const std::string& string) {
+		return SetClipboardCustomFormat(customFormat, (void*)string.c_str(), string.size());
+	}
+
+
+
+
+	bool AllegroWindow::SetMouseCursor(ALLEGRO_SYSTEM_MOUSE_CURSOR cursorID) {
+		return al_set_system_mouse_cursor(allegroDisplayPointer, cursorID);
 	}
 
 

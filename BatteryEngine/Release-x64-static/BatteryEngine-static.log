@@ -1,9 +1,2 @@
-﻿  AllegroWindow.cpp
-  Application.cpp
-  ApplicationEvents.cpp
-  Event.cpp
-  Renderer2D.cpp
-  TimeUtils.cpp
-  Engine.cpp
-  main.cpp
+﻿  Application.cpp
   BatteryEngine-static.vcxproj -> F:\Users\Florian\Documents\VS-Projects\BatteryEngine\bin\Release\x64\BatteryEngine-static.lib

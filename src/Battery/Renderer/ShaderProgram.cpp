@@ -67,23 +67,27 @@ namespace Battery {
 
 		if (!shader) {
 			LOG_CORE_ERROR("Failed to create Allegro shader");
+			ShowErrorMessageBox("Failed to create Allegro shader");
 			return false;
 		}
 
 		if (!al_attach_shader_source_file(shader, ALLEGRO_VERTEX_SHADER, vertexShader.c_str())) {
 			LOG_CORE_ERROR(std::string("Vertex shader failed: ") + al_get_shader_log(shader));
+			ShowErrorMessageBox(std::string("Vertex shader failed: ") + al_get_shader_log(shader));
 			al_destroy_shader(shader);
 			return false;
 		}
 
 		if (!al_attach_shader_source_file(shader, ALLEGRO_PIXEL_SHADER, fragmentShader.c_str())) {
 			LOG_CORE_ERROR(std::string("Fragment shader failed: ") + al_get_shader_log(shader));
+			ShowErrorMessageBox(std::string("Fragment shader failed: ") + al_get_shader_log(shader));
 			al_destroy_shader(shader);
 			return false;
 		}
 
 		if (!al_build_shader(shader)) {
 			LOG_CORE_ERROR(std::string("Shader linking failed: ") + al_get_shader_log(shader));
+			ShowErrorMessageBox(std::string("Shader linking failed: ") + al_get_shader_log(shader));
 			al_destroy_shader(shader);
 			return false;
 		}
@@ -122,23 +126,27 @@ namespace Battery {
 
 		if (!shader) {
 			LOG_CORE_ERROR("Failed to create Allegro shader");
+			ShowErrorMessageBox("Failed to create Allegro shader");
 			return false;
 		}
 
 		if (!al_attach_shader_source(shader, ALLEGRO_VERTEX_SHADER, vertexShader.c_str())) {
 			LOG_CORE_ERROR(std::string("Vertex shader failed: ") + al_get_shader_log(shader));
+			ShowErrorMessageBox(std::string("Vertex shader failed: ") + al_get_shader_log(shader));
 			al_destroy_shader(shader);
 			return false;
 		}
 
 		if (!al_attach_shader_source(shader, ALLEGRO_PIXEL_SHADER, fragmentShader.c_str())) {
 			LOG_CORE_ERROR(std::string("Fragment shader failed: ") + al_get_shader_log(shader));
+			ShowErrorMessageBox(std::string("Fragment shader failed: ") + al_get_shader_log(shader));
 			al_destroy_shader(shader);
 			return false;
 		}
 
 		if (!al_build_shader(shader)) {
 			LOG_CORE_ERROR(std::string("Shader linking failed: ") + al_get_shader_log(shader));
+			ShowErrorMessageBox(std::string("Shader linking failed: ") + al_get_shader_log(shader));
 			al_destroy_shader(shader);
 			return false;
 		}

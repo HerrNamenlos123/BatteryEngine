@@ -30,45 +30,61 @@ namespace Battery {
 
 	struct Scene {
 
-		std::vector<Texture2D> textures;
-
-		Scene(AllegroWindow* window) {
+		Scene(std::reference_wrapper<AllegroWindow> window) {
 			this->window = window;
+			LOG_CORE_TRACE(__FUNCTION__"(): Constructed Battery::Scene, loading shaders");
+			LoadShaders();
+		}
 
-			lineShader = std::make_unique<ShaderProgram>();
-			circleShader = std::make_unique<ShaderProgram>();
-			arcShader = std::make_unique<ShaderProgram>();
-			rectangleShader = std::make_unique<ShaderProgram>();
-			
-			// Load the shader for drawing antialiased lines
-			lineShader->LoadSource(this->window->allegroDisplayPointer,
-				BATTERY_SHADER_SOURCE_VERTEX_SIMPLE, BATTERY_SHADER_SOURCE_FRAGMENT_LINE);
-			
-			circleShader->LoadSource(this->window->allegroDisplayPointer,
-				BATTERY_SHADER_SOURCE_VERTEX_SIMPLE, BATTERY_SHADER_SOURCE_FRAGMENT_CIRCLE);
-			
-			arcShader->LoadSource(this->window->allegroDisplayPointer,
-				BATTERY_SHADER_SOURCE_VERTEX_SIMPLE, BATTERY_SHADER_SOURCE_FRAGMENT_ARC);
-			
-			rectangleShader->LoadSource(this->window->allegroDisplayPointer,
-				BATTERY_SHADER_SOURCE_VERTEX_SIMPLE, BATTERY_SHADER_SOURCE_FRAGMENT_COLOR_GRADIENT);
-
-			LOG_CORE_TRACE(__FUNCTION__"(): Constructed Battery::Scene and loaded shaders");
+		Scene(std::reference_wrapper<AllegroWindow> window, std::reference_wrapper<Battery::Texture2D> texture) {
+			this->window = window;
+			this->texture = texture;
+			LOG_CORE_TRACE(__FUNCTION__"(): Constructed Battery::Scene, loading shaders");
+			LoadShaders();
 		}
 
 		~Scene() {
 			LOG_CORE_TRACE(__FUNCTION__"(): Destroying Battery::Scene");
 		}
 
+	private:
+		void LoadShaders() {
+
+			lineShader = std::make_unique<ShaderProgram>();
+			circleShader = std::make_unique<ShaderProgram>();
+			arcShader = std::make_unique<ShaderProgram>();
+			rectangleShader = std::make_unique<ShaderProgram>();
+
+			ALLEGRO_DISPLAY* display = window.value().get().allegroDisplayPointer;
+
+			// Load the shader for drawing antialiased lines
+			lineShader->LoadSource(display,
+				BATTERY_SHADER_SOURCE_VERTEX_SIMPLE, BATTERY_SHADER_SOURCE_FRAGMENT_LINE);
+
+			circleShader->LoadSource(display,
+				BATTERY_SHADER_SOURCE_VERTEX_SIMPLE, BATTERY_SHADER_SOURCE_FRAGMENT_CIRCLE);
+
+			arcShader->LoadSource(display,
+				BATTERY_SHADER_SOURCE_VERTEX_SIMPLE, BATTERY_SHADER_SOURCE_FRAGMENT_ARC);
+
+			rectangleShader->LoadSource(display,
+				BATTERY_SHADER_SOURCE_VERTEX_SIMPLE, BATTERY_SHADER_SOURCE_FRAGMENT_COLOR_GRADIENT);
+		}
+
+	public:
 		// The Renderer2D class is allowed to access
 		friend class Renderer2D;
 
+		std::vector<Texture2D> textures;
+
 	protected:
-		AllegroWindow* window = nullptr;		// This is an AllegroWindow reference, do not delete
-		std::unique_ptr<ShaderProgram> lineShader = nullptr;
-		std::unique_ptr<ShaderProgram> circleShader = nullptr;
-		std::unique_ptr<ShaderProgram> arcShader = nullptr;
-		std::unique_ptr<ShaderProgram> rectangleShader = nullptr;
+		std::unique_ptr<ShaderProgram> lineShader;
+		std::unique_ptr<ShaderProgram> circleShader;
+		std::unique_ptr<ShaderProgram> arcShader;
+		std::unique_ptr<ShaderProgram> rectangleShader;
+
+		std::optional<std::reference_wrapper<AllegroWindow>> window;
+		std::optional<std::reference_wrapper<Battery::Texture2D>> texture;
 	};
 
 	class Renderer2D {

@@ -13,6 +13,7 @@
 #include "Battery/Core/Event.h"
 #include "Battery/Utils/TimeUtils.h"
 #include "Battery/Utils/FileUtils.h"
+#include "Battery/Utils/MathUtils.h"
 #include "Battery/Platform/Dialog.h"
 #include "Battery/Log/Log.h"
 #include "Battery/Renderer/Renderer2D.h"

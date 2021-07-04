@@ -110,21 +110,22 @@ namespace Battery {
 			return;
 		}
 
-		if (scene->window == nullptr) {
-			LOG_CORE_ERROR(__FUNCTION__ "(): Can't load scene: Supplied AllegroWindow pointer is null!");
+		if (!scene->window.has_value()) {
+			LOG_CORE_ERROR(__FUNCTION__ "(): Can't load scene: AllegroWindow pointer has no value!");
 			return;
 		}
-
-		//if (!scene->shaderProgram.IsLoaded()) {
-		//	LOG_CORE_ERROR(__FUNCTION__ "(): Can't load scene: ShaderProgram is not loaded!");
-		//	return;
-		//}
 
 		// Change pointer to the new scene
 		data->currentScene = scene;
 
-		// Initialize the canvas for the scene
-		al_set_target_backbuffer(data->currentScene->window->allegroDisplayPointer);
+		if (scene->texture.has_value()) {	// Render to texture
+			// Initialize the canvas for the scene
+			al_set_target_bitmap(scene->texture.value().get().GetAllegroBitmap());
+		}
+		else {			// Render to screen normally
+			// Initialize the canvas for the scene
+			al_set_target_backbuffer(scene->window.value().get().allegroDisplayPointer);
+		}
 	}
 
 	void Renderer2D::EndScene() {
@@ -135,21 +136,6 @@ namespace Battery {
 			LOG_CORE_ERROR(__FUNCTION__ "(): Can't end scene: No scene is currently active!");
 			return;
 		}
-
-		/*if (data->quadsActive) {
-			LOG_CORE_WARN(__FUNCTION__ "(): The Quad buffer is still active! Make sure to call Renderer2D::EndQuads()!");
-			EndQuads();
-		}
-
-		if (data->linesActive) {
-			LOG_CORE_WARN(__FUNCTION__ "(): The Line buffer is still active! Make sure to call Renderer2D::EndLines()!");
-			EndLines();
-		}
-
-		if (data->circlesActive) {
-			LOG_CORE_WARN(__FUNCTION__ "(): The Circle buffer is still active! Make sure to call Renderer2D::EndCircles()!");
-			EndCircles();
-		}*/
 
 		// Let go of the reference to the scene object
 		data->currentScene = nullptr;

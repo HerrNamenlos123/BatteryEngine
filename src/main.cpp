@@ -11,10 +11,10 @@ int main(int argc, const char** argv) {
 
 		// Create the client application
 		LOG_CORE_TRACE("Creating Application");
-		Battery::Application* app = Battery::CreateApplication();
+		std::unique_ptr<Battery::Application> app(Battery::CreateApplication());
 
 		// Save application pointer, so it can be accessed statically and globally
-		Battery::Application::SetApplicationPointer(app);
+		Battery::Application::SetApplicationPointer(app.get());
 
 		// Start the engine up
 		LOG_CORE_TRACE("Application created, running");
@@ -22,7 +22,6 @@ int main(int argc, const char** argv) {
 
 		// Destroy the application
 		LOG_CORE_TRACE("Application stopped, destroying");
-		delete app;
 	}
 	catch (const Battery::Exception& e) {
 		LOG_CORE_CRITICAL(std::string("Unhandled Battery::Exception from scope main(): ") + e.what());

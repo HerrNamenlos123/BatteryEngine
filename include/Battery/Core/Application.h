@@ -12,6 +12,15 @@
 #include "Battery/Platform/Dialog.h"
 #include "Battery/Log/Log.h"
 
+enum class WindowFlags {
+	NONE					= 1 << 0,
+	NON_RESIZABLE			= 1 << 1,
+	FRAMELESS				= 1 << 2,
+	NO_TASKBAR				= 1 << 3,
+	FULLSCREEN				= 1 << 4,
+	WINDOWED_FULLSCREEN		= 1 << 5
+};
+
 // Forward declaring, so that main can be a friend function
 // and gets access to the private Run() function
 int main(int argc, const char** argv);
@@ -41,7 +50,8 @@ namespace Battery {
 		// TODO: Add keyboard leds cuz why not
 
 		void SetFramerate(double f);
-		void SetWindowFlags(int flags);
+		void SetWindowFlag(enum class WindowFlags flag);
+		void ClearWindowFlag(enum class WindowFlags flag);
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* overlay);
 		void ClearLayerStack();
@@ -81,7 +91,7 @@ namespace Battery {
 	private:
 		static Application* applicationPointer;
 		std::string applicationFolderName;
-		int windowFlags = 0;
+		int windowFlags = (int)WindowFlags::NONE;
 		bool frameDiscarded = false;
 	};
 

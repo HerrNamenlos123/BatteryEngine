@@ -29,9 +29,9 @@ namespace Battery {
 			ImGui_ImplAllegro5_Init(applicationPointer->window.allegroDisplayPointer);
 
 			io = ImGui::GetIO();
-			font = io.Fonts->AddFontFromFileTTF(BATTERY_PROFILING_FONT, BATTERY_PROFILING_FONT_SIZE);
 			OnImGuiAttach();
 
+			ImGui_ImplAllegro5_CreateDeviceObjects();
 			memset(profilerFilter, 0, BATTERY_PROFILING_MAX_TIMEPOINT_NUMBER - 1);
 		}
 

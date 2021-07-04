@@ -191,7 +191,7 @@ namespace Battery {
 				_updateApp();
 				_postUpdate();
 			}
-
+			
 			// Render everything
 			{
 				PROFILE_CORE_SCOPE("Mainloop render rountines");
@@ -306,8 +306,12 @@ namespace Battery {
 		desiredFramerate = f;
 	}
 
-	void Application::SetWindowFlags(int flags) {
-		this->windowFlags = flags;
+	void Application::SetWindowFlag(enum class WindowFlags flag) {
+		this->windowFlags |= (int)flag;
+	}
+
+	void Application::ClearWindowFlag(enum class WindowFlags flag) {
+		this->windowFlags &= ~(int)flag;
 	}
 
 	void Application::PushLayer(Layer* layer) {

@@ -299,7 +299,7 @@ namespace Battery {
 				primaryEventType = EventType::WindowResize;
 				return;
 
-				case ALLEGRO_EVENT_DISPLAY_SWITCH_IN:
+			case ALLEGRO_EVENT_DISPLAY_SWITCH_IN:
 				windowFocusEvent.Load(allegroEvent);
 				primaryEvent = &windowFocusEvent;
 				primaryEventType = EventType::WindowFocus;

@@ -37,6 +37,7 @@ namespace Battery {
 
 		ALLEGRO_COLOR ConvertAllegroColor(glm::vec3 color);
 		ALLEGRO_COLOR ConvertAllegroColor(glm::vec4 color);
+		glm::vec4 ConvertAllegroColor(ALLEGRO_COLOR color);
 
 	}
 }
