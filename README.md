@@ -4,8 +4,8 @@ This is a simple framework for Windows desktop applications or small games, base
 
 ## Requirements
 
- - [Microsoft Visual Studio 2019](https://visualstudio.microsoft.com/de/downloads/) - Other IDEs can be used by altering `generate-win.bat`
  - [git](https://git-scm.com/downloads) - For cloning, obviously
+ - [Microsoft Visual Studio 2019](https://visualstudio.microsoft.com/de/downloads/) - Other IDEs can be used by altering `generate-win.bat`
 
 ## How to use
 
