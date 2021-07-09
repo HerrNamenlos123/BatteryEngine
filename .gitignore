@@ -33,6 +33,9 @@
 
 # Visual Studio folder
 .vs
+*.sln
 
 # Miscellaneous
-build
+bin/
+build/
+!premake5.exe
