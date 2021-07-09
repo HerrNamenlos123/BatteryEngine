@@ -1,6 +1,6 @@
 # BatteryEngine
 
-This is a simple framework for Windows desktop applications or small games. It allows low-level programming and direct access to OpenGL. It is very easy to use the GPU by providing custom GLSL shaders.
+This is a simple framework for Windows desktop applications or small games, based on Allegro5. It allows low-level programming and direct access to OpenGL. It is very easy to use the GPU by providing custom GLSL shaders.
 
 ## Requirements
 
