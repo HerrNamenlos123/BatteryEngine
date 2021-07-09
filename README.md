@@ -11,7 +11,7 @@ This is a simple framework for Windows desktop applications or small games, base
 
  - `git clone https://github.com/HerrNamenlos123/BatteryEngine.git --recursive`
  - Doubleclick `generate-win.bat` and build the project `INSTALL_ALL`
- - Now the framework is ready to use, [here is a usage template](https://github.com/HerrNamenlos123/BatteryTemplateProject)
+ - Now the framework is ready to use, [here is a template on how to use it](https://github.com/HerrNamenlos123/BatteryTemplateProject)
 
 Additionally:
 When files are added, simply re-run `generate-win.bat` to add them to the Solution explorer.
