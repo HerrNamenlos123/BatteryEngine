@@ -1,2 +1,0 @@
-F:\Users\Florian\Documents\VS-Projects\BatteryEngine\bin\Debug\x64\BatteryEngine-static.pdb
-F:\Users\Florian\Documents\VS-Projects\BatteryEngine\BatteryEngine\Debug-x64-static\BatteryEngine-static.pdb

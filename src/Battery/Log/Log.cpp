@@ -21,7 +21,7 @@ namespace Battery {
 		coreLogger = spdlog::stdout_color_mt("Battery");
 		clientLogger = spdlog::stdout_color_mt("Client");
 
-		SetLogLevel(BATTERY_LOG_LEVEL);
+		SetLogLevel(BATTERY_DEFAULT_LOG_LEVEL);
 	}
 
 	void Log::SetLogLevel(spdlog::level::level_enum level) {
