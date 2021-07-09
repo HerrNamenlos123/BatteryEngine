@@ -9,7 +9,7 @@ This is a simple framework for Windows desktop applications or small games. It a
 ## How to use
 
  - `git clone https://github.com/HerrNamenlos123/BatteryEngine.git --recursive`
- - Doubleclick `generate-win.bat` and compile the project `INSTALL_ALL`
+ - Doubleclick `generate-win.bat` and build the project `INSTALL_ALL`
  - Now the framework is ready to use, you can use [this template](https://github.com/HerrNamenlos123/BatteryTemplateProject)
 
 Additionally:
