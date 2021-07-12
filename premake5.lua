@@ -37,6 +37,7 @@ project (projectName .. "-Debug")
 	staticruntime "on"
     location "build/Debug"
     targetname (projectName .. "-d")
+    targetdir (_SCRIPT_DIR .. "/bin")
 
     defines { "DEBUG", "_DEBUG", "ALLEGRO_STATICLINK" }
     runtime "Debug"
@@ -55,12 +56,25 @@ project (projectName .. "-Debug")
         _SCRIPT_DIR .. "/packages/Allegro.5.2.7/build/native/include"
     })
     
+    -- Main source files
     files ({ _SCRIPT_DIR .. "/include/**", _SCRIPT_DIR .. "/src/**" })
+
+    -- Clip library
     files ({ _SCRIPT_DIR .. "/modules/clip/clip.cpp" })
     files ({ _SCRIPT_DIR .. "/modules/clip/clip_win.cpp" })
     files ({ _SCRIPT_DIR .. "/modules/clip/image.cpp" })
-    targetdir (_SCRIPT_DIR .. "/bin")
 
+    -- ImGui/ImPlot library
+    files ({ _SCRIPT_DIR .. "/modules/imgui/imgui.cpp" })
+    files ({ _SCRIPT_DIR .. "/modules/imgui/imgui_demo.cpp" })
+    files ({ _SCRIPT_DIR .. "/modules/imgui/imgui_draw.cpp" })
+    files ({ _SCRIPT_DIR .. "/modules/imgui/imgui_tables.cpp" })
+    files ({ _SCRIPT_DIR .. "/modules/imgui/imgui_widgets.cpp" })
+    files ({ _SCRIPT_DIR .. "/modules/implot/implot.cpp" })
+    files ({ _SCRIPT_DIR .. "/modules/implot/implot_demo.cpp" })
+    files ({ _SCRIPT_DIR .. "/modules/implot/implot_items.cpp" })
+
+    -- Precompiled headers
     pchheader "Battery/pch.h"
     pchsource "src/pch.cpp"
     filter { "files:include/glm/detail/glm.cpp or files:modules/**.cpp" }
@@ -84,6 +98,7 @@ project (projectName .. "-Release")
 	staticruntime "on"
     location "build/Release"
     targetname (projectName)
+    targetdir (_SCRIPT_DIR .. "/bin")
 
     defines { "NDEBUG", "ALLEGRO_STATICLINK" }
     runtime "Release"
@@ -102,12 +117,25 @@ project (projectName .. "-Release")
         _SCRIPT_DIR .. "/packages/Allegro.5.2.7/build/native/include"
     })
     
+    -- Main source files
     files ({ _SCRIPT_DIR .. "/include/**", _SCRIPT_DIR .. "/src/**" })
+
+    -- Clip library
     files ({ _SCRIPT_DIR .. "/modules/clip/clip.cpp" })
     files ({ _SCRIPT_DIR .. "/modules/clip/clip_win.cpp" })
     files ({ _SCRIPT_DIR .. "/modules/clip/image.cpp" })
-    targetdir (_SCRIPT_DIR .. "/bin")
 
+    -- ImGui/ImPlot library
+    files ({ _SCRIPT_DIR .. "/modules/imgui/imgui.cpp" })
+    files ({ _SCRIPT_DIR .. "/modules/imgui/imgui_demo.cpp" })
+    files ({ _SCRIPT_DIR .. "/modules/imgui/imgui_draw.cpp" })
+    files ({ _SCRIPT_DIR .. "/modules/imgui/imgui_tables.cpp" })
+    files ({ _SCRIPT_DIR .. "/modules/imgui/imgui_widgets.cpp" })
+    files ({ _SCRIPT_DIR .. "/modules/implot/implot.cpp" })
+    files ({ _SCRIPT_DIR .. "/modules/implot/implot_demo.cpp" })
+    files ({ _SCRIPT_DIR .. "/modules/implot/implot_items.cpp" })
+
+    -- Precompiled headers
     pchheader "Battery/pch.h"
     pchsource "src/pch.cpp"
     filter { "files:include/glm/detail/glm.cpp or files:modules/**.cpp" }
