@@ -40,3 +40,4 @@ bin/
 build/
 !premake5.exe
 !packages/**
+!modules/**

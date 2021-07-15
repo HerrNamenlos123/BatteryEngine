@@ -16,3 +16,6 @@
 [submodule "modules/clip"]
 	path = modules/clip
 	url = https://github.com/dacap/clip.git
+[submodule "modules/serial"]
+	path = modules/serial
+	url = https://github.com/wjwwood/serial.git

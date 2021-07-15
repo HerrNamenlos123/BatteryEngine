@@ -26,3 +26,6 @@
 #include "imgui/imgui_internal.h"
 #include "imgui.h"
 #include "imgui_impl_allegro5.h"
+
+// Serial library
+#include "serial/serial.h"
