@@ -30,8 +30,8 @@ project "INSTALL_ALL"
     postbuildcommands { 
         "SETX BATTERY_ENGINE_INCLUDE_DIRECTORY " .. _includedirs,
 
-        "SETX BATTERY_ENGINE_DEBUG_LINK_FILES BatteryEngine-d.lib;allegro_monolith-static.lib;freetype.lib;jpeg.lib;libpng16.lib;webp.lib;zlib.lib;opengl32.lib;winmm.lib;shlwapi",   -- .lib will be appended to the end by the client premake script
-        "SETX BATTERY_ENGINE_RELEASE_LINK_FILES BatteryEngine.lib;allegro_monolith-static.lib;freetype.lib;jpeg.lib;libpng16.lib;webp.lib;zlib.lib;opengl32.lib;winmm.lib;shlwapi",   -- .lib will be appended to the end by the client premake script
+        "SETX BATTERY_ENGINE_DEBUG_LINK_FILES BatteryEngine-d.lib;allegro_monolith-static.lib;freetype.lib;jpeg.lib;libpng16.lib;webp.lib;zlib.lib;opengl32.lib;winmm.lib;setupapi.lib;shlwapi",   -- .lib will be appended to the end by the client premake script
+        "SETX BATTERY_ENGINE_RELEASE_LINK_FILES BatteryEngine.lib;allegro_monolith-static.lib;freetype.lib;jpeg.lib;libpng16.lib;webp.lib;zlib.lib;opengl32.lib;winmm.lib;setupapi.lib;shlwapi",   -- .lib will be appended to the end by the client premake script
         "SETX BATTERY_ENGINE_DEBUG_LINK_DIRS $(ProjectDir)../bin/;$(ProjectDir)../packages/Allegro.5.2.7/build/native/v142/x64/lib/;$(ProjectDir)../packages/AllegroDeps.1.12.0/build/native/v142/x64/deps/lib",
         "SETX BATTERY_ENGINE_RELEASE_LINK_DIRS $(ProjectDir)../bin/;$(ProjectDir)../packages/Allegro.5.2.7/build/native/v142/x64/lib/;$(ProjectDir)../packages/AllegroDeps.1.12.0/build/native/v142/x64/deps/lib"
     }
